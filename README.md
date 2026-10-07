@@ -82,6 +82,7 @@ Shortcodes inside the Markdown:
 | `{{term "basket" "basket"}}` | The same term, with your own text. Use this mid-sentence so the term's capital letter does not show |
 | `{{module "hive" "delivery-run"}}` | A chip linking to that module on its app page |
 | `{{status 15}}` | A status pill such as "15 Delivered" |
+| `{{diagram "statuses"}}` | An inline SVG diagram from `theme/diagrams/<name>.html` (`statuses`, `money`, `network`). Put it on its own line |
 
 Callouts:
 
@@ -101,7 +102,7 @@ Something that bites.
 
 Link to other pages with relative `.html` links, for example `[Courier 101](courier-101.html)` or `[Statuses](../business/statuses.html)`. Use spaced pipes in tables (`| a | b |`, `| --- | --- |`).
 
-Run `make check` after editing. It fails if a term, module or status in a shortcode does not exist.
+Run `make check` after editing. It fails if a term, module, status or diagram in a shortcode does not exist, or if a link points at a missing page or a missing `#heading` id. Every heading gets an id from its text (`## Money flow` becomes `#money-flow`).
 
 ## Adding descriptions and terms
 
@@ -112,9 +113,13 @@ All in `data/`. The tool never edits these files, and Sync never touches them.
 - **Term** (`data/terms.json`, `terms` array): `{"t": "Basket", "cat": "runs", "aka": ["basket_id"], "apps": ["hive"], "def": "A sealed bag of parcels."}`. `cat` is one of the `categories` ids, `aka` are the names used in code (they are used to link the term to modules), and the id is made from `t` unless you give `id`.
 - **Term link pin** (`data/term-pins.json`): force a term to link to modules the code search misses. Key is the term's `t` name: `"Carry (carry amount)": { "hive": ["hub-payments", "hub-ledger"] }`.
 
+Term ids must be unique; the build stops and names the duplicate.
+
 ## What Sync does
 
-Clicking Sync rescans the three app repos, rebuilds the site into a temporary folder, swaps it in for `dist/`, and reports what changed: modules, pages and API calls added or removed, and new term-to-module links. If the build fails, the old `dist/` stays in place and the error is shown. Sync never writes to `content/` or `data/`.
+Clicking Sync rescans the three app repos, rebuilds the site into a temporary folder, swaps it in for `dist/`, and reports what changed: modules, pages and API calls added or removed, and new term-to-module links. The results stay in a panel under the Sync button, with warnings and every item that needs a description grouped by the `data/` file to edit; click **Reload to see changes** to load the new pages. If the build fails, the old `dist/` stays in place and the error is shown. Sync never writes to `content/` or `data/`.
+
+The Sync button also shows whether the handbook is current: **Up to date** or **Update available**, with the time of the last sync. It checks each app repo for commits after the built commit and for `.ts`/`.tsx` files under `src/` changed since the last build (checked at most every 30 seconds; the page asks every minute and when you come back to the tab). Hover the button for the per-app details. Sync only accepts requests from the handbook's own page.
 
 ## Modules that need a description
 
@@ -122,7 +127,8 @@ Clicking Sync rescans the three app repos, rebuilds the site into a temporary fo
 
 ```text
 needs description: module hive/hub-ledger has no description in data/modules.json
-needs description: term some-term is not linked to any module (add a pin)
+needs description: page group hive/oms has no description in data/groups.json
+needs description: term some-term is not linked to any module (add a pin in data/term-pins.json)
 ```
 
-The first is a module found in code with no entry in `data/modules.json`. The second is a term that no module mentions in code. Both are listed, not errors. Add a description or a pin (see above) when you can.
+Each line names the file to edit: a module or a route group found in code with no description, or a term that no module mentions in code. `make build` only lists them; `make check` fails until they are fixed. Add a description or a pin (see above).

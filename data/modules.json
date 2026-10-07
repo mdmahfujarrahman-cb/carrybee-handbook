@@ -1,0 +1,424 @@
+{
+ "hive": {
+  "activity-log": [
+   "Audit trail",
+   "Shows who changed what in the system and when, filterable by log type. Used to investigate disputes and mistakes."
+  ],
+  "agent": [
+   "Agent lookup",
+   "Small helper that fetches the agent (rider) list for dropdowns in other screens. Has no pages of its own."
+  ],
+  "agents": [
+   "Agent management",
+   "Riders: onboarding applications, profiles, attendance, holidays, salary and commission types. Used by ops and HR."
+  ],
+  "all-invoices": [
+   "All merchant invoices",
+   "One list of every merchant invoice with both payable and receivable status, plus CSV and PDF downloads. Finance view."
+  ],
+  "assign-run": [
+   "Assign baskets to a run",
+   "Scan baskets or orders and attach them to an agent's run before it leaves the hub."
+  ],
+  "authentication": [
+   "Staff login",
+   "SSO login, hub switcher, logout and impersonation for Carrybee staff. Picks which hub the user works in."
+  ],
+  "basket": [
+   "Baskets",
+   "Sealed bags of parcels that move between hubs as one unit. Create, print the basket label, track status from created to received."
+  ],
+  "business-insights": [
+   "Business insights dashboard",
+   "Management dashboard: agent productivity, delivery attempt outcomes, churned merchants, customer-service dispatch and other KPIs."
+  ],
+  "business-stores": [
+   "Merchant stores (ops side)",
+   "Staff create or edit a merchant's pickup stores, change the store's hub and set the default pickup store."
+  ],
+  "businesses": [
+   "Merchant businesses",
+   "Master list of seller businesses: service configuration, fees, KAM assignment (also by CSV), pending payout changes."
+  ],
+  "central-pod-print": [
+   "Central label printing",
+   "Bulk printing of POD labels for orders at the central warehouse."
+  ],
+  "central-sorting": [
+   "Central sorting",
+   "At the central warehouse, scan parcels, fix their last-mile hub if wrong, and pack them into outgoing baskets."
+  ],
+  "cluster": [
+   "Clusters",
+   "Groups of hubs under a cluster lead. Part of the region → cluster → hub tree."
+  ],
+  "custom-invoice": [
+   "Custom invoices",
+   "Generate one-off merchant invoices outside the regular cycle, with a payment summary."
+  ],
+  "customer-return-run": [
+   "Customer return run",
+   "Reverse pickup trips: an agent collects items from buyers to send back to sellers."
+  ],
+  "delivery-allowance": [
+   "Delivery allowance",
+   "Distance-based pay for agents. Approved amounts are paid out with an OTP step."
+  ],
+  "delivery-orders": [
+   "Delivery orders",
+   "Parcels at the last-mile hub waiting to go out. Move them between zones or to another hub."
+  ],
+  "delivery-run": [
+   "Delivery run",
+   "The core last-mile screen: build an agent's delivery trip, scan parcels in, mark lost or damaged, count cash and close (or force close) the run."
+  ],
+  "discount-requests": [
+   "Discount requests",
+   "Requests to lower a merchant's price plan, waiting for approval."
+  ],
+  "fraud-activities": [
+   "Fraud reports",
+   "Merchants report fraudulent buyers by phone number. Ops review and approve or reject the reports."
+  ],
+  "g-mode": [
+   "G-Mode (super user fixes)",
+   "Admin repair tools: reopen runs, reset OTP or agent throttling, approve urgent requests, regenerate invoices, impersonate users."
+  ],
+  "generate-invoice": [
+   "Generate merchant invoices",
+   "Create the seller payout invoices from delivered orders, as regular or positive-balance invoices, filtered by KAM."
+  ],
+  "geonix": [
+   "Zone polygons (maps)",
+   "Draw and view delivery zone boundaries on a map, per city and hub. Backed by the geonix service."
+  ],
+  "hub-dashboard": [
+   "Hub finance dashboard",
+   "Per-hub money overview: transaction history and reconciliation entries."
+  ],
+  "hub-ledger": [
+   "Hub ledger",
+   "How much cash each hub holds (cash in hand) and carries forward."
+  ],
+  "hub-payment-approvals": [
+   "Hub deposit approvals",
+   "Finance reviews each hub's cash deposit and approves it, one by one or in bulk."
+  ],
+  "hub-payment-not-submitted": [
+   "Missing hub deposits",
+   "Hubs that collected COD but have not deposited it yet."
+  ],
+  "hub-payments": [
+   "Hub deposits",
+   "A hub submits the COD it collected, minus expenses and money lost, with proof of deposit."
+  ],
+  "hub-performance": [
+   "Hub performance",
+   "Operational scorecard per hub: backlog, open runs, delivery attempts, agent productivity, zone transfers."
+  ],
+  "hub-pickup": [
+   "Hub drop-off",
+   "When a seller brings parcels to the hub instead of waiting for a rider. Verified by OTP, entered manually or by scan."
+  ],
+  "incomplete-orders": [
+   "Incomplete orders",
+   "Orders missing data needed to move them on. Fixed in bulk per hub."
+  ],
+  "kam-postpaid-invoice": [
+   "KAM postpaid invoices",
+   "Receivable invoices for postpaid key accounts, seen by KAMs. Menu entry is currently hidden."
+  ],
+  "kam-prepaid-invoice": [
+   "KAM prepaid invoices",
+   "Receivable invoices for prepaid key accounts, seen by KAMs. Menu entry is currently hidden."
+  ],
+  "landlord": [
+   "Hub landlords",
+   "Owners of rented hub premises, used for paying rent through petty cash."
+  ],
+  "linehaul": [
+   "Linehauls",
+   "Trunk routes that connect hubs and sorting centres. Master data used by transfer runs."
+  ],
+  "lost-order": [
+   "Lost orders",
+   "Record a parcel as lost and decide who pays compensation: the agent, the hub, or Carrybee."
+  ],
+  "merchant-profiles": [
+   "Merchant KYC profiles",
+   "Seller identity documents and profile details, reviewed by ops."
+  ],
+  "merchants": [
+   "Merchant onboarding",
+   "Create corporate merchants and set their business category."
+  ],
+  "missing-extra-parcels": [
+   "Missing / extra parcels",
+   "Differences found when a basket is received by scan: parcels that should be there but aren't, or arrived unexpectedly."
+  ],
+  "no-entry-orders": [
+   "No-entry parcels",
+   "Parcels physically at a hub with no matching order in the system. Create the order, process it, or return it."
+  ],
+  "notifications": [
+   "Notifications",
+   "Staff in-app notification list and dropdown."
+  ],
+  "on-demand": [
+   "On-demand withdrawals",
+   "Sellers asking to be paid now instead of waiting for the regular payout cycle. Finance approves the requests."
+  ],
+  "order-processing": [
+   "First-mile processing",
+   "At the hub where parcels arrive: weigh, sort or unsort per store, view the consignment log. Statuses delivery/return sorted and unsorted."
+  ],
+  "order-status-change": [
+   "Manual status change",
+   "Bulk-change order statuses when the normal flow can't. Restricted tool."
+  ],
+  "orders": [
+   "Orders (ops view)",
+   "Search any order and see its full details, parcel, products and history. Shared by many other modules."
+  ],
+  "paid-invoice": [
+   "Paid invoices",
+   "Merchant invoices that have been paid out. Read and export."
+  ],
+  "payable-consignments": [
+   "Payable consignments",
+   "Delivered orders whose COD is ready to be deposited or paid out, with summary totals."
+  ],
+  "pending-payments": [
+   "Pending payout changes",
+   "Sellers' requests to change their bank or wallet payout account, waiting for approval."
+  ],
+  "pending-stores": [
+   "Pending stores",
+   "New seller stores waiting for approval. Approve, reject, or change the assigned hub."
+  ],
+  "petty-cash": [
+   "Petty cash",
+   "Hub expenses and rent. Each claim goes through ops head → HR → audit → accounts approval, then is withdrawn by OTP."
+  ],
+  "pickup-order": [
+   "Pickup orders",
+   "Orders waiting to be collected, grouped by store and route. Assign them to a pickup agent manually."
+  ],
+  "pickup-requests": [
+   "Pickup requests",
+   "Seller requests to collect N parcels from a store. KAMs can also create them for their accounts."
+  ],
+  "pickup-run": [
+   "Pickup run",
+   "An agent's trip to collect parcels from seller stores and bring them to the hub. Create, add stores, close."
+  ],
+  "price-plans": [
+   "Price plans",
+   "Delivery fees, extra charges, price slabs and discounts for a merchant business."
+  ],
+  "processing-invoice": [
+   "Invoices in processing",
+   "Merchant invoices being paid: export the bank Excel file, tag RTGS, process one by one or in bulk."
+  ],
+  "ptn": [
+   "PTN sorting racks",
+   "Rack setups with 12 or 24 pigeon holes mapped to hubs or linehauls, plus rack and basket labels. Used at sub-sort centres."
+  ],
+  "push-notification-center": [
+   "Push notification center",
+   "Send push notifications to users from the panel."
+  ],
+  "qc": [
+   "QC (urgent approvals)",
+   "Reviewers approve or reject agents' requests to change an order's outcome, and spot fake requests by hub or agent."
+  ],
+  "qr-campaign-management": [
+   "QR campaigns",
+   "Referral QR codes and short links for acquiring new sellers, with visit counts."
+  ],
+  "rating-management": [
+   "Agent ratings",
+   "Customer and merchant ratings of agents, with hub summaries and weekly trends."
+  ],
+  "receivable-postpaid-invoices": [
+   "Receivable postpaid invoices",
+   "Money postpaid sellers owe Carrybee. Includes monthly invoice generation."
+  ],
+  "receivable-prepaid-invoices": [
+   "Receivable prepaid invoices",
+   "Money prepaid sellers owe Carrybee, with submission of their payments."
+  ],
+  "reconciliation": [
+   "Reconciliation",
+   "Approval chain for agent allowances and expense claims: cluster lead → region lead → HR → audit → accounts."
+  ],
+  "region": [
+   "Regions",
+   "Top level of the organisation tree. Each region has a lead and a set of clusters."
+  ],
+  "reports": [
+   "Reports",
+   "CSV exports: consignments, baskets, merchants and custom reports."
+  ],
+  "return-orders": [
+   "Return orders",
+   "Parcels heading back to sellers. Pack them into return baskets, transfer between zones or hubs."
+  ],
+  "return-run": [
+   "Return to merchant run",
+   "An agent's trip that hands returned parcels back to sellers."
+  ],
+  "route": [
+   "Routes",
+   "A hub's set of zones with a default agent, for pickup, delivery or reverse pickup."
+  ],
+  "run-not-closed": [
+   "Unclosed runs",
+   "Delivery runs that were never closed, so their cash is not yet accounted for."
+  ],
+  "store-location-verification": [
+   "Store location checks",
+   "Verify that a seller store's map location matches its address."
+  ],
+  "transfer-run": [
+   "Transfer run (linehaul trip)",
+   "Moves baskets between hubs. Scan baskets in or out, hand over, receive by scan, print the gate pass, close."
+  ],
+  "unpaid-invoice": [
+   "Unpaid invoices",
+   "Merchant invoices generated but not yet paid. Export the bank Excel and move them into processing."
+  ],
+  "user-attendance": [
+   "Staff attendance",
+   "Check-in and check-out widget for staff, with attendance history."
+  ],
+  "users": [
+   "Users, roles & permissions",
+   "Staff accounts, teams, departments, roles and permission scopes for hive."
+  ],
+  "wallet-provider": [
+   "Banks & wallets",
+   "Banks (with branches) and mobile wallets that sellers can be paid into."
+  ],
+  "warehouses": [
+   "Hubs & geography",
+   "Hubs and the delivery area tree: city → zone → area → sector. The most imported module in hive."
+  ]
+ },
+ "aladdin": {
+  "agent-messaging": [
+   "Chat with the rider",
+   "Real-time chat between the seller and the delivery agent about a parcel (Centrifugo)."
+  ],
+  "agent-rating": [
+   "Rate the rider",
+   "Seller or buyer rates the pickup or delivery agent."
+  ],
+  "analytics": [
+   "Analytics",
+   "Seller's order trends, overall statistics and top stores."
+  ],
+  "authentication": [
+   "Seller login & signup",
+   "Register with phone, verify OTP, log in with password, reset password, impersonation for support staff."
+  ],
+  "businesses": [
+   "Businesses",
+   "Create or switch between the seller's businesses, edit the business profile and request pickups."
+  ],
+  "customers": [
+   "Customers & fraud check",
+   "Seller's buyer list, plus a fraud checker: look up a buyer's phone and file fraud reports."
+  ],
+  "dashboard": [
+   "Dashboard",
+   "Home screen: order progress, payment summary, dues banner, on-demand withdrawal, ads."
+  ],
+  "faq": [
+   "FAQ",
+   "Help questions and answers for sellers."
+  ],
+  "high-alert": [
+   "High alert queue",
+   "Things the seller must act on: urgent approvals from agents, partial deliveries, returns, no-entry parcels, last-mile issues."
+  ],
+  "invoices": [
+   "Invoices",
+   "Seller's payout statements: collected COD minus delivery and COD fees, with breakdown and export."
+  ],
+  "merchant": [
+   "Seller profile",
+   "The seller's personal profile, ID documents (NID, birth certificate) and password change."
+  ],
+  "notifications": [
+   "Notifications",
+   "In-app notifications and do-not-disturb settings."
+  ],
+  "operators": [
+   "Team members",
+   "Staff the seller adds to the business, as operator or accountant."
+  ],
+  "orders": [
+   "Orders",
+   "Create orders (single, bulk, AI/OCR, reverse pickup, exchange), track them, edit or cancel, print labels, public tracking page."
+  ],
+  "payments": [
+   "Payout & payments",
+   "Set the payout account (bank or mobile wallet) and schedule, and pay dues to Carrybee via bKash, Nagad or SSLCommerz."
+  ],
+  "pickup-requests": [
+   "Pickup history",
+   "List of past pickup requests with how many parcels were actually picked and sorted."
+  ],
+  "stores": [
+   "Stores",
+   "Seller's pickup and return addresses on a map, each tied to a hub and route. Set the default store."
+  ],
+  "webhook": [
+   "Developer API & webhooks",
+   "API credentials, webhook setup and API docs for sellers integrating their own systems."
+  ]
+ },
+ "accounts": {
+  "authentication": [
+   "Staff login",
+   "Phone + OTP login for finance and legal staff."
+  ],
+  "business": [
+   "Businesses",
+   "Read-only list of seller businesses with fees, payout frequency, KAM and wallet."
+  ],
+  "departments": [
+   "Departments lookup",
+   "Dropdown data only. No page of its own."
+  ],
+  "hubs": [
+   "Hubs lookup",
+   "Dropdown data only. No page of its own."
+  ],
+  "invoice": [
+   "Revenue recognition",
+   "Merchant invoices for accounting, exported as CSV or PDF, per merchant or per order."
+  ],
+  "legal-order": [
+   "Legal orders",
+   "Order and fee export for the legal team, filterable by parcel type."
+  ],
+  "merchants": [
+   "Merchant eKYC",
+   "List of sellers and their identity verification status."
+  ],
+  "reports": [
+   "Reports",
+   "Consignment CSV report. Custom and merchant reports exist but are hidden."
+  ],
+  "teams": [
+   "Teams lookup",
+   "Dropdown data only. No page of its own."
+  ],
+  "users": [
+   "Users",
+   "User list. Its page does not exist yet."
+  ]
+ }
+}

@@ -1,2 +1,5 @@
 dist/
 .DS_Store
+.superpowers/
+.dist-*
+dist.old

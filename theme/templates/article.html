@@ -1,0 +1,15 @@
+{{define "article.html"}}{{template "head" .}}{{template "top" .}}
+<div class="page{{if .Wide}} page-wide{{end}}">
+  <article class="article">
+    {{template "crumbs" .}}
+    <header class="page-head">
+      {{template "level" .}}
+      <h1>{{.Title}}</h1>
+      {{with .Summary}}<p class="lead">{{.}}</p>{{end}}
+    </header>
+    <div class="prose">{{.Body}}</div>
+    {{template "prevnext" .}}
+  </article>
+  {{if not .Wide}}<aside id="toc" class="toc" aria-label="On this page" hidden></aside>{{end}}
+</div>
+{{template "bottom" .}}{{template "end"}}{{end}}

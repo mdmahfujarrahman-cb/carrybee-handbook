@@ -1,0 +1,9 @@
+{
+  "siteTitle": "Carrybee Handbook",
+  "apps": [
+    {"id": "hive", "path": "../hive", "label": "hive", "audience": "ops"},
+    {"id": "aladdin", "path": "../aladdin", "label": "aladdin", "audience": "merchant",
+     "nestedAPI": ["business"], "skipSegments": ["(business)", "(merchant)"]},
+    {"id": "accounts", "path": "../accounts", "label": "accounts", "audience": "finance"}
+  ]
+}

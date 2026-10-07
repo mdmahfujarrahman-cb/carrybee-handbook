@@ -1,0 +1,92 @@
+{
+ "hive": {
+  "agent-management": [
+   "Agent management",
+   "Everything about riders (called agents in code): new rider applications, profiles, daily attendance and holidays, and how they are paid (salary type or per-parcel commission). Used by ops and HR."
+  ],
+  "g-mode": [
+   "G-Mode (god mode)",
+   "A restricted super-user area for fixing things the normal flow can't: reset an agent's login throttle, resolve stuck baskets or orders, regenerate an order's invoice, force-approve urgent requests, or log in as another user to see their problem."
+  ],
+  "global_layout": [
+   "Before you start",
+   "Screens shown outside the main dashboard: first-time onboarding and choosing which hub you are working in."
+  ],
+  "invoice": [
+   "Hub cash",
+   "Money a hub collected: consignments whose COD is ready to deposit, and the hub's deposit submissions."
+  ],
+  "invoices": [
+   "Accounts & billing",
+   "Finance's area: generate and pay merchant invoices, approve hub deposits, hub money dashboards, transaction history, agent delivery allowance and reconciliation of claims."
+  ],
+  "landlord": [
+   "Landlords",
+   "Owners of the premises Carrybee rents for its hubs, used for paying rent."
+  ],
+  "merchant": [
+   "Merchant management",
+   "Sellers on the platform: their businesses, corporate accounts, KYC profiles, store approvals, store location checks, payout account changes and discount requests."
+  ],
+  "oms": [
+   "Order management (OMS)",
+   "The day-to-day parcel operation: pickup requests and orders, hub drop-off, first-mile processing, baskets, central sorting and sub-sort, delivery orders, returns, QC approvals, and exception queues (no-entry, incomplete, lost, missing/extra)."
+  ],
+  "petty-cash": [
+   "Petty cash",
+   "Hub expenses and rent claims, approved step by step (ops head → HR → audit → accounts) and withdrawn by OTP."
+  ],
+  "qr-campaign-management": [
+   "QR campaigns",
+   "Referral QR codes and short links used to bring new sellers to Carrybee, with visit tracking."
+  ],
+  "rating-management": [
+   "Rating management",
+   "How customers and sellers rate riders, with per-hub summaries and weekly trends."
+  ],
+  "reports": [
+   "Reports",
+   "Downloadable CSV reports: baskets, consignments, merchants and custom reports."
+  ],
+  "run-management": [
+   "Run management",
+   "Agent trips: pickup runs, delivery runs, transfer runs between hubs, return-to-merchant runs and customer return runs. Create, assign, track and close them."
+  ],
+  "system-setting": [
+   "System settings",
+   "Staff notifications and the push notification center for sending messages to users."
+  ],
+  "users": [
+   "User management",
+   "Staff accounts and who can do what: users, teams, departments, roles and permissions."
+  ],
+  "warehouse": [
+   "Warehouse management",
+   "The physical network: hubs (warehouses), regions, clusters, routes, linehauls between hubs, zone polygons on the map, and the hub ledger."
+  ],
+  "top level": [
+   "Standalone pages",
+   "Pages not inside a menu group: dashboards (business insights, hub performance), activity log, fraud reports, POD printing, PTN racks, unclosed runs, login and logout."
+  ]
+ },
+ "aladdin": {
+  ".": [
+   "Popup pages",
+   "Pages that open as a popup over the current screen (Next.js intercepting routes), such as the profile, request pickup and change password dialogs."
+  ],
+  "developers-api": [
+   "Developer API",
+   "Documentation, credentials and webhook setup for sellers who connect their own shop or system to Carrybee."
+  ],
+  "top level": [
+   "Seller panel pages",
+   "Everything a seller does day to day: dashboard, orders, pickups, stores, customers, invoices, payments, team members and alerts. Also signup, login and public order tracking."
+  ]
+ },
+ "accounts": {
+  "top level": [
+   "Finance & legal pages",
+   "Revenue recognition (merchant invoices), legal order export, business and merchant lists, and consignment reports."
+  ]
+ }
+}

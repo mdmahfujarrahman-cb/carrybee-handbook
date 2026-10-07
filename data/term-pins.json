@@ -1,0 +1,109 @@
+{
+ "Carry (carry amount)": {
+  "hive": [
+   "hub-payments",
+   "hub-ledger"
+  ]
+ },
+ "Urgent approval": {
+  "hive": [
+   "qc",
+   "g-mode"
+  ],
+  "aladdin": [
+   "high-alert"
+  ]
+ },
+ "Price change": {
+  "hive": [
+   "qc",
+   "delivery-run"
+  ],
+  "aladdin": [
+   "high-alert"
+  ]
+ },
+ "High alert": {
+  "aladdin": [
+   "high-alert"
+  ]
+ },
+ "Labeled / unlabeled": {
+  "aladdin": [
+   "orders"
+  ]
+ },
+ "3 Assigned for pickup": {
+  "hive": [
+   "pickup-order",
+   "pickup-run"
+  ]
+ },
+ "7 At the hub received": {
+  "hive": [
+   "order-processing"
+  ]
+ },
+ "Pending COD": {
+  "aladdin": [
+   "dashboard"
+  ]
+ },
+ "RTGS": {
+  "hive": [
+   "processing-invoice",
+   "unpaid-invoice"
+  ]
+ },
+ "Revenue recognition": {
+  "accounts": [
+   "invoice"
+  ]
+ },
+ "Legal panel / legal order": {
+  "accounts": [
+   "legal-order"
+  ]
+ },
+ "Delivery success rate": {
+  "aladdin": [
+   "customers",
+   "analytics"
+  ],
+  "hive": [
+   "hub-performance"
+  ]
+ },
+ "Consignment report": {
+  "hive": [
+   "reports"
+  ],
+  "accounts": [
+   "reports"
+  ]
+ },
+ "Petty cash": {
+  "hive": [
+   "petty-cash"
+  ]
+ },
+ "Reconciliation": {
+  "hive": [
+   "reconciliation",
+   "hub-dashboard"
+  ]
+ },
+ "G-Mode": {
+  "hive": [
+   "g-mode"
+  ]
+ },
+ "Fraud report": {
+  "hive": [
+   "fraud-activities"
+  ],
+  "aladdin": [
+   "customers"
+  ]
+ }
+}

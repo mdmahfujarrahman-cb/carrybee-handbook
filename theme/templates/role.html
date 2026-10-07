@@ -1,0 +1,18 @@
+{{define "role.html"}}{{template "head" .}}{{template "top" .}}
+<div class="page">
+  <article class="article">
+    {{template "crumbs" .}}
+    <header class="page-head role-head">
+      <span class="role-badge" aria-hidden="true">{{initial .Title}}</span>
+      <div>
+        <p class="role-for">Reading path for</p>
+        <h1>{{.Title}}</h1>
+        {{with .Summary}}<p class="lead">{{.}}</p>{{end}}
+      </div>
+    </header>
+    <div class="prose">{{.Body}}</div>
+    {{template "prevnext" .}}
+  </article>
+  <aside id="toc" class="toc" aria-label="On this page" hidden></aside>
+</div>
+{{template "bottom" .}}{{template "end"}}{{end}}

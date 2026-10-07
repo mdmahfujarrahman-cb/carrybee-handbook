@@ -1,0 +1,47 @@
+<div class="dg-cols" role="group" aria-labelledby="nt-title"><p class="dg-title" id="nt-title">The Carrybee network</p>
+<div class="dg-col"><p class="dg-col-title">Organisation</p><svg viewBox="0 0 320 244" role="img" aria-labelledby="nt-t1 nt-d1">
+<title id="nt-t1">Organisation</title>
+<desc id="nt-d1">Region, with a region lead, contains clusters; a cluster, with a cluster lead, contains hubs; a hub has a type (ISD, OSD or sub area) and a tier.</desc>
+<defs><marker id="nt-a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="dg-box dg-accent" x="16" y="8" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="27.0">Region</text>
+<text class="dg-sub" x="160.0" y="48.0">has a region lead</text>
+<line class="dg-line" x1="160.0" y1="66" x2="160.0" y2="90" marker-end="url(#nt-a1)"/>
+<rect class="dg-box dg-accent" x="16" y="94" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="113.0">Cluster</text>
+<text class="dg-sub" x="160.0" y="134.0">has a cluster lead</text>
+<line class="dg-line" x1="160.0" y1="152" x2="160.0" y2="176" marker-end="url(#nt-a1)"/>
+<rect class="dg-box dg-accent" x="16" y="180" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="199.0">Hub</text>
+<text class="dg-sub" x="160.0" y="220.0">type ISD / OSD / sub area, tier</text>
+</svg></div>
+<div class="dg-col"><p class="dg-col-title">Delivery area</p><svg viewBox="0 0 320 330" role="img" aria-labelledby="nt-t2 nt-d2">
+<title id="nt-t2">Delivery area</title>
+<desc id="nt-d2">A city contains zones; each zone belongs to a hub and contains areas; an area contains sectors.</desc>
+<defs><marker id="nt-a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="dg-box" x="16" y="8" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="36.0">City</text>
+<line class="dg-line" x1="160.0" y1="66" x2="160.0" y2="90" marker-end="url(#nt-a2)"/>
+<rect class="dg-box" x="16" y="94" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="113.0">Zone</text>
+<text class="dg-sub" x="160.0" y="134.0">belongs to a hub</text>
+<line class="dg-line" x1="160.0" y1="152" x2="160.0" y2="176" marker-end="url(#nt-a2)"/>
+<rect class="dg-box" x="16" y="180" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="208.0">Area</text>
+<line class="dg-line" x1="160.0" y1="238" x2="160.0" y2="262" marker-end="url(#nt-a2)"/>
+<rect class="dg-box" x="16" y="266" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="294.0">Sector</text>
+</svg></div>
+<div class="dg-col"><p class="dg-col-title">How hubs connect</p><svg viewBox="0 0 320 142" role="img" aria-labelledby="nt-t3 nt-d3">
+<title id="nt-t3">How hubs connect</title>
+<desc id="nt-d3">A route is a hub&#x27;s zones plus a default agent. A linehaul is a trunk route between hubs and sorting centres.</desc>
+<defs><marker id="nt-a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="dg-box dg-alt" x="16" y="8" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="27.0">Route</text>
+<text class="dg-sub" x="160.0" y="48.0">a hub&#x27;s zones + default agent</text>
+<rect class="dg-box dg-alt" x="16" y="78" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="97.0">Linehaul</text>
+<text class="dg-sub" x="160.0" y="118.0">trunk route between hubs</text>
+</svg></div>
+</div>
+<figcaption>Two trees describe the network. Ops screens filter by one of their levels, and a hive user is scoped to a hub, cluster or region.</figcaption>

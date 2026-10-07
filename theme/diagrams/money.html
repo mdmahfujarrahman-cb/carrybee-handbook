@@ -1,0 +1,53 @@
+<div class="dg-cols" role="group" aria-labelledby="mw-title"><p class="dg-title" id="mw-title">Money for one COD parcel</p>
+<div class="dg-col"><p class="dg-col-title">Seller payout</p><svg viewBox="0 0 320 416" role="img" aria-labelledby="mw-t1 mw-d1">
+<title id="mw-t1">Seller payout</title>
+<desc id="mw-d1">COD collected from the buyer, minus the delivery fee, minus the COD fee, plus or minus compensation and adjustments, equals the seller payout.</desc>
+<defs><marker id="mw-a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="dg-box dg-ok" x="16" y="8" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="27.0">COD collected from the buyer</text>
+<text class="dg-sub" x="160.0" y="48.0">the full amount at the door</text>
+<line class="dg-line" x1="160.0" y1="66" x2="160.0" y2="90" marker-end="url(#mw-a1)"/>
+<rect class="dg-box dg-bad" x="16" y="94" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="113.0">− Delivery fee</text>
+<text class="dg-sub" x="160.0" y="134.0">by destination zone and weight</text>
+<line class="dg-line" x1="160.0" y1="152" x2="160.0" y2="176" marker-end="url(#mw-a1)"/>
+<rect class="dg-box dg-bad" x="16" y="180" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="199.0">− COD fee</text>
+<text class="dg-sub" x="160.0" y="220.0">a percentage of the amount</text>
+<line class="dg-line" x1="160.0" y1="238" x2="160.0" y2="262" marker-end="url(#mw-a1)"/>
+<rect class="dg-box dg-alt" x="16" y="266" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="285.0">± Compensation, adjustments</text>
+<text class="dg-sub" x="160.0" y="306.0">lost or damaged parcels, extras</text>
+<line class="dg-line" x1="160.0" y1="324" x2="160.0" y2="348" marker-end="url(#mw-a1)"/>
+<rect class="dg-box dg-accent" x="16" y="352" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="371.0">= Seller payout</text>
+<text class="dg-sub" x="160.0" y="392.0">to a bank or an MFS wallet</text>
+</svg></div>
+<div class="dg-col"><p class="dg-col-title">Hub deposit</p><svg viewBox="0 0 320 502" role="img" aria-labelledby="mw-t2 mw-d2">
+<title id="mw-t2">Hub deposit</title>
+<desc id="mw-d2">Payable equals the sum collected, minus money lost, cash in hand and withdrawn expenses, plus carry.</desc>
+<defs><marker id="mw-a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="dg-box dg-ok" x="16" y="8" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="27.0">Sum collected</text>
+<text class="dg-sub" x="160.0" y="48.0">all COD the hub received</text>
+<line class="dg-line" x1="160.0" y1="66" x2="160.0" y2="90" marker-end="url(#mw-a2)"/>
+<rect class="dg-box dg-bad" x="16" y="94" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="122.0">− Money lost</text>
+<line class="dg-line" x1="160.0" y1="152" x2="160.0" y2="176" marker-end="url(#mw-a2)"/>
+<rect class="dg-box dg-bad" x="16" y="180" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="199.0">− Cash in hand</text>
+<text class="dg-sub" x="160.0" y="220.0">kept at the hub</text>
+<line class="dg-line" x1="160.0" y1="238" x2="160.0" y2="262" marker-end="url(#mw-a2)"/>
+<rect class="dg-box dg-bad" x="16" y="266" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="294.0">− Withdrawn expenses</text>
+<line class="dg-line" x1="160.0" y1="324" x2="160.0" y2="348" marker-end="url(#mw-a2)"/>
+<rect class="dg-box dg-alt" x="16" y="352" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="371.0">+ Carry</text>
+<text class="dg-sub" x="160.0" y="392.0">amount carried over</text>
+<line class="dg-line" x1="160.0" y1="410" x2="160.0" y2="434" marker-end="url(#mw-a2)"/>
+<rect class="dg-box dg-accent" x="16" y="438" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="457.0">= Payable deposit</text>
+<text class="dg-sub" x="160.0" y="478.0">what the hub submits</text>
+</svg></div>
+</div>
+<figcaption>Where one COD parcel's cash goes, and the hub deposit formula computed in <code>hub-payment-submission-form.tsx</code>.</figcaption>

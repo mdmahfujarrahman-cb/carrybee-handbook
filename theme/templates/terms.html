@@ -1,0 +1,22 @@
+{{define "terms.html"}}{{template "head" .}}{{template "top" .}}
+<div class="page page-wide terms-page">
+  <article class="article">
+    {{template "crumbs" .}}
+    <header class="page-head">
+      <span class="level level-carrybee">Carrybee-specific</span>
+      <h1>{{.Title}}</h1>
+      <p class="lead">Every courier, logistics and money term used in the hive, aladdin and accounts code, in plain words. Each entry shows the names it goes by in code and links to the modules where it lives. Terms tagged <span class="flag">inferred</span> are not defined in the code; the meaning is our best reading.</p>
+    </header>
+    <div class="terms-tools">
+      <div class="terms-search">
+        <input id="terms-q" type="search" placeholder="Search a word, e.g. LMH, carry, paid_return, aging…" aria-label="Search terms" autocomplete="off" spellcheck="false">
+        <span class="terms-count" id="terms-count" aria-live="polite"></span>
+      </div>
+      <div class="cats" id="terms-cats" role="toolbar" aria-label="Filter by category"></div>
+    </div>
+    <div id="terms-out"><noscript><p>The term list needs JavaScript.</p></noscript></div>
+  </article>
+</div>
+{{template "bottom" .}}
+<script src="{{.Root}}assets/terms.js"></script>
+{{template "end"}}{{end}}

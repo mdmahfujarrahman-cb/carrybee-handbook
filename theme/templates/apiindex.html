@@ -1,0 +1,36 @@
+{{define "apiindex.html"}}{{template "head" .}}{{template "top" .}}
+<div class="page page-wide">
+  <article class="article">
+    {{template "crumbs" .}}
+    <header class="page-head">
+      <span class="level level-code">Code</span>
+      <h1>{{.Title}}</h1>
+      {{with .Summary}}<p class="lead">{{.}}</p>{{end}}
+    </header>
+    {{with .Extra}}
+    <div class="prose">
+      <p>An API domain is a top-level key of <code>API_ROUTES</code> in <code>src/lib/routes/api-routes.ts</code>. Module names open that module in the app map.</p>
+      {{if .Tables}}<p class="api-jump">{{range .Tables}}<a href="#api.{{.App}}">{{.App}}</a> <small>{{len .Rows}} domains</small> {{end}}</p>{{end}}
+    </div>
+    {{$root := .AppsRoot}}
+    {{range .Tables}}{{$app := .App}}
+    <section class="api-app" aria-labelledby="api.{{$app}}">
+      <h2 id="api.{{$app}}">{{$app}} <small>{{len .Rows}} API domains</small></h2>
+      <div class="table-wrap">
+        <table class="api-table">
+          <thead><tr><th>API domain</th><th>Modules that call it</th><th>Pages that load those modules</th></tr></thead>
+          <tbody>{{range .Rows}}
+            <tr id="{{.Anchor}}">
+              <td><code class="api-name">{{.Domain}}</code></td>
+              <td><span class="chips">{{range .Modules}}<a class="chip mod" href="{{$root}}{{$app}}.html#mod.{{.}}">{{.}}</a>{{end}}</span></td>
+              <td>{{if .Pages}}<span class="chips">{{range .Pages}}<span class="chip page">{{.}}</span>{{end}}</span>{{else}}<span class="none">No page</span>{{end}}</td>
+            </tr>{{end}}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    {{else}}<p>No app was scanned, so there are no API domains to list.</p>{{end}}
+    {{end}}
+  </article>
+</div>
+{{template "bottom" .}}{{template "end"}}{{end}}

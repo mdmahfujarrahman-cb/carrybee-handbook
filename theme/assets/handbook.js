@@ -350,11 +350,10 @@
     });
   }
 
-  /* ---------- Local Sync (only when served by `handbook serve`) ----------
-     The only fetch() calls in the theme: they hit the local server's /api/status and /api/sync. */
+  /* ---------- Local Sync (only when served by `handbook serve`) ---------- */
   const plural = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
 
-  function summariseDiff(diff, missing) {
+  function summariseDiff(diff, missing, terms) {
     const parts = (diff || []).map(d => {
       const bits = [];
       const add = (n, sign, word) => { if (n) bits.push(sign + plural(n, word)); };
@@ -368,6 +367,7 @@
     });
     let msg = parts.length ? parts.join('; ') : 'Already up to date';
     if ((missing || []).length) msg += ' \u00b7 ' + missing.length + ' need descriptions';
+    if ((terms || []).length) msg += ' \u00b7 ' + plural(terms.length, 'term') + ' newly linked';
     return msg;
   }
 
@@ -383,7 +383,7 @@
       if (res.status === 409) {
         toast('A sync is already running');
       } else if (res.ok && body.ok) {
-        toast(summariseDiff(body.diff, body.missing), 1500);
+        toast(summariseDiff(body.diff, body.missing, body.terms), 1500);
         reload = true;
         setTimeout(() => location.reload(), 1500);
       } else {

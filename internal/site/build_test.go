@@ -67,14 +67,19 @@ func TestLinksAreRelative(t *testing.T) {
 	})
 }
 
+// fetchCallRE matches a fetch( call and captures the rest of its line.
+var fetchCallRE = regexp.MustCompile(`\bfetch\((.*)`)
+
 func TestNoFetchInTheme(t *testing.T) {
 	for _, f := range []string{"../../theme/assets/handbook.js", "../../theme/assets/explorer.js"} {
 		b, err := os.ReadFile(f)
 		if err != nil {
 			continue // explorer.js arrives in Task 7
 		}
-		if strings.Contains(string(b), "fetch(") && !strings.Contains(string(b), "/api/") {
-			t.Errorf("%s uses fetch for data; data must come from data/*.js so file:// works", f)
+		for i, line := range strings.Split(string(b), "\n") {
+			if m := fetchCallRE.FindStringSubmatch(line); m != nil && !strings.Contains(m[1], "api/") {
+				t.Errorf("%s:%d fetch outside api/ (data must come from data/*.js so file:// works): %s", f, i+1, strings.TrimSpace(line))
+			}
 		}
 	}
 }

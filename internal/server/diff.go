@@ -42,7 +42,7 @@ func DiffScans(before, after map[string]*scan.AppScan) []Diff {
 		apps = append(apps, a)
 	}
 	sort.Strings(apps)
-	var out []Diff
+	out := []Diff{}
 	for _, a := range apps {
 		b, n := before[a], after[a]
 		if b == nil {
@@ -56,5 +56,29 @@ func DiffScans(before, after map[string]*scan.AppScan) []Diff {
 			out = append(out, d)
 		}
 	}
+	return out
+}
+
+// DiffTermLinks lists "term → app/module" links present after but not before, sorted.
+// It returns an empty slice (never nil), including on the first sync when before is nil.
+func DiffTermLinks(before, after map[string]map[string][]string) []string {
+	out := []string{}
+	if before == nil {
+		return out
+	}
+	for term, apps := range after {
+		for app, mods := range apps {
+			old := map[string]bool{}
+			for _, m := range before[term][app] {
+				old[m] = true
+			}
+			for _, m := range mods {
+				if !old[m] {
+					out = append(out, term+" → "+app+"/"+m)
+				}
+			}
+		}
+	}
+	sort.Strings(out)
 	return out
 }

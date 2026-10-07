@@ -23,6 +23,8 @@ type Result struct {
 	Pages    int
 	Warnings []string
 	Missing  []string
+	// TermLinks maps term id -> app -> linked modules, for the Sync diff.
+	TermLinks map[string]map[string][]string
 }
 
 const (
@@ -63,6 +65,7 @@ func Build(cfg *config.Config, outDir string) (*Result, error) {
 	s := &site{cfg: cfg, out: outDir, data: data, pages: pages, scans: scans,
 		res: &Result{Scans: scans}}
 	s.terms = LinkTerms(data.Terms, scans, data.Pins)
+	s.res.TermLinks = termLinks(s.terms)
 	for _, step := range []func() error{s.copyAssets, s.writeData, s.writePages, s.writeTerms,
 		s.writeApps, s.writeGenerated} {
 		if err := step(); err != nil {
@@ -325,4 +328,14 @@ func (s *site) collectMissing() {
 		}
 	}
 	sort.Strings(s.res.Missing)
+}
+
+func termLinks(terms []content.Term) map[string]map[string][]string {
+	out := make(map[string]map[string][]string, len(terms))
+	for _, t := range terms {
+		if len(t.Where) > 0 {
+			out[t.ID] = t.Where
+		}
+	}
+	return out
 }

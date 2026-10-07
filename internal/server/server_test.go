@@ -22,16 +22,24 @@ func fakeBuild(delay time.Duration, fail bool, page string) BuildFunc {
 		if fail {
 			return nil, os.ErrPermission
 		}
-		os.MkdirAll(out, 0o755)
-		os.WriteFile(filepath.Join(out, "index.html"), []byte(page), 0o644)
+		if err := os.MkdirAll(out, 0o755); err != nil {
+			return nil, err
+		}
+		if err := os.WriteFile(filepath.Join(out, "index.html"), []byte(page), 0o644); err != nil {
+			return nil, err
+		}
 		return &site.Result{Scans: map[string]*scan.AppScan{"hive": {Modules: map[string]*scan.Module{"a": {}}}}}, nil
 	}
 }
 
 func newTestServer(t *testing.T, b BuildFunc) (*Server, string) {
 	dist := filepath.Join(t.TempDir(), "dist")
-	os.MkdirAll(dist, 0o755)
-	os.WriteFile(filepath.Join(dist, "index.html"), []byte("old"), 0o644)
+	if err := os.MkdirAll(dist, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(dist, "index.html"), []byte("old"), 0o644); err != nil {
+		t.Fatal(err)
+	}
 	return New(&config.Config{}, dist, b), dist
 }
 
@@ -40,7 +48,9 @@ func TestStatus(t *testing.T) {
 	rec := httptest.NewRecorder()
 	s.Handler().ServeHTTP(rec, httptest.NewRequest("GET", "/api/status", nil))
 	var body map[string]any
-	json.Unmarshal(rec.Body.Bytes(), &body)
+	if err := json.Unmarshal(rec.Body.Bytes(), &body); err != nil {
+		t.Fatal(err)
+	}
 	if rec.Code != 200 || body["mode"] != "local" {
 		t.Fatalf("%d %v", rec.Code, body)
 	}
@@ -53,7 +63,10 @@ func TestSyncAtomicSwap(t *testing.T) {
 	if rec.Code != 200 {
 		t.Fatalf("code %d: %s", rec.Code, rec.Body)
 	}
-	b, _ := os.ReadFile(filepath.Join(dist, "index.html"))
+	b, err := os.ReadFile(filepath.Join(dist, "index.html"))
+	if err != nil {
+		t.Fatal(err)
+	}
 	if string(b) != "new" {
 		t.Fatalf("dist not swapped: %q", b)
 	}
@@ -66,7 +79,10 @@ func TestSyncFailureKeepsOldSite(t *testing.T) {
 	if rec.Code != 500 {
 		t.Fatalf("code %d", rec.Code)
 	}
-	b, _ := os.ReadFile(filepath.Join(dist, "index.html"))
+	b, err := os.ReadFile(filepath.Join(dist, "index.html"))
+	if err != nil {
+		t.Fatal(err)
+	}
 	if string(b) != "old" {
 		t.Fatalf("old site damaged: %q", b)
 	}
@@ -116,5 +132,18 @@ func TestDiffScans(t *testing.T) {
 	want := []Diff{{App: "hive", AddedModules: []string{"c"}, RemovedModules: []string{"a"}, AddedPages: []string{"y"}}}
 	if !reflect.DeepEqual(got, want) {
 		t.Fatalf("got %+v", got)
+	}
+}
+
+func TestDiffTermLinks(t *testing.T) {
+	before := map[string]map[string][]string{"cash": {"hive": {"a"}}}
+	after := map[string]map[string][]string{"cash": {"hive": {"a", "b"}}, "cod": {"aladdin": {"x"}}}
+	got := DiffTermLinks(before, after)
+	want := []string{"cash → hive/b", "cod → aladdin/x"}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("got %v", got)
+	}
+	if first := DiffTermLinks(nil, after); first == nil || len(first) != 0 {
+		t.Fatalf("first sync must be empty non-nil, got %#v", first)
 	}
 }

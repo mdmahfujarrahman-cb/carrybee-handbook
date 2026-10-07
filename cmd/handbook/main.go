@@ -5,9 +5,11 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 	"sort"
 
 	"carrybee/handbook/internal/config"
+	"carrybee/handbook/internal/server"
 	"carrybee/handbook/internal/site"
 )
 
@@ -68,7 +70,11 @@ func run(cmd string, cfg *config.Config, o options) error {
 	case "check":
 		return check(cfg)
 	case "serve":
-		return fmt.Errorf("%s: not implemented yet", cmd)
+		abs, err := filepath.Abs(o.out)
+		if err != nil {
+			return err
+		}
+		return server.New(cfg, abs, site.Build).ListenAndServe(o.port)
 	default:
 		return fmt.Errorf("unknown command %q\n%s", cmd, usage)
 	}

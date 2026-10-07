@@ -339,13 +339,87 @@
       panel.hidden = !open;
       pill.setAttribute('aria-expanded', String(open));
     };
-    pill.addEventListener('click', () => setOpen(panel.hidden));
+    pill.addEventListener('click', () => {
+      if (pill.dataset.mode !== 'local') setOpen(panel.hidden);
+    });
     document.addEventListener('click', e => {
       if (!panel.hidden && !e.target.closest('.sync')) setOpen(false);
     });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && !panel.hidden) { setOpen(false); pill.focus(); }
     });
+  }
+
+  /* ---------- Local Sync (only when served by `handbook serve`) ----------
+     The only fetch() calls in the theme: they hit the local server's /api/status and /api/sync. */
+  const plural = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
+
+  function summariseDiff(diff, missing) {
+    const parts = (diff || []).map(d => {
+      const bits = [];
+      const add = (n, sign, word) => { if (n) bits.push(sign + plural(n, word)); };
+      add((d.addedModules || []).length, '+', 'module');
+      add((d.removedModules || []).length, '-', 'module');
+      add((d.addedPages || []).length, '+', 'page');
+      add((d.removedPages || []).length, '-', 'page');
+      add((d.addedApis || []).length, '+', 'API');
+      add((d.removedApis || []).length, '-', 'API');
+      return d.app + ': ' + bits.join(', ');
+    });
+    let msg = parts.length ? parts.join('; ') : 'Already up to date';
+    if ((missing || []).length) msg += ' \u00b7 ' + missing.length + ' need descriptions';
+    return msg;
+  }
+
+  async function runSync(pill, text) {
+    const label = text.textContent;
+    pill.disabled = true;
+    pill.dataset.state = 'busy';
+    text.textContent = 'Syncing\u2026';
+    let reload = false;
+    try {
+      const res = await fetch(root + 'api/sync', { method: 'POST' });
+      const body = await res.json().catch(() => ({}));
+      if (res.status === 409) {
+        toast('A sync is already running');
+      } else if (res.ok && body.ok) {
+        toast(summariseDiff(body.diff, body.missing), 1500);
+        reload = true;
+        setTimeout(() => location.reload(), 1500);
+      } else {
+        pill.dataset.state = 'error';
+        toast('Sync failed: ' + (body.error || res.statusText || 'unknown error'), 8000);
+      }
+    } catch (err) {
+      pill.dataset.state = 'error';
+      toast('Sync failed: ' + err.message, 8000);
+    }
+    if (!reload) {
+      pill.disabled = false;
+      text.textContent = label;
+      if (pill.dataset.state === 'busy') delete pill.dataset.state;
+    }
+  }
+
+  async function initLocalSync() {
+    const pill = $('#sync-pill');
+    if (!pill || !location.protocol.startsWith('http')) return;
+    try {
+      const res = await fetch(root + 'api/status');
+      const status = res.ok ? await res.json() : null;
+      if (!status || status.mode !== 'local') return;
+    } catch (_) {
+      return; // deployed or file:// without an API: keep the read-only pill
+    }
+    const text = $('.sync-text', pill);
+    const panel = $('#sync-panel');
+    if (panel) panel.hidden = true;
+    pill.dataset.mode = 'local';
+    pill.setAttribute('aria-expanded', 'false');
+    pill.removeAttribute('aria-controls');
+    pill.title = 'Rescan the code and rebuild this handbook';
+    text.textContent = 'Sync';
+    pill.addEventListener('click', () => { if (!pill.disabled) runSync(pill, text); });
   }
 
   /* ---------- Toast (used by local Sync) ---------- */
@@ -365,4 +439,5 @@
   initTerms();
   initToc();
   initSync();
+  initLocalSync();
 })();

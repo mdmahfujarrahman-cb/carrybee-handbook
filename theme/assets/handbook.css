@@ -141,7 +141,7 @@ code, kbd, pre, .mono { font-family: var(--font-mono); }
 .sync-pill .mono { font-size: 12px; color: var(--muted); }
 .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--finance); box-shadow: 0 0 0 3px var(--finance-soft); }
 .sync-pill[data-state="busy"] .sync-dot { background: var(--merchant); box-shadow: 0 0 0 3px var(--merchant-soft); }
-.sync-pill[data-state="stale"] .sync-dot { background: var(--brand-deep); box-shadow: 0 0 0 3px var(--brand-soft); }
+.sync-pill[data-state="stale"] .sync-dot { background: var(--brand); box-shadow: 0 0 0 1.5px var(--brand-deep), 0 0 0 4px var(--brand-soft); }
 .sync-pill:disabled { cursor: progress; opacity: 0.85; }
 @media (prefers-reduced-motion: no-preference) {
   .sync-pill[data-state="busy"] .sync-dot { animation: sync-pulse 1s ease-in-out infinite alternate; }

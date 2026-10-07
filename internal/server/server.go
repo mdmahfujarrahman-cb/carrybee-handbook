@@ -114,7 +114,15 @@ func (s *Server) sync(w http.ResponseWriter, r *http.Request) {
 	s.setBuilt(res)
 	writeJSON(w, http.StatusOK, map[string]any{keyOK: true, "diff": DiffScans(before, res.Scans),
 		"terms":   DiffTermLinks(beforeLinks, res.TermLinks),
-		"missing": res.Missing, "warnings": res.Warnings, "seconds": time.Since(start).Seconds()})
+		"missing": orEmpty(res.Missing), "warnings": orEmpty(res.Warnings), "seconds": time.Since(start).Seconds()})
+}
+
+// orEmpty keeps empty lists as [] in JSON instead of null.
+func orEmpty(list []string) []string {
+	if list == nil {
+		return []string{}
+	}
+	return list
 }
 
 // rebuild builds into a sibling temp dir and swaps it into place, keeping the old site on failure.

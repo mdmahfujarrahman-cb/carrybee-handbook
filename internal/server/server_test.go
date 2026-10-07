@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"strings"
 	"sync"
 	"testing"
 	"time"
@@ -190,5 +191,16 @@ func TestNewHTTPServerHasHeaderTimeout(t *testing.T) {
 	s, _ := newTestServer(t, fakeBuild(0, false, "new"))
 	if hs := s.httpServer("127.0.0.1:0"); hs.ReadHeaderTimeout <= 0 {
 		t.Fatal("ReadHeaderTimeout not set")
+	}
+}
+
+func TestSyncListsAreArrays(t *testing.T) {
+	s, _ := newTestServer(t, fakeBuild(0, false, "new"))
+	rec := httptest.NewRecorder()
+	s.Handler().ServeHTTP(rec, httptest.NewRequest("POST", "/api/sync", nil))
+	for _, want := range []string{`"missing":[]`, `"warnings":[]`, `"terms":[]`} {
+		if !strings.Contains(rec.Body.String(), want) {
+			t.Errorf("sync response lacks %s: %s", want, rec.Body)
+		}
 	}
 }

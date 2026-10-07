@@ -24,6 +24,7 @@ Open <http://127.0.0.1:4321>. After you pull new code in the app repos, click **
 | `make check` | `go run ./cmd/handbook check` | Validate references in `content/`; list modules without a description |
 | `make test` | `go vet ./... && go test -count=1 ./...` | Vet and run the tests |
 | `make fmt` | `gofmt -w .` | Format Go code |
+| `make share` | `./scripts/share.sh` | Build `share/carrybee-handbook.zip` for people without the repos (see below) |
 | `make clean` | `rm -rf dist dist.old .dist-*` | Remove build output |
 | `make help` | | List the targets |
 
@@ -35,6 +36,7 @@ Flags, for any of the three commands:
 | `-apps-root` | none | Folder that holds the app repos; overrides the paths in the config |
 | `-out` | `dist` | Output folder (`build`, `serve`) |
 | `-port` | `4321` | Port for `serve` (always bound to 127.0.0.1) |
+| `-allow-snapshot` | off | `check` only: pass even when apps were loaded from `snapshot/scan.json` instead of scanned live |
 
 Example: `go run ./cmd/handbook build --apps-root ~/code/carrybee --out public`.
 
@@ -53,9 +55,11 @@ You can also open `dist/index.html` straight from disk. Everything works offline
 | `theme` | HTML templates, CSS, JS and the logo |
 | `content` | Hand-written pages (Markdown) |
 | `data` | Hand-written JSON: module and group descriptions, terms, pins |
+| `snapshot` | `scan.json`: the structure found by the last complete scan (committed) |
+| `scripts` | `share.sh` and the start scripts packed into the shared ZIP |
 | `docs` | Design spec and plans |
 
-`dist/` is generated and not committed.
+`dist/` and `share/` are generated and not committed.
 
 ## Editing content
 
@@ -120,6 +124,24 @@ Term ids must be unique; the build stops and names the duplicate.
 Clicking Sync rescans the three app repos, rebuilds the site into a temporary folder, swaps it in for `dist/`, and reports what changed: modules, pages and API calls added or removed, and new term-to-module links. The results stay in a panel under the Sync button, with warnings and every item that needs a description grouped by the `data/` file to edit; click **Reload to see changes** to load the new pages. If the build fails, the old `dist/` stays in place and the error is shown. Sync never writes to `content/` or `data/`.
 
 The Sync button also shows whether the handbook is current: **Up to date** or **Update available**, with the time of the last sync. It checks each app repo for commits after the built commit and for `.ts`/`.tsx` files under `src/` changed since the last build (checked at most every 30 seconds; the page asks every minute and when you come back to the tab). Hover the button for the per-app details. Sync only accepts requests from the handbook's own page.
+
+## Sharing the handbook
+
+To give the handbook to someone who has none of the app repos (and maybe no Go), run:
+
+```bash
+make share
+```
+
+It needs the three repos next to this folder. It scans them (refreshing `snapshot/scan.json`), runs the tests, builds the handbook program for macOS (Apple silicon and Intel), Linux and Windows, prebuilds the site from the snapshot and writes `share/carrybee-handbook.zip`. Send that file.
+
+The recipient unzips it and runs `./start.sh` (Mac, Linux) or double-clicks `start.bat` (Windows); the handbook opens on <http://127.0.0.1:4321>. They can also just open `dist/index.html`. `README-FIRST.txt` in the ZIP says the same. `HANDBOOK_PORT` changes the port and `HANDBOOK_NO_BROWSER=1` stops the start scripts opening a browser.
+
+They see the whole handbook: app maps, search, terms and statuses. Sync is off for them: the pill is grey and reads **Snapshot · built 7 Oct**, its tooltip says why, and clicking it shows each app's commit and scan date. To give them newer content, pull the repos and run `make share` again.
+
+### The scan snapshot
+
+Every build that scans all apps cleanly writes `snapshot/scan.json`: modules, routes, API domains, statuses and term links. It holds names and counts only, never source code. Commit it, so a plain `git clone` without the app repos still builds a complete handbook. When an app's folder is missing, the build takes that app from the snapshot instead of printing "not scanned", and the Sync button is disabled (`/api/status` reports `canSync: false` and `POST /api/sync` returns 409). `make check` still fails for snapshot apps, as CI should scan live code; pass `-allow-snapshot` (`go run ./cmd/handbook check -allow-snapshot`) to accept them.
 
 ## Modules that need a description
 

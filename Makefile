@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help run build check test fmt clean
+.PHONY: help run build check test fmt clean share
 
 help: ## List the available targets
 	@grep -E '^[a-z]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-8s %s\n", $$1, $$2}'
@@ -19,6 +19,9 @@ test: ## Run go vet and the test suite
 
 fmt: ## Format Go code with gofmt
 	gofmt -w .
+
+share: ## Build share/carrybee-handbook.zip for people without the repos or Go
+	./scripts/share.sh
 
 clean: ## Remove dist, dist.old and .dist-* build folders
 	rm -rf dist dist.old .dist-*

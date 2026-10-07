@@ -1,13 +1,13 @@
 {
  "version": 1,
- "builtAt": "2026-10-07T10:52:43.971384Z",
+ "builtAt": "2026-10-07T10:58:29.063852Z",
  "scans": {
   "accounts": {
    "app": "accounts",
    "label": "accounts",
    "audience": "finance",
    "commit": "1b831f0",
-   "scannedAt": "2026-10-07T10:52:40.859672Z",
+   "scannedAt": "2026-10-07T10:58:26.184081Z",
    "modules": {
     "authentication": {
      "files": 8,
@@ -498,7 +498,7 @@
    "label": "aladdin",
    "audience": "merchant",
    "commit": "b60ed9f0",
-   "scannedAt": "2026-10-07T10:52:40.859672Z",
+   "scannedAt": "2026-10-07T10:58:26.184098Z",
    "modules": {
     "agent-messaging": {
      "files": 17,
@@ -1528,7 +1528,7 @@
    "label": "hive",
    "audience": "ops",
    "commit": "a1926599",
-   "scannedAt": "2026-10-07T10:52:40.859672Z",
+   "scannedAt": "2026-10-07T10:58:26.184086Z",
    "modules": {
     "activity-log": {
      "files": 8,

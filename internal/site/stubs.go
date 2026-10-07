@@ -2,7 +2,7 @@ package site
 
 import "html/template"
 
-// Placeholders: Task 7 replaces writeApps, Task 8 replaces writeTerms and writeGenerated.
+// Placeholders: Task 8 replaces writeTerms and writeGenerated.
 
 func (s *site) placeholder(out, title string) error {
 	v := s.view(out, title)
@@ -15,15 +15,6 @@ func (s *site) placeholder(out, title string) error {
 }
 
 func (s *site) writeTerms() error { return s.placeholder("terms.html", "Courier terms") }
-
-func (s *site) writeApps() error {
-	for _, a := range s.cfg.Apps {
-		if err := s.placeholder("apps/"+a.ID+".html", a.Label); err != nil {
-			return err
-		}
-	}
-	return nil
-}
 
 func (s *site) writeGenerated() error {
 	return s.placeholder("code/api-index.html", "API domain index")

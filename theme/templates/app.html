@@ -1,0 +1,102 @@
+{{define "app.html"}}{{template "head" .}}{{template "top" .}}
+<link rel="stylesheet" href="{{.Root}}assets/explorer.css">
+{{with .Extra}}
+<div class="page page-wide app-page">
+  <article class="article">
+    {{template "crumbs" $}}
+    <header class="page-head app-head">
+      <span class="level app-badge app-{{.App.Audience}}">{{audienceName .App.Audience}}</span>
+      <h1>{{$.Title}}</h1>
+      <p class="lead">{{audienceWho .App.Audience}}</p>
+    </header>
+
+    <section class="app-overview" aria-label="Overview">
+      <dl class="app-facts">
+        {{if .Scan.Error}}<div><dt>Scan</dt><dd class="app-err">Not scanned</dd></div>{{else}}
+        <div><dt>Modules</dt><dd>{{len .Scan.Modules}}</dd></div>
+        <div><dt>Pages</dt><dd>{{len .Scan.Routes}}</dd></div>
+        <div><dt>Circular imports</dt><dd>{{len .Scan.Cycles}}</dd></div>{{end}}
+        <div class="app-commit"><dt>Commit</dt><dd><code>{{with .Scan.Commit}}{{.}}{{else}}unknown{{end}}</code></dd></div>
+      </dl>
+      <div class="key-folders">
+        <h2>Key folders</h2>
+        <ul>
+          <li><code>src/app</code><span>Next.js routes: one folder per page</span></li>
+          <li><code>src/modules</code><span>Feature modules: the code each page loads</span></li>
+          <li><code>src/lib/routes/app-routes.ts</code><span>Page paths used by links and redirects</span></li>
+          <li><code>src/lib/routes/api-routes.ts</code><span>Backend API paths, grouped by domain</span></li>
+          <li><code>src/proxy.ts</code><span>Request proxy and access checks</span></li>
+          <li><code>auth.ts</code><span>Sign-in and session setup</span></li>
+        </ul>
+      </div>
+    </section>
+
+    {{if .Scan.Error}}
+    <div class="callout warning"><p>Not scanned: {{.Scan.Error}}</p></div>
+    {{else}}
+    <div class="explorer" id="explorer">
+      <div class="ex-bar">
+        <div class="views" role="toolbar" aria-label="Choose a view">
+          <button type="button" id="v-story" aria-pressed="false" hidden>A to Z lifecycle</button>
+          <button type="button" id="v-flow" aria-pressed="true">Flow</button>
+          <button type="button" id="v-net" aria-pressed="false">Whole network</button>
+        </div>
+        <div class="legend">
+          <span class="lg-route">Page (route)</span>
+          <span class="lg-mod">Module (src/modules/*)</span>
+          <span class="lg-api">Backend API domain</span>
+          <span class="lg-cycle">Part of a circular import</span>
+        </div>
+      </div>
+      <div class="main" id="main">
+        <aside class="ex-side">
+          <div class="tabs" role="tablist">
+            <button type="button" role="tab" id="tab-routes" aria-selected="true">Pages</button>
+            <button type="button" role="tab" id="tab-mods" aria-selected="false">Modules</button>
+          </div>
+          <div class="search"><input id="q" type="search" placeholder="Filter…" aria-label="Filter list"></div>
+          <div class="list" id="list"></div>
+        </aside>
+
+        <div class="ex-body">
+          <section class="card">
+            <div id="story-view" hidden>
+              <h2>From A to Z</h2>
+              <p class="hint">The whole journey in the order it happens, <span id="story-sub"></span>. Every module in the app appears in at least one step. Yellow chips are modules (hover ⓘ, click to see its flow); blue chips are the pages where the step happens.</p>
+              <div class="story-tools">
+                <button type="button" id="expand-all">Expand all</button>
+                <button type="button" id="collapse-all">Collapse all</button>
+              </div>
+              <nav class="story-rail" id="story-rail" aria-label="Lifecycle phases"></nav>
+              <div id="story"></div>
+            </div>
+            <div id="flow-view">
+              <h2 id="f-title"></h2>
+              <div class="desc" id="f-desc" hidden></div>
+              <p class="hint" id="f-hint"></p>
+              <div class="flow-scroll"><div class="flow" id="flow"></div></div>
+              <div class="notes" id="notes"></div>
+            </div>
+            <div id="net-view" hidden>
+              <h2>Module network</h2>
+              <p class="hint">All <span id="n-mods"></span> modules and their imports of each other. Bigger circle means more modules depend on it. Red marks a circular import. Click a module to open its flow.</p>
+              <svg id="net" role="img" aria-label="Module import network"></svg>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Circular imports</h2>
+            <p class="hint">Each group below imports itself in a loop. These modules can't be changed or moved on their own without touching the others in the group.</p>
+            <div class="cycles" id="cycles"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+    {{end}}
+  </article>
+</div>
+{{template "bottom" $}}
+<script src="{{.Data}}"></script>
+{{if not .Scan.Error}}<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="{{$.Root}}assets/explorer.js"></script>{{end}}
+{{end}}{{template "end"}}{{end}}

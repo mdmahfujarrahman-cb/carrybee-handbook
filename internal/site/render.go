@@ -62,10 +62,17 @@ var levelNames = map[string]string{"basics": "Basics", "carrybee": "Carrybee-spe
 
 var audienceNames = map[string]string{"ops": "Ops panel", "merchant": "Merchant panel", "finance": "Finance panel"}
 
+var audienceWho = map[string]string{
+	"ops":      "Used by Carrybee's own operations staff: hub teams, dispatch, support and admins run the delivery network from it.",
+	"merchant": "Used by merchants (sellers): they book parcels, track them, raise requests and see what they are paid.",
+	"finance":  "Used by Carrybee's finance and legal team: invoices, settlements, payouts and reports.",
+}
+
 var templates = template.Must(template.New("").Funcs(template.FuncMap{
 	"lower":        strings.ToLower,
 	"levelName":    func(l string) string { return levelNames[l] },
 	"audienceName": func(a string) string { return audienceNames[a] },
+	"audienceWho":  func(a string) string { return audienceWho[a] },
 	"initial": func(s string) string {
 		if s == "" {
 			return ""

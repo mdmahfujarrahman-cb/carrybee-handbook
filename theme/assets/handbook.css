@@ -148,6 +148,10 @@ code, kbd, pre, .mono { font-family: var(--font-mono); }
 }
 @keyframes sync-pulse { to { opacity: 0.35; } }
 .sync-pill[data-state="error"] .sync-dot { background: var(--warn); box-shadow: 0 0 0 3px var(--warn-soft); }
+.sync-pill[data-state="snapshot"] .sync-dot { background: var(--muted); box-shadow: 0 0 0 3px var(--line); }
+.sync-pill[aria-disabled="true"] { cursor: default; color: var(--muted); }
+.sync-pill[aria-disabled="true"]:hover { border-color: var(--line); }
+.sync-panel .reason { margin: 0 0 10px; font-size: 13.5px; }
 .sync-panel {
   position: absolute; right: 0; top: calc(100% + 8px); z-index: 40; width: min(340px, calc(100vw - 32px));
   background: var(--panel); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);

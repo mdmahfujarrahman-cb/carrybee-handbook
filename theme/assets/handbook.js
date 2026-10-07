@@ -327,6 +327,34 @@
     return html + '</ul><p class="foot">This is a static copy. Run <code>make run</code> and click Sync to rebuild it from the current code.</p>';
   }
 
+  // Snapshot copies (shared without the app repos) cannot sync.
+  const SNAPSHOT = 'snapshot';
+  const SNAPSHOT_REASON = 'Sync is off in this copy because the app code is not next to it. Ask the frontend team for a new copy of the handbook.';
+  const shortDate = iso => {
+    const d = new Date(iso);
+    return Number.isNaN(d.getTime()) ? 'unknown date' : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+  };
+
+  function snapshotPanelHTML(sync, reason) {
+    let html = '<h2>Snapshot copy</h2><p class="built">Code scanned ' + escapeHTML(shortDate(sync.snapshotBuiltAt || sync.builtAt)) +
+      '</p><p class="reason">' + escapeHTML(reason) + '</p><ul>';
+    for (const a of sync.apps || []) {
+      html += '<li><b>' + escapeHTML(a.label) + '</b><code>' + escapeHTML(shortCommit(a.commit)) +
+        '</code><small>' + escapeHTML(a.modules + ' modules, ' + a.pages + ' pages, scanned ' + shortDate(a.scannedAt)) + '</small></li>';
+    }
+    return html + '</ul>';
+  }
+
+  // Shows the read-only "Snapshot · built 7 Oct" pill; clicking it opens the info panel, never a sync.
+  function showSnapshot(pill, panel, sync, reason) {
+    pill.dataset.mode = SNAPSHOT;
+    pill.dataset.state = SNAPSHOT;
+    pill.setAttribute('aria-disabled', 'true');
+    pill.title = reason;
+    $('.sync-text', pill).textContent = 'Snapshot · built ' + shortDate(sync.snapshotBuiltAt || sync.builtAt);
+    panel.innerHTML = snapshotPanelHTML(sync, reason);
+  }
+
   function initSync() {
     const pill = $('#sync-pill');
     const panel = $('#sync-panel');
@@ -334,21 +362,25 @@
     if (!pill || !panel || !sync) return;
     const text = $('.sync-text', pill);
     const renderText = () => { text.textContent = 'Built ' + relTime(sync.builtAt); };
-    renderText();
-    setInterval(() => { if (pill.dataset.mode !== LOCAL) renderText(); }, 30000);
-    panel.innerHTML = syncPanelHTML(sync);
+    const isStatic = () => pill.dataset.mode !== LOCAL;
+    if (sync.mode === SNAPSHOT) showSnapshot(pill, panel, sync, SNAPSHOT_REASON);
+    else {
+      renderText();
+      panel.innerHTML = syncPanelHTML(sync);
+    }
+    setInterval(() => { if (isStatic() && pill.dataset.mode !== SNAPSHOT) renderText(); }, 30000);
     const setOpen = open => {
       panel.hidden = !open;
       pill.setAttribute('aria-expanded', String(open));
     };
     pill.addEventListener('click', () => {
-      if (pill.dataset.mode !== LOCAL) setOpen(panel.hidden);
+      if (isStatic()) setOpen(panel.hidden);
     });
     document.addEventListener('click', e => {
-      if (pill.dataset.mode !== LOCAL && !panel.hidden && !e.target.closest('.sync')) setOpen(false);
+      if (isStatic() && !panel.hidden && !e.target.closest('.sync')) setOpen(false);
     });
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && !panel.hidden && pill.dataset.mode !== LOCAL) { setOpen(false); pill.focus(); }
+      if (e.key === 'Escape' && !panel.hidden && isStatic()) { setOpen(false); pill.focus(); }
     });
   }
 
@@ -422,17 +454,19 @@
       pill.title = 'Click to rescan the code and rebuild this handbook.\n' + state.apps.map(appLine).join('\n');
     };
 
+    // Returns the server status, or null for a static copy or when the status is unavailable.
     const refresh = async () => {
       try {
         const res = await fetch(root + 'api/status');
         const status = res.ok ? await res.json() : null;
-        if (!status || status.mode !== LOCAL) return false;
+        if (!status || status.mode !== LOCAL) return null;
+        if (status.canSync === false) return status;
         Object.assign(state, { builtAt: status.builtAt, stale: !!status.stale, apps: status.apps || [] });
         renderPill();
-        return true;
+        return status;
       } catch (err) {
         console.warn('Sync status unavailable; keeping the last known state.', err);
-        return false;
+        return null;
       }
     };
 
@@ -478,8 +512,9 @@
       if (pill.dataset.state !== 'error') renderPill();
     };
 
-    refresh().then(local => {
-      if (!local) return; // static copy or file://: keep the read-only pill
+    refresh().then(status => {
+      if (!status) return; // static copy or file://: keep the read-only pill
+      if (status.canSync === false) { showSnapshot(pill, panel, HB.sync || {}, status.reason); return; }
       panel.hidden = true;
       pill.dataset.mode = LOCAL;
       pill.removeAttribute('aria-expanded');

@@ -103,7 +103,9 @@ func TestScanAllMissingApp(t *testing.T) {
 
 // Parity with the prototype on the real repos; skipped when they are not next to the handbook.
 func TestParityWithPrototype(t *testing.T) {
-	want := map[string][3]int{"hive": {76, 82, 4}, "aladdin": {18, 54, 1}, "accounts": {10, 10, 0}}
+	// accounts pages are 9, not the prototype's 10: the prototype counted a "/" page that existed
+	// only through commented-out imports in src/app/(main)/layout.tsx (lines 25-29).
+	want := map[string][3]int{"hive": {76, 82, 4}, "aladdin": {18, 54, 1}, "accounts": {10, 9, 0}}
 	cfg, err := config.Load("../../handbook.json", "")
 	if err != nil {
 		t.Skip("no handbook.json")

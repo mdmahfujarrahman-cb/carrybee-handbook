@@ -17,7 +17,7 @@ const usage = `usage: handbook <build|serve|check> [flags]
 
 type options struct {
 	configPath, appsRoot, out string
-	port                       int
+	port                      int
 }
 
 func parse(args []string) (string, options, error) {

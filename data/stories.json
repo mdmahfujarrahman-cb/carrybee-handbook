@@ -1,0 +1,871 @@
+{
+ "intro": {
+  "hive": "from building the network to paying the seller",
+  "aladdin": "from a seller signing up to getting paid",
+  "accounts": "from signing in to exporting invoices and reports"
+ },
+ "apps": {
+  "hive": [
+   {
+    "title": "Build the network",
+    "when": "Before any order exists",
+    "steps": [
+     {
+      "title": "Draw the map of the organisation",
+      "actor": "Admin",
+      "text": "Create regions, then clusters inside them, then hubs inside clusters. Each hub gets a type (ISD / OSD / sub area), a tier and whether it is a sorting hub.",
+      "mods": [
+       "region",
+       "cluster",
+       "warehouses"
+      ]
+     },
+     {
+      "title": "Define the delivery area",
+      "actor": "Admin",
+      "text": "Under each hub: cities, zones, areas and sectors. Zone boundaries are drawn on a map. Routes group a hub's zones and get a default agent.",
+      "mods": [
+       "warehouses",
+       "geonix",
+       "route"
+      ]
+     },
+     {
+      "title": "Connect hubs with linehauls",
+      "actor": "Admin",
+      "text": "Linehauls are the trunk lines between hubs and sorting centres. Sub-sort centres get PTN racks whose pigeon holes map to hubs or linehauls.",
+      "mods": [
+       "linehaul",
+       "ptn"
+      ]
+     },
+     {
+      "title": "Hire staff and give access",
+      "actor": "Admin / HR",
+      "text": "Staff accounts, teams, departments, roles and permission scopes decide who sees which page. Staff log in by SSO and pick their hub, and check in daily.",
+      "mods": [
+       "users",
+       "authentication",
+       "user-attendance"
+      ]
+     },
+     {
+      "title": "Onboard riders",
+      "actor": "Ops / HR",
+      "text": "Riders (called agents in code) apply, are approved, get salary or commission types, holidays and attendance.",
+      "mods": [
+       "agents",
+       "agent"
+      ]
+     },
+     {
+      "title": "Set up money rails and premises",
+      "actor": "Finance",
+      "text": "Register the banks (with branches) and mobile wallets sellers can be paid into, and the landlords of rented hubs.",
+      "mods": [
+       "wallet-provider",
+       "landlord"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Win and onboard a seller",
+    "when": "Once per business",
+    "steps": [
+     {
+      "title": "Acquire the seller",
+      "actor": "Growth / KAM",
+      "text": "Referral QR codes and short links bring new sellers in. Large accounts are created directly as corporate merchants.",
+      "mods": [
+       "qr-campaign-management",
+       "merchants"
+      ]
+     },
+     {
+      "title": "Verify who they are",
+      "actor": "Ops",
+      "text": "Check the seller's identity documents (KYC) and profile.",
+      "mods": [
+       "merchant-profiles"
+      ]
+     },
+     {
+      "title": "Configure the business",
+      "actor": "KAM / Ops",
+      "text": "Set the business type (prepaid, postpaid, corporate), service options and a key account manager. Price plans set delivery fees, extra charges and slabs; discounts need approval.",
+      "mods": [
+       "businesses",
+       "price-plans",
+       "discount-requests"
+      ]
+     },
+     {
+      "title": "Approve pickup stores",
+      "actor": "Ops",
+      "text": "The seller's stores (pickup and return addresses) are reviewed, assigned to the right hub, and their map location is verified.",
+      "mods": [
+       "business-stores",
+       "pending-stores",
+       "store-location-verification"
+      ]
+     },
+     {
+      "title": "Approve the payout account",
+      "actor": "Finance",
+      "text": "When a seller adds or changes the bank or wallet they are paid into, finance approves it.",
+      "mods": [
+       "pending-payments"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Order is created and collected",
+    "when": "Every order · status 1 → 7",
+    "steps": [
+     {
+      "title": "Order arrives",
+      "actor": "Seller (aladdin)",
+      "text": "The seller books the order in aladdin or via API. In hive it shows up in the order search. Orders missing data land in the incomplete list to be fixed.",
+      "status": "1 pending",
+      "mods": [
+       "orders",
+       "incomplete-orders"
+      ]
+     },
+     {
+      "title": "Pickup is requested",
+      "actor": "Seller or KAM",
+      "text": "\"Collect N parcels from store X.\" KAMs can create the request on the seller's behalf.",
+      "status": "2 pickup requested",
+      "mods": [
+       "pickup-requests"
+      ]
+     },
+     {
+      "title": "Pickup is planned",
+      "actor": "Hub",
+      "text": "Waiting pickups are grouped by store and route, and an agent is assigned.",
+      "status": "3 assigned for pickup",
+      "mods": [
+       "pickup-order",
+       "pickup-run"
+      ]
+     },
+     {
+      "title": "Parcels are collected",
+      "actor": "Rider",
+      "text": "The agent visits the stores and brings parcels to the first-mile hub, then the pickup run is closed. Or the seller drops parcels at the hub, verified by OTP.",
+      "status": "4 picked → 7 received at hub",
+      "mods": [
+       "pickup-run",
+       "hub-pickup"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "First-mile hub",
+    "when": "The hub where the parcel enters",
+    "steps": [
+     {
+      "title": "Check in and sort",
+      "actor": "Hub staff",
+      "text": "Parcels are weighed, matched to their order and sorted per destination. The consignment log shows every scan.",
+      "mods": [
+       "order-processing"
+      ]
+     },
+     {
+      "title": "Handle surprises",
+      "actor": "Hub staff",
+      "text": "A parcel with no order in the system is a no-entry: create the order, process it or return it. Missing labels are printed centrally.",
+      "mods": [
+       "no-entry-orders",
+       "central-pod-print"
+      ]
+     },
+     {
+      "title": "Pack baskets",
+      "actor": "Hub staff",
+      "text": "Sorted parcels go into sealed baskets with a printed label. A basket moves as one unit from here on.",
+      "mods": [
+       "basket"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Middle mile",
+    "when": "Between hubs · status 8 → 13",
+    "steps": [
+     {
+      "title": "Dispatch a transfer run",
+      "actor": "Hub",
+      "text": "Baskets are attached to a transfer run along a linehaul, with a printed gate pass.",
+      "status": "35 in transit",
+      "mods": [
+       "assign-run",
+       "transfer-run"
+      ]
+     },
+     {
+      "title": "Receive and reconcile",
+      "actor": "Receiving hub",
+      "text": "Baskets are received by scan. Anything that should be there but isn't, or arrived unexpectedly, goes to missing/extra.",
+      "mods": [
+       "transfer-run",
+       "missing-extra-parcels"
+      ]
+     },
+     {
+      "title": "Central and sub-sort",
+      "actor": "Sorting centre",
+      "text": "The central warehouse and sub-sort centres route each parcel to its last-mile hub, correcting the hub if needed, using PTN racks.",
+      "status": "9–11 sorting / central → 38–39 sub-sort",
+      "mods": [
+       "central-sorting",
+       "ptn"
+      ]
+     },
+     {
+      "title": "Arrive at last-mile hub",
+      "actor": "LMH",
+      "text": "The parcel reaches the hub that will deliver it.",
+      "status": "13 received at LMH",
+      "mods": [
+       "delivery-orders"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Last mile delivery",
+    "when": "To the buyer's door · status 14 → final",
+    "steps": [
+     {
+      "title": "Build the delivery run",
+      "actor": "LMH",
+      "text": "Parcels are scanned into an agent's delivery run. They can be moved to another zone or hub, reassigned, or marked lost or damaged.",
+      "status": "14 assigned for delivery",
+      "mods": [
+       "delivery-orders",
+       "delivery-run"
+      ]
+     },
+     {
+      "title": "Rider delivers and collects cash",
+      "actor": "Rider (agent app)",
+      "text": "Outcome is delivered, partial delivery, exchange, hold, paid return or return. The buyer pays the COD amount in cash.",
+      "status": "15 delivered · 16 hold · 18 partial · 22 exchange · 17 return",
+      "mods": [
+       "delivery-run"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Review and quality",
+    "when": "During and after delivery",
+    "steps": [
+     {
+      "title": "Approve exceptions",
+      "actor": "QC / Seller",
+      "text": "When an agent asks to change an outcome (return, price change, exchange, partial), QC or the seller approves it. QC also flags fake requests per hub and agent.",
+      "mods": [
+       "qc"
+      ]
+     },
+     {
+      "title": "Fix a status by hand",
+      "actor": "Ops lead",
+      "text": "When the normal flow can't, statuses are changed in bulk.",
+      "mods": [
+       "order-status-change"
+      ]
+     },
+     {
+      "title": "Rate the riders",
+      "actor": "Buyers / Sellers",
+      "text": "Customers and sellers rate agents. Hub summaries and weekly trends show who is doing well.",
+      "mods": [
+       "rating-management"
+      ]
+     },
+     {
+      "title": "Report fraud",
+      "actor": "Seller → Ops",
+      "text": "Sellers report buyers who refuse or cheat. Ops approve or reject the report.",
+      "mods": [
+       "fraud-activities"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "When delivery fails",
+    "when": "Branch paths",
+    "steps": [
+     {
+      "title": "Return to the seller",
+      "actor": "Hub → Rider",
+      "text": "Returned parcels travel back through baskets and transfers to the first-mile hub, then a return run hands them to the seller.",
+      "status": "17 return → 32 returned to merchant",
+      "mods": [
+       "return-orders",
+       "return-run"
+      ]
+     },
+     {
+      "title": "Reverse pickup from the buyer",
+      "actor": "Rider",
+      "text": "For exchanges and customer returns, an agent collects the item from the buyer.",
+      "status": "42–45 reverse pickup",
+      "mods": [
+       "customer-return-run"
+      ]
+     },
+     {
+      "title": "Parcel is lost",
+      "actor": "Ops",
+      "text": "Mark it lost and decide who pays the compensation: the agent, the hub or Carrybee.",
+      "status": "20 lost",
+      "mods": [
+       "lost-order"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Close the day",
+    "when": "Every delivery run",
+    "steps": [
+     {
+      "title": "Close the run and count cash",
+      "actor": "Hub manager",
+      "text": "The agent hands over the cash; it's counted note by note (1000, 500, 200…). If the agent app never ended the run, a manager force-closes it.",
+      "mods": [
+       "delivery-run"
+      ]
+     },
+     {
+      "title": "Chase unclosed runs",
+      "actor": "Hub manager",
+      "text": "Runs never closed mean cash not accounted for. They are listed here.",
+      "mods": [
+       "run-not-closed"
+      ]
+     },
+     {
+      "title": "Hub cash book",
+      "actor": "Hub",
+      "text": "The ledger tracks cash in hand vs carried forward per hub.",
+      "mods": [
+       "hub-ledger"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Cash comes to Carrybee",
+    "when": "Daily / periodic",
+    "steps": [
+     {
+      "title": "Hub deposits COD",
+      "actor": "Hub",
+      "text": "The hub deposits the collected cash, minus expenses and money lost, with proof. Payable consignments show which delivered orders the money belongs to.",
+      "mods": [
+       "hub-payments",
+       "payable-consignments"
+      ]
+     },
+     {
+      "title": "Chase missing deposits",
+      "actor": "Finance",
+      "text": "Hubs that collected but haven't deposited are flagged.",
+      "mods": [
+       "hub-payment-not-submitted"
+      ]
+     },
+     {
+      "title": "Finance approves deposits",
+      "actor": "Finance",
+      "text": "Each deposit is approved or rejected, one by one or in bulk. The hub dashboard shows the per-hub money picture.",
+      "mods": [
+       "hub-payment-approvals",
+       "hub-dashboard"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Pay the seller",
+    "when": "On the seller's payout cycle",
+    "steps": [
+     {
+      "title": "Generate the invoice",
+      "actor": "Finance",
+      "text": "From delivered orders: COD collected minus delivery fee and COD fee = what the seller gets. Regular or positive-balance invoices, or one-off custom invoices.",
+      "mods": [
+       "generate-invoice",
+       "custom-invoice"
+      ]
+     },
+     {
+      "title": "Pay it",
+      "actor": "Finance",
+      "text": "Unpaid invoices are exported as a bank Excel file, moved into processing (RTGS tagged), and marked paid.",
+      "status": "unpaid → processing → paid",
+      "mods": [
+       "unpaid-invoice",
+       "processing-invoice",
+       "paid-invoice",
+       "all-invoices"
+      ]
+     },
+     {
+      "title": "Pay early on request",
+      "actor": "Finance",
+      "text": "Sellers can ask to be paid now instead of waiting for the cycle.",
+      "mods": [
+       "on-demand"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Seller pays Carrybee",
+    "when": "Prepaid and postpaid accounts",
+    "steps": [
+     {
+      "title": "Receivable invoices",
+      "actor": "Finance / KAM",
+      "text": "When fees exceed the COD collected (for example a postpaid account), the seller owes Carrybee. Monthly invoices are generated and payments recorded.",
+      "mods": [
+       "receivable-prepaid-invoices",
+       "receivable-postpaid-invoices",
+       "kam-prepaid-invoice",
+       "kam-postpaid-invoice"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Running costs",
+    "when": "Carrybee's own spending",
+    "steps": [
+     {
+      "title": "Pay riders' allowance",
+      "actor": "Finance",
+      "text": "Distance-based delivery allowance for agents, paid with an OTP step.",
+      "mods": [
+       "delivery-allowance"
+      ]
+     },
+     {
+      "title": "Hub expenses and rent",
+      "actor": "Hub → Accounts",
+      "text": "Petty cash and rent claims go through ops head → HR → audit → accounts, then are withdrawn by OTP.",
+      "mods": [
+       "petty-cash",
+       "landlord"
+      ]
+     },
+     {
+      "title": "Approve claims",
+      "actor": "Cluster lead → Accounts",
+      "text": "Allowance and expense claims are reconciled through cluster lead → region lead → HR → audit → accounts.",
+      "mods": [
+       "reconciliation"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Watch and fix",
+    "when": "All the time",
+    "steps": [
+     {
+      "title": "Measure the business",
+      "actor": "Management",
+      "text": "Dashboards for agent productivity, delivery outcomes, merchant churn, hub backlog and open runs. CSV reports for deeper analysis.",
+      "mods": [
+       "business-insights",
+       "hub-performance",
+       "reports"
+      ]
+     },
+     {
+      "title": "Audit and repair",
+      "actor": "Super user",
+      "text": "The activity log shows who changed what. G-Mode reopens runs, resets OTPs, regenerates invoices and impersonates users to fix problems.",
+      "mods": [
+       "activity-log",
+       "g-mode"
+      ]
+     },
+     {
+      "title": "Keep people informed",
+      "actor": "Ops",
+      "text": "In-app notifications for staff and push notifications sent from the panel.",
+      "mods": [
+       "notifications",
+       "push-notification-center"
+      ]
+     }
+    ]
+   }
+  ],
+  "aladdin": [
+   {
+    "title": "Join Carrybee",
+    "when": "Once per seller",
+    "steps": [
+     {
+      "title": "Sign up with a phone number",
+      "actor": "Seller",
+      "text": "Register with name and phone, confirm the OTP sent by SMS, then log in with phone and password. Forgot password also uses OTP. Support staff can impersonate a seller to help them.",
+      "mods": [
+       "authentication"
+      ]
+     },
+     {
+      "title": "Complete the personal profile",
+      "actor": "Seller",
+      "text": "Add personal details and identity documents (NID or birth certificate) so Carrybee can verify who the seller is. Change the password here too.",
+      "mods": [
+       "merchant"
+      ]
+     },
+     {
+      "title": "Create a business",
+      "actor": "Seller",
+      "text": "Create a business with a category and sub-category. One login can own several businesses and switch between them; every other page is scoped to the chosen business.",
+      "mods": [
+       "businesses"
+      ]
+     },
+     {
+      "title": "Learn the basics",
+      "actor": "Seller",
+      "text": "Common questions about pricing, pickups, payments and returns.",
+      "mods": [
+       "faq"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Set up the shop",
+    "when": "Before the first order",
+    "steps": [
+     {
+      "title": "Add pickup stores",
+      "actor": "Seller",
+      "text": "Add the addresses where Carrybee collects parcels and returns failed ones, on a map. Each store is linked to a hub and route. Pick a default pickup and return store. Carrybee ops approve new stores.",
+      "mods": [
+       "stores"
+      ]
+     },
+     {
+      "title": "Choose how to get paid",
+      "actor": "Seller",
+      "text": "Add a bank account or mobile wallet (MFS such as bKash or Nagad) and the payout schedule: regular, custom, or on demand. Changes are approved by Carrybee finance.",
+      "mods": [
+       "payments"
+      ]
+     },
+     {
+      "title": "Invite the team",
+      "actor": "Business owner",
+      "text": "Add staff to the business as operator or accountant, each with their own permissions.",
+      "mods": [
+       "operators"
+      ]
+     },
+     {
+      "title": "Connect a website (optional)",
+      "actor": "Developer",
+      "text": "Get API credentials, set webhooks for order events, and read the API docs to create orders straight from the seller's own shop.",
+      "mods": [
+       "webhook"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Book orders",
+    "when": "Every day · status pending",
+    "steps": [
+     {
+      "title": "Check the buyer first",
+      "actor": "Seller",
+      "text": "Look up the buyer's phone number in the fraud checker to see if others have reported them for refusing parcels.",
+      "mods": [
+       "customers"
+      ]
+     },
+     {
+      "title": "Create orders",
+      "actor": "Seller / Operator",
+      "text": "One at a time, in bulk from a spreadsheet, from a photo using AI/OCR, or through the API. Each order gets a consignment ID, a COD amount to collect, and a delivery price calculated from weight and area.",
+      "status": "pending",
+      "mods": [
+       "orders"
+      ]
+     },
+     {
+      "title": "Print labels",
+      "actor": "Seller",
+      "text": "Print the POD label (barcode + QR code) and stick it on each parcel.",
+      "mods": [
+       "orders"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Hand parcels to Carrybee",
+    "when": "First mile",
+    "steps": [
+     {
+      "title": "Request a pickup",
+      "actor": "Seller",
+      "text": "Choose the store and how many parcels are ready. A Carrybee rider is assigned to collect them.",
+      "status": "pickup_requested",
+      "mods": [
+       "businesses"
+      ]
+     },
+     {
+      "title": "See pickup history",
+      "actor": "Seller",
+      "text": "Each request shows how many parcels were ordered, actually picked and sorted at the hub, and its status.",
+      "mods": [
+       "pickup-requests"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Track the parcel",
+    "when": "While it moves · sorted → in_transit → received_at_lmh → assigned_for_delivery",
+    "steps": [
+     {
+      "title": "Follow every order",
+      "actor": "Seller",
+      "text": "Order list grouped as active, delivered, returning and returned, with full history per order. Buyers can track publicly with the consignment ID. While moving, the seller can edit, cancel, ask to hold, or ask for urgent delivery.",
+      "status": "sorted → in_transit → received_at_lmh → assigned_for_delivery",
+      "mods": [
+       "orders"
+      ]
+     },
+     {
+      "title": "Get notified",
+      "actor": "Seller",
+      "text": "In-app and push notifications for returns, urgent approvals, invoices and no-entry parcels, with do-not-disturb settings.",
+      "mods": [
+       "notifications"
+      ]
+     },
+     {
+      "title": "Talk to the rider",
+      "actor": "Seller ↔ Rider",
+      "text": "Live chat with the delivery agent about one parcel, for example to share directions.",
+      "mods": [
+       "agent-messaging"
+      ]
+     },
+     {
+      "title": "See today at a glance",
+      "actor": "Seller",
+      "text": "The dashboard shows order progress, delivery split, payments due and recent orders.",
+      "mods": [
+       "dashboard"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Handle problems",
+    "when": "When delivery doesn't go to plan",
+    "steps": [
+     {
+      "title": "Answer the high alert queue",
+      "actor": "Seller",
+      "text": "Riders ask the seller to approve a change: return, price change, exchange, partial delivery or paid return. Also listed: partial deliveries, returns on the way, parcels with no order (no-entry) and last-mile delivery issues.",
+      "status": "on_hold · partial_delivery · return",
+      "mods": [
+       "high-alert"
+      ]
+     },
+     {
+      "title": "Fix the order",
+      "actor": "Seller",
+      "text": "Send a returned parcel to another customer, reopen a cancelled pickup, or create an exchange or reverse pickup to get an item back from the buyer.",
+      "status": "exchange · reverse_pickup_requested",
+      "mods": [
+       "orders"
+      ]
+     },
+     {
+      "title": "Report a bad buyer",
+      "actor": "Seller",
+      "text": "File a fraud report against a buyer. Carrybee ops approve or reject it.",
+      "mods": [
+       "customers"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "After delivery",
+    "when": "Final status · delivered / returned_to_merchant",
+    "steps": [
+     {
+      "title": "Rate the rider",
+      "actor": "Seller / Buyer",
+      "text": "Rate the pickup or delivery agent. Ratings feed hive's rating management.",
+      "status": "delivered",
+      "mods": [
+       "agent-rating"
+      ]
+     },
+     {
+      "title": "Read the numbers",
+      "actor": "Business owner",
+      "text": "Order trends over time, overall statistics and the best-performing stores.",
+      "mods": [
+       "analytics"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Get paid",
+    "when": "On the payout cycle",
+    "steps": [
+     {
+      "title": "Read the invoice",
+      "actor": "Seller / Accountant",
+      "text": "Each invoice shows COD collected, minus delivery fee and COD fee, plus any compensation, giving the amount Carrybee pays. Download as PDF or CSV.",
+      "status": "unpaid → paid",
+      "mods": [
+       "invoices"
+      ]
+     },
+     {
+      "title": "Withdraw early",
+      "actor": "Seller",
+      "text": "On-demand payout: ask to be paid now instead of waiting for the cycle.",
+      "mods": [
+       "dashboard",
+       "payments"
+      ]
+     },
+     {
+      "title": "Pay what you owe",
+      "actor": "Seller",
+      "text": "If fees are more than the cash collected, the seller owes Carrybee and pays through bKash, Nagad, SSLCommerz or bank transfer.",
+      "mods": [
+       "payments"
+      ]
+     }
+    ]
+   }
+  ],
+  "accounts": [
+   {
+    "title": "Sign in",
+    "when": "Finance or legal staff",
+    "steps": [
+     {
+      "title": "Log in with OTP",
+      "actor": "Finance / Legal",
+      "text": "Staff log in with phone and a one-time code. What they see depends on two permissions: revenue recognition (invoices) and legal panel (orders). Without either they land on a no-access page.",
+      "mods": [
+       "authentication"
+      ]
+     },
+     {
+      "title": "Lookup data for filters",
+      "actor": "System",
+      "text": "Lists of users, hubs, departments and teams are loaded to fill dropdowns. These modules have no pages of their own; the users page is planned but not built yet.",
+      "mods": [
+       "users",
+       "hubs",
+       "departments",
+       "teams"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Know the sellers",
+    "when": "Reference data",
+    "steps": [
+     {
+      "title": "Look up a business",
+      "actor": "Finance",
+      "text": "Read-only list of seller businesses with their COD and return fees, payout frequency, KAM and wallet.",
+      "mods": [
+       "business"
+      ]
+     },
+     {
+      "title": "Check identity status",
+      "actor": "Finance / Legal",
+      "text": "Sellers and their eKYC verification status.",
+      "mods": [
+       "merchants"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Recognise revenue",
+    "when": "Revenue recognition permission",
+    "steps": [
+     {
+      "title": "Export merchant invoices",
+      "actor": "Accounts team",
+      "text": "The invoices hive generated for each seller: what was collected, Carrybee's fees, and what was paid out. Export a summary, per-merchant or per-order CSV, or a single invoice as PDF for the books.",
+      "status": "unpaid → processing → paid",
+      "mods": [
+       "invoice"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Legal review",
+    "when": "Legal panel permission",
+    "steps": [
+     {
+      "title": "Review orders by parcel type",
+      "actor": "Legal team",
+      "text": "Delivered consignments with amounts collected, fees, hubs, recipient and transfer status, filterable by parcel type and exportable as CSV. A CSV upload to set parcel types exists but is switched off.",
+      "mods": [
+       "legal-order"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Report",
+    "when": "Any time",
+    "steps": [
+     {
+      "title": "Download reports",
+      "actor": "Finance",
+      "text": "Consignment-wise CSV report. Custom and merchant reports exist in code but are hidden from the menu.",
+      "mods": [
+       "reports"
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

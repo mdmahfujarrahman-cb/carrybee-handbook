@@ -1,0 +1,2710 @@
+{
+ "categories": [
+  {
+   "id": "people",
+   "name": "People & roles"
+  },
+  {
+   "id": "network",
+   "name": "Places & network"
+  },
+  {
+   "id": "parcel",
+   "name": "Parcel & order"
+  },
+  {
+   "id": "status",
+   "name": "Order statuses"
+  },
+  {
+   "id": "runs",
+   "name": "Runs & movement"
+  },
+  {
+   "id": "hub",
+   "name": "Hub work & sorting"
+  },
+  {
+   "id": "problems",
+   "name": "Problems & exceptions"
+  },
+  {
+   "id": "pricing",
+   "name": "Fees & pricing"
+  },
+  {
+   "id": "money",
+   "name": "Cash, invoices & payouts"
+  },
+  {
+   "id": "costs",
+   "name": "Costs & approvals"
+  },
+  {
+   "id": "systems",
+   "name": "Systems & security"
+  },
+  {
+   "id": "metrics",
+   "name": "Metrics & reports"
+  }
+ ],
+ "terms": [
+  {
+   "t": "Merchant",
+   "cat": "people",
+   "aka": [
+    "merchant",
+    "merchant_id",
+    "Merchant Panel"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "The seller: an online shop or business that sends parcels through Carrybee. Uses the aladdin panel.",
+   "id": "merchant"
+  },
+  {
+   "t": "Business",
+   "cat": "people",
+   "aka": [
+    "business",
+    "businessId",
+    "selectedBusiness"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "One shop owned by a merchant. One login can own several businesses; each has its own stores, price plan, invoices and payout account.",
+   "id": "business"
+  },
+  {
+   "t": "Corporate merchant",
+   "cat": "people",
+   "aka": [
+    "Corporate Merchant",
+    "corporate"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A large business account created by Carrybee staff rather than by self-signup, usually with special pricing.",
+   "id": "corporate-merchant"
+  },
+  {
+   "t": "Operator",
+   "cat": "people",
+   "aka": [
+    "operator",
+    "accountant"
+   ],
+   "apps": [
+    "aladdin"
+   ],
+   "def": "A staff member the merchant adds to their business, with role operator (handles orders) or accountant (handles money).",
+   "id": "operator"
+  },
+  {
+   "t": "Customer / recipient",
+   "cat": "people",
+   "aka": [
+    "customer",
+    "recipient",
+    "Recipient Zone"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "The buyer who receives the parcel and pays the COD amount.",
+   "id": "customer-recipient"
+  },
+  {
+   "t": "Agent (rider)",
+   "cat": "people",
+   "aka": [
+    "agent",
+    "agent_id",
+    "pickup_agent_id",
+    "delivery_agent_id"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "The Carrybee rider who picks up and delivers parcels. Always called agent in code. Uses a separate mobile app that is not in these repos.",
+   "id": "agent-rider"
+  },
+  {
+   "t": "Same city / outside city agent",
+   "cat": "people",
+   "aka": [
+    "same_city",
+    "Same city agent",
+    "Outside city agent"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Agent productivity split: riders delivering inside their own city vs riders working outside it.",
+   "id": "same-city-outside-city-agent"
+  },
+  {
+   "t": "Agent salary model",
+   "cat": "people",
+   "aka": [
+    "agent_salary_model",
+    "Salary Type",
+    "Commission Type"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "How a rider is paid: a fixed salary or a commission per parcel. Paid into their salary wallet (bank or MFS).",
+   "id": "agent-salary-model"
+  },
+  {
+   "t": "KAM",
+   "cat": "people",
+   "aka": [
+    "kam",
+    "kam_id",
+    "kam_lead",
+    "KAM Messaging"
+   ],
+   "apps": [
+    "hive",
+    "accounts"
+   ],
+   "def": "Key Account Manager. Looks after large merchants: pricing, pickups, receivable invoices. kam_lead manages KAMs.",
+   "id": "kam"
+  },
+  {
+   "t": "Hub manager / hub in-charge",
+   "cat": "people",
+   "aka": [
+    "hub_manager",
+    "Hub Manager"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Runs one hub: assigns runs, closes runs, counts cash and submits the hub deposit.",
+   "id": "hub-manager-hub-in-charge"
+  },
+  {
+   "t": "Cluster lead / region lead",
+   "cat": "people",
+   "aka": [
+    "region_lead",
+    "cluster lead",
+    "lead_id"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Managers over a group of hubs (cluster) or a group of clusters (region). They approve claims in reconciliation.",
+   "id": "cluster-lead-region-lead"
+  },
+  {
+   "t": "Ops head",
+   "cat": "people",
+   "aka": [
+    "ops_head",
+    "ops_admin",
+    "Waiting For Ops Head Approval"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Head of operations. First approver for petty cash and rent.",
+   "id": "ops-head"
+  },
+  {
+   "t": "Audit / accounts",
+   "cat": "people",
+   "aka": [
+    "audit",
+    "accounts",
+    "accounts_petty_cash"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Finance roles late in the approval chain: audit checks a claim, accounts releases the money.",
+   "id": "audit-accounts"
+  },
+  {
+   "t": "QC reviewer",
+   "cat": "people",
+   "aka": [
+    "qc",
+    "QC Panel",
+    "approved_by_qc"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Staff who approve or reject riders' urgent approval requests and look for fake requests.",
+   "id": "qc-reviewer"
+  },
+  {
+   "t": "Super admin / G-Mode user",
+   "cat": "people",
+   "aka": [
+    "super_admin",
+    "gmode"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Highest access level. Can use G-Mode repair tools and impersonate other users.",
+   "id": "super-admin-g-mode-user"
+  },
+  {
+   "t": "Landlord",
+   "cat": "people",
+   "aka": [
+    "landlord",
+    "Landlord Details",
+    "rent_amount"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Owner of a building Carrybee rents for a hub. Rent is paid through petty cash.",
+   "id": "landlord"
+  },
+  {
+   "t": "Hub",
+   "cat": "network",
+   "aka": [
+    "hub",
+    "hub_id",
+    "warehouse"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "A Carrybee branch where parcels are received, sorted and sent out. Called warehouse in some menus and code paths.",
+   "id": "hub"
+  },
+  {
+   "t": "FMH (first-mile hub)",
+   "cat": "network",
+   "aka": [
+    "FMH",
+    "pickup_hub",
+    "First Mile Hub",
+    "At FMH"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "The hub near the seller where a parcel first enters the network.",
+   "id": "fmh-first-mile-hub"
+  },
+  {
+   "t": "LMH (last-mile hub)",
+   "cat": "network",
+   "aka": [
+    "LMH",
+    "lmh_id",
+    "delivery_hub",
+    "last_mile_hub"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "The hub near the buyer that delivers the parcel.",
+   "id": "lmh-last-mile-hub"
+  },
+  {
+   "t": "Current hub",
+   "cat": "network",
+   "aka": [
+    "current_hub",
+    "current_hub_id"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Where the parcel physically is right now.",
+   "id": "current-hub"
+  },
+  {
+   "t": "Sorting hub",
+   "cat": "network",
+   "aka": [
+    "is_sorting_hub",
+    "At The Sorting Hub",
+    "nearest_sorting_centers"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A hub that also sorts parcels coming from other hubs before sending them on.",
+   "id": "sorting-hub"
+  },
+  {
+   "t": "Central warehouse",
+   "cat": "network",
+   "aka": [
+    "Central Hub",
+    "centralHubIds",
+    "At Central Warehouse"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "The main sorting centre (hub IDs 71 and 72 in code). Most long-distance parcels pass through it.",
+   "id": "central-warehouse"
+  },
+  {
+   "t": "Sub-sort",
+   "cat": "network",
+   "aka": [
+    "sub_sort",
+    "subSortHubIds",
+    "At Sub-sort"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A regional sorting centre between the central warehouse and the last-mile hubs.",
+   "id": "sub-sort"
+  },
+  {
+   "t": "Region → cluster → hub",
+   "cat": "network",
+   "aka": [
+    "region",
+    "cluster",
+    "cluster_id",
+    "operational_area"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "The organisation tree. A region contains clusters, a cluster contains hubs. Each level has a lead.",
+   "id": "region-cluster-hub"
+  },
+  {
+   "t": "City → zone → area → sector",
+   "cat": "network",
+   "aka": [
+    "zone_id",
+    "area_id",
+    "sector",
+    "Recipient Area"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "The address tree used for delivery. A zone belongs to a hub; areas and sectors are smaller parts of it.",
+   "id": "city-zone-area-sector"
+  },
+  {
+   "t": "Route",
+   "cat": "network",
+   "aka": [
+    "route",
+    "route_id",
+    "route_default_agent"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A hub's set of zones that one rider covers, with a default agent. Types: pickup, delivery, reverse pickup.",
+   "id": "route"
+  },
+  {
+   "t": "Linehaul",
+   "cat": "network",
+   "aka": [
+    "line_haul",
+    "line_haul_id",
+    "LineHaul",
+    "line_haul_base"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A fixed trunk route between hubs that baskets travel along, with a base code and sub codes.",
+   "id": "linehaul"
+  },
+  {
+   "t": "ISD / OSD / sub area",
+   "cat": "network",
+   "aka": [
+    "isd",
+    "osd",
+    "is_sub_area",
+    "ISD (Inside Dhaka)",
+    "OSD (Outside Dhaka)"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Inside Dhaka, Outside Dhaka and sub area: the three delivery zones that set price, COD fee and return fee. The code labels spell these out.",
+   "id": "isd-osd-sub-area"
+  },
+  {
+   "t": "Hub tier",
+   "cat": "network",
+   "aka": [
+    "tier_type",
+    "Big",
+    "Mid",
+    "Small"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Size class of a hub: big, mid or small.",
+   "id": "hub-tier"
+  },
+  {
+   "t": "Zone polygon",
+   "cat": "network",
+   "aka": [
+    "geonix",
+    "zone-polygon",
+    "area_sq_m"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "The map boundary of a delivery zone, drawn in the geonix tool.",
+   "id": "zone-polygon"
+  },
+  {
+   "t": "Self hub",
+   "cat": "network",
+   "aka": [
+    "Self hub",
+    "selfHubTeamId",
+    "selfRunHubType"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "When creating a basket, the destination can be another LMH or the hub's own (self) team.",
+   "inferred": true,
+   "id": "self-hub"
+  },
+  {
+   "t": "Store",
+   "cat": "network",
+   "aka": [
+    "store",
+    "store_id",
+    "Default Pickup Store",
+    "Default Return Store"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "A merchant's pickup or return address, linked to a hub and route. One is the default pickup store and one the default return store.",
+   "id": "store"
+  },
+  {
+   "t": "Pending store",
+   "cat": "network",
+   "aka": [
+    "Pending Stores",
+    "location_approval_status"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A new store waiting for ops approval and for its map location to be verified.",
+   "id": "pending-store"
+  },
+  {
+   "t": "Order / consignment / parcel",
+   "cat": "parcel",
+   "aka": [
+    "order",
+    "consignment",
+    "parcel"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "Used almost interchangeably: one shipment from a merchant to a buyer. Consignment is the formal word used in IDs and reports.",
+   "id": "order-consignment-parcel"
+  },
+  {
+   "t": "Consignment ID (CID)",
+   "cat": "parcel",
+   "aka": [
+    "consignment_id",
+    "consignmentId",
+    "tracking_id"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "Carrybee's unique ID for one parcel, printed on the label and used for tracking.",
+   "id": "consignment-id-cid"
+  },
+  {
+   "t": "Merchant order ID",
+   "cat": "parcel",
+   "aka": [
+    "merchant_order_id"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "The seller's own order number, kept alongside the consignment ID.",
+   "id": "merchant-order-id"
+  },
+  {
+   "t": "Amount to collect",
+   "cat": "parcel",
+   "aka": [
+    "collectable_amount",
+    "Amount To Collect",
+    "COD Amount"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Cash the rider must collect from the buyer. Zero for prepaid orders.",
+   "id": "amount-to-collect"
+  },
+  {
+   "t": "Selling price",
+   "cat": "parcel",
+   "aka": [
+    "selling_price",
+    "Enter the item's actual price"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "The item's actual value, used for compensation if lost or damaged.",
+   "id": "selling-price"
+  },
+  {
+   "t": "Item weight",
+   "cat": "parcel",
+   "aka": [
+    "item_weight",
+    "weight_in_kg",
+    "Weight (KG)"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Parcel weight in kg. Weight above the base slab costs extra per kg.",
+   "id": "item-weight"
+  },
+  {
+   "t": "Parcel type",
+   "cat": "parcel",
+   "aka": [
+    "parcel_type"
+   ],
+   "apps": [
+    "accounts",
+    "hive"
+   ],
+   "def": "A category for the goods inside. Used by the legal panel to filter orders. The allowed values are not visible in the frontend.",
+   "id": "parcel-type"
+  },
+  {
+   "t": "Delivery type",
+   "cat": "parcel",
+   "aka": [
+    "delivery_type",
+    "Regular Delivery",
+    "Express Delivery"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Regular or express delivery. Express is faster and costs more.",
+   "id": "delivery-type"
+  },
+  {
+   "t": "Order source",
+   "cat": "parcel",
+   "aka": [
+    "OrderSource",
+    "merchant-bulk",
+    "developers-api"
+   ],
+   "apps": [
+    "aladdin"
+   ],
+   "def": "How the order was created: single form, bulk sheet, OCR from a photo, developer API, or by ops staff.",
+   "id": "order-source"
+  },
+  {
+   "t": "Bulk order",
+   "cat": "parcel",
+   "aka": [
+    "Bulk Order",
+    "orders.bulk",
+    "Bulk Import"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Creating many orders at once from a spreadsheet.",
+   "id": "bulk-order"
+  },
+  {
+   "t": "AI / OCR order",
+   "cat": "parcel",
+   "aka": [
+    "ai-create",
+    "ocrExtractCustomerInfo",
+    "Extracted"
+   ],
+   "apps": [
+    "aladdin"
+   ],
+   "def": "Create an order by uploading a photo; the buyer's name, phone and address are read from it automatically.",
+   "id": "ai-ocr-order"
+  },
+  {
+   "t": "Exchange",
+   "cat": "parcel",
+   "aka": [
+    "exchange",
+    "is_exchange",
+    "Exchange fee",
+    "exchange_image"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Deliver a new item and take the old one back in the same visit. Costs an exchange fee.",
+   "id": "exchange"
+  },
+  {
+   "t": "Reverse pickup",
+   "cat": "parcel",
+   "aka": [
+    "reverse_pickup",
+    "Reverse Pickup",
+    "reverse_pickup_charge"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "A rider collects an item from the buyer and returns it to the seller, without a new delivery.",
+   "id": "reverse-pickup"
+  },
+  {
+   "t": "Forward pickup",
+   "cat": "parcel",
+   "aka": [
+    "Forward Pickup"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A normal pickup from the seller's store, as opposed to a reverse pickup from the buyer.",
+   "id": "forward-pickup"
+  },
+  {
+   "t": "Send to another customer",
+   "cat": "parcel",
+   "aka": [
+    "can_send_to_another_customer",
+    "requested_for_customer_change"
+   ],
+   "apps": [
+    "aladdin"
+   ],
+   "def": "Redirect a failed or returned parcel to a different buyer instead of returning it.",
+   "id": "send-to-another-customer"
+  },
+  {
+   "t": "Pickup request",
+   "cat": "parcel",
+   "aka": [
+    "pickup_request",
+    "Request Pickup",
+    "numOfOrders"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "The merchant asks Carrybee to collect N parcels from a store. Pickup time is about 4–7 pm.",
+   "id": "pickup-request"
+  },
+  {
+   "t": "POD (label)",
+   "cat": "parcel",
+   "aka": [
+    "Print POD",
+    "Print POS POD",
+    "central-pod-print",
+    "order-print-pod"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "In this codebase POD means the printed parcel label with barcode and QR code. POS POD is the small thermal-printer version.",
+   "id": "pod-label"
+  },
+  {
+   "t": "Labeled / unlabeled",
+   "cat": "parcel",
+   "aka": [
+    "Labeled",
+    "Unlabeled"
+   ],
+   "apps": [
+    "aladdin"
+   ],
+   "def": "Whether the POD label has been printed for an order yet.",
+   "id": "labeled-unlabeled"
+  },
+  {
+   "t": "Special note",
+   "cat": "parcel",
+   "aka": [
+    "notes",
+    "Special Note"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Free-text instructions from the seller for the rider.",
+   "id": "special-note"
+  },
+  {
+   "t": "Hold / urgent request",
+   "cat": "parcel",
+   "aka": [
+    "has_requested_hold",
+    "has_requested_urgent_delivery",
+    "executionRequestHold"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "While a parcel is moving, the seller can ask Carrybee to hold it or to deliver it urgently.",
+   "id": "hold-urgent-request"
+  },
+  {
+   "t": "Transfer status",
+   "cat": "status",
+   "aka": [
+    "transfer_status_id",
+    "TransferStatus",
+    "transferStatus"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "The numeric status of a parcel (1–45, 53). Every scan or action moves it to a new number. The merchant panel shows a simpler text version.",
+   "id": "transfer-status"
+  },
+  {
+   "t": "1 Pending",
+   "cat": "status",
+   "aka": [
+    "Pending",
+    "pending"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Order created, not yet requested for pickup.",
+   "id": "1-pending"
+  },
+  {
+   "t": "2 Pickup requested",
+   "cat": "status",
+   "aka": [
+    "PickupRequested",
+    "pickup_requested"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Seller asked for a pickup.",
+   "id": "2-pickup-requested"
+  },
+  {
+   "t": "3 Assigned for pickup",
+   "cat": "status",
+   "aka": [
+    "AssignedForPickup"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A rider is assigned to collect it.",
+   "id": "3-assigned-for-pickup"
+  },
+  {
+   "t": "4 Picked",
+   "cat": "status",
+   "aka": [
+    "Picked",
+    "Parcel Picked Up"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Rider has the parcel.",
+   "id": "4-picked"
+  },
+  {
+   "t": "5–6 Pickup on hold / cancelled",
+   "cat": "status",
+   "aka": [
+    "PickupOnHold",
+    "PickupCancelled",
+    "pickup_cancelled",
+    "reopenPickupCancelled"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Pickup paused or cancelled. A cancelled pickup can be reopened.",
+   "id": "5-6-pickup-on-hold-cancelled"
+  },
+  {
+   "t": "7 At the hub received",
+   "cat": "status",
+   "aka": [
+    "AtTheHubReceived",
+    "At Hub Received"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Parcel arrived at the first-mile hub.",
+   "id": "7-at-the-hub-received"
+  },
+  {
+   "t": "8–9 Sorting hub",
+   "cat": "status",
+   "aka": [
+    "OnTheWayToSortingHub",
+    "AtTheSortingHub"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "On the way to, then at, a sorting hub.",
+   "id": "8-9-sorting-hub"
+  },
+  {
+   "t": "10–11 Central warehouse",
+   "cat": "status",
+   "aka": [
+    "OnTheWayToCentralWarehouse",
+    "AtCentralWarehouse"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "On the way to, then at, the central warehouse.",
+   "id": "10-11-central-warehouse"
+  },
+  {
+   "t": "12–13 Last-mile hub",
+   "cat": "status",
+   "aka": [
+    "OnTheWayToLastMileHub",
+    "ReceivedAtLastMileHub",
+    "received_at_lmh"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "On the way to, then received at, the hub that will deliver it.",
+   "id": "12-13-last-mile-hub"
+  },
+  {
+   "t": "14 Assigned for delivery",
+   "cat": "status",
+   "aka": [
+    "AssignedForDelivery",
+    "Out for Delivery"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "In a rider's delivery run.",
+   "id": "14-assigned-for-delivery"
+  },
+  {
+   "t": "15 Delivered",
+   "cat": "status",
+   "aka": [
+    "Delivered",
+    "delivered"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Buyer received the parcel and paid. A final status.",
+   "id": "15-delivered"
+  },
+  {
+   "t": "16 On hold",
+   "cat": "status",
+   "aka": [
+    "OnHold",
+    "on_hold",
+    "Delivery On Hold"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Delivery paused, for example the buyer asked for another day. It will be attempted again.",
+   "id": "16-on-hold"
+  },
+  {
+   "t": "17 Return",
+   "cat": "status",
+   "aka": [
+    "Return",
+    "return"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Delivery failed and the parcel will go back to the seller.",
+   "id": "17-return"
+  },
+  {
+   "t": "18 Partial delivery",
+   "cat": "status",
+   "aka": [
+    "PartialDelivery",
+    "partial_delivery",
+    "Partial Return"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Buyer kept only part of the order; the rest is returned.",
+   "id": "18-partial-delivery"
+  },
+  {
+   "t": "19 Damaged",
+   "cat": "status",
+   "aka": [
+    "Damaged",
+    "damage",
+    "parcel_damaged"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Parcel was damaged while with Carrybee. Compensation may apply.",
+   "id": "19-damaged"
+  },
+  {
+   "t": "20 Lost",
+   "cat": "status",
+   "aka": [
+    "Lost",
+    "lost",
+    "parcel_lost"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Parcel cannot be found. Compensation is paid and charged to the agent, hub or Carrybee.",
+   "id": "20-lost"
+  },
+  {
+   "t": "21 Paid return",
+   "cat": "status",
+   "aka": [
+    "PaidReturn",
+    "paid_return"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "A return where the buyer still paid the delivery charge.",
+   "inferred": true,
+   "id": "21-paid-return"
+  },
+  {
+   "t": "22 Exchange",
+   "cat": "status",
+   "aka": [
+    "Exchange",
+    "exchange"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Exchange completed: new item delivered, old item collected.",
+   "id": "22-exchange"
+  },
+  {
+   "t": "23–34 Return chain",
+   "cat": "status",
+   "aka": [
+    "ReturnPendingFromHub",
+    "ReturnAtFirstMileHub",
+    "ReturnOnTheWayToMerchant",
+    "return_in_transit"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "A return travelling back: pending at hub → sorting hub → central → first-mile hub → on the way to merchant.",
+   "id": "23-34-return-chain"
+  },
+  {
+   "t": "32 Returned to merchant",
+   "cat": "status",
+   "aka": [
+    "ReturnedToMerchant",
+    "return_returned_to_merchant"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "The seller has the returned parcel back. A final status.",
+   "id": "32-returned-to-merchant"
+  },
+  {
+   "t": "33 Returned to inventory",
+   "cat": "status",
+   "aka": [
+    "ReturnedToInventory",
+    "return_to_inventory"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "A returned parcel kept in Carrybee's inventory instead of being handed to the seller.",
+   "id": "33-returned-to-inventory"
+  },
+  {
+   "t": "35 In transit",
+   "cat": "status",
+   "aka": [
+    "InTransit",
+    "in_transit"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Moving between hubs on a transfer run.",
+   "id": "35-in-transit"
+  },
+  {
+   "t": "36 Found",
+   "cat": "status",
+   "aka": [
+    "Found"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "A parcel marked lost has turned up again.",
+   "id": "36-found"
+  },
+  {
+   "t": "37 Reprocess",
+   "cat": "status",
+   "aka": [
+    "Reprocess",
+    "reprocessed",
+    "Reprocess Order"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Put a returned or problem parcel back into the delivery flow. Sellers can reprocess returns until 7 am.",
+   "id": "37-reprocess"
+  },
+  {
+   "t": "38–41 Sub-sort",
+   "cat": "status",
+   "aka": [
+    "OnTheWayToSubSort",
+    "TransferStatusAtSubSort",
+    "ReturnAtSubSort"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "On the way to, or at, a sub-sort centre, for deliveries (38, 39) or returns (40, 41).",
+   "id": "38-41-sub-sort"
+  },
+  {
+   "t": "42–45 Reverse pickup",
+   "cat": "status",
+   "aka": [
+    "TransferStatusReturnWaitingForPickUp",
+    "reverse_pickup_requested",
+    "reverse_picked"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "A reverse pickup: waiting, assigned, picked, or on hold.",
+   "id": "42-45-reverse-pickup"
+  },
+  {
+   "t": "53 Customer request change",
+   "cat": "status",
+   "aka": [
+    "CustomerRequestChange",
+    "requested_for_customer_change"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "The buyer or seller asked to change the order (for example address or recipient).",
+   "id": "53-customer-request-change"
+  },
+  {
+   "t": "Final status",
+   "cat": "status",
+   "aka": [
+    "finalStatuses"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A status where the parcel's journey ends: delivered, returned to merchant, lost, damaged and similar. Changing it needs G-Mode.",
+   "id": "final-status"
+  },
+  {
+   "t": "Status group (tab)",
+   "cat": "status",
+   "aka": [
+    "ORDER_STATUS_GROUP_MAP",
+    "active",
+    "returning"
+   ],
+   "apps": [
+    "aladdin"
+   ],
+   "def": "The merchant panel groups statuses into tabs: active, delivered, returning, returned.",
+   "id": "status-group-tab"
+  },
+  {
+   "t": "Run",
+   "cat": "runs",
+   "aka": [
+    "run",
+    "run_id",
+    "run_type",
+    "run_status"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "One trip by an agent, with a list of parcels. Status: pending → started → transferring → closed.",
+   "id": "run"
+  },
+  {
+   "t": "Pickup run",
+   "cat": "runs",
+   "aka": [
+    "Pickup Run",
+    "pickup-run",
+    "Picked Stores"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A trip to collect parcels from merchants' stores.",
+   "id": "pickup-run"
+  },
+  {
+   "t": "Delivery run",
+   "cat": "runs",
+   "aka": [
+    "Delivery Run",
+    "delivery-run",
+    "delivery_start",
+    "delivery_end"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A trip to deliver parcels to buyers. The agent app sends delivery start and end events.",
+   "id": "delivery-run"
+  },
+  {
+   "t": "Transfer run",
+   "cat": "runs",
+   "aka": [
+    "Transfer Run",
+    "transfer_type",
+    "Transferring"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Moves baskets between hubs along a linehaul.",
+   "id": "transfer-run"
+  },
+  {
+   "t": "Return run (RTM)",
+   "cat": "runs",
+   "aka": [
+    "Return Run",
+    "return_to_merchant",
+    "Return to Merchant"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Hands returned parcels back to merchants.",
+   "id": "return-run-rtm"
+  },
+  {
+   "t": "Customer return run",
+   "cat": "runs",
+   "aka": [
+    "Customer Return Run",
+    "customerReturnRun"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Collects items from buyers (reverse pickups).",
+   "id": "customer-return-run"
+  },
+  {
+   "t": "Assign run",
+   "cat": "runs",
+   "aka": [
+    "assign-run",
+    "Assign Pickup Agent",
+    "Assign for delivery"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Attach baskets, stores or parcels to a specific agent's run.",
+   "id": "assign-run"
+  },
+  {
+   "t": "Scan to add / remove",
+   "cat": "runs",
+   "aka": [
+    "Scan to add",
+    "scanToAdd",
+    "scanned_at"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Add or remove parcels from a run or basket by scanning their barcode.",
+   "id": "scan-to-add-remove"
+  },
+  {
+   "t": "Hand over / receive",
+   "cat": "runs",
+   "aka": [
+    "handOver",
+    "receive-by-scan",
+    "Received in Bulk"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "One hub hands a transfer run over; the next receives it by scanning, in bulk or one by one.",
+   "id": "hand-over-receive"
+  },
+  {
+   "t": "Gate pass / transfer slip",
+   "cat": "runs",
+   "aka": [
+    "get-pass",
+    "transfer_slip",
+    "Gate Pass"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Printed paperwork that travels with a run, listing what it carries.",
+   "id": "gate-pass-transfer-slip"
+  },
+  {
+   "t": "Lock code",
+   "cat": "runs",
+   "aka": [
+    "lock_code"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A code stored on every run. Probably the seal or lock code for the vehicle or basket.",
+   "inferred": true,
+   "id": "lock-code"
+  },
+  {
+   "t": "Run close",
+   "cat": "runs",
+   "aka": [
+    "pickupRunClose",
+    "deliveryRunClose",
+    "tranferRunClose"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Ending a run. For delivery runs, the cash is counted at this point.",
+   "id": "run-close"
+  },
+  {
+   "t": "Force close",
+   "cat": "runs",
+   "aka": [
+    "force close",
+    "deliveryRunCloseWithRemarks"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Manager closes a delivery run with remarks when the agent app never sent its delivery-end event.",
+   "id": "force-close"
+  },
+  {
+   "t": "Run not closed",
+   "cat": "runs",
+   "aka": [
+    "Run not closed",
+    "unclosedList",
+    "Open Runs"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Runs left open, meaning their cash is not yet accounted for.",
+   "id": "run-not-closed"
+  },
+  {
+   "t": "Zone transfer / inter-hub transfer",
+   "cat": "runs",
+   "aka": [
+    "zoneTransfer",
+    "interHubTransfer",
+    "Zone Transfer"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Move a parcel to another zone or another hub when it was routed to the wrong place.",
+   "id": "zone-transfer-inter-hub-transfer"
+  },
+  {
+   "t": "Parcel transfer / reassign",
+   "cat": "runs",
+   "aka": [
+    "parcelTransfer",
+    "reassign"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Move a parcel from one agent's run to another's.",
+   "id": "parcel-transfer-reassign"
+  },
+  {
+   "t": "Attempt",
+   "cat": "runs",
+   "aka": [
+    "attempt",
+    "Extra Attempt",
+    "attemptOutcome"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "One try at delivering a parcel. Extra attempts beyond the included one can be charged.",
+   "id": "attempt"
+  },
+  {
+   "t": "First mile / middle mile / last mile",
+   "cat": "hub",
+   "aka": [
+    "First Mile",
+    "Last Mile Issue",
+    "Ready for LMH"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "The three legs of the trip: store to first hub, hub to hub, and last hub to the buyer's door.",
+   "id": "first-mile-middle-mile-last-mile"
+  },
+  {
+   "t": "Sorted / unsorted",
+   "cat": "hub",
+   "aka": [
+    "delivery_sorted",
+    "delivery_unsorted",
+    "return_sorted",
+    "return_unsorted",
+    "sorted_at"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Whether a parcel at the hub has been checked in and grouped by destination yet, for deliveries and for returns.",
+   "id": "sorted-unsorted"
+  },
+  {
+   "t": "Order processing",
+   "cat": "hub",
+   "aka": [
+    "order-processing",
+    "updateWeight",
+    "Today Sort"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "First-mile hub check-in: weigh, sort or unsort, view the consignment log.",
+   "id": "order-processing"
+  },
+  {
+   "t": "Basket",
+   "cat": "hub",
+   "aka": [
+    "basket",
+    "basket_id",
+    "basket_close",
+    "orderForBasket"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A sealed bag of parcels moved between hubs as one unit. Status: created → printed → assigned → reached → opened → received.",
+   "id": "basket"
+  },
+  {
+   "t": "Central sorting / unsorted",
+   "cat": "hub",
+   "aka": [
+    "Central Sorting",
+    "central-unsorted",
+    "changeLmh"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "At the central warehouse: scan parcels, correct their last-mile hub, pack outgoing baskets.",
+   "id": "central-sorting-unsorted"
+  },
+  {
+   "t": "PTN rack",
+   "cat": "hub",
+   "aka": [
+    "PTN",
+    "Rack Configs",
+    "pigeon_holes",
+    "rack_id"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Sorting racks with 12 or 24 pigeon holes, each mapped to a hub or linehaul. Short for Point to Network.",
+   "id": "ptn-rack"
+  },
+  {
+   "t": "Pigeon hole",
+   "cat": "hub",
+   "aka": [
+    "pigeon_hole_id",
+    "pigeon_hole_count_id"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "One slot in a PTN rack. Parcels for the same destination go in the same hole.",
+   "id": "pigeon-hole"
+  },
+  {
+   "t": "Consignment log",
+   "cat": "hub",
+   "aka": [
+    "consignment-log",
+    "basket_logs"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Every scan and status change for one parcel, with time and hub.",
+   "id": "consignment-log"
+  },
+  {
+   "t": "Hub pickup (drop-off)",
+   "cat": "hub",
+   "aka": [
+    "hub-pickup",
+    "manualOtp",
+    "scanOtp"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "The seller brings parcels to the hub. Confirmed by an OTP sent to the seller.",
+   "id": "hub-pickup-drop-off"
+  },
+  {
+   "t": "Urgent approval",
+   "cat": "problems",
+   "aka": [
+    "Urgent Approval",
+    "urgent-approvals",
+    "max_urgent_approval_count"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "A rider asks to change an outcome (return, price change, exchange, partial delivery, paid return). The seller or QC must approve it.",
+   "id": "urgent-approval"
+  },
+  {
+   "t": "Price change",
+   "cat": "problems",
+   "aka": [
+    "price_change",
+    "Price Chg"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "The buyer pays a different amount than the order said. Needs approval.",
+   "id": "price-change"
+  },
+  {
+   "t": "High alert",
+   "cat": "problems",
+   "aka": [
+    "high-alert",
+    "pendingActions"
+   ],
+   "apps": [
+    "aladdin"
+   ],
+   "def": "The merchant's queue of things needing action: urgent approvals, partial deliveries, returns, no-entry parcels, last-mile issues.",
+   "id": "high-alert"
+  },
+  {
+   "t": "Last-mile issue",
+   "cat": "problems",
+   "aka": [
+    "Last Mile Issue",
+    "LMH Issue",
+    "Delivery Failed"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Problems at the final delivery: buyer unreachable, wrong address, repeated failed attempts.",
+   "id": "last-mile-issue"
+  },
+  {
+   "t": "No-entry",
+   "cat": "problems",
+   "aka": [
+    "No Entry",
+    "no_entry_id",
+    "Entry Parcel"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "A parcel physically at a hub with no matching order in the system. Ops create the order, process it or return it.",
+   "id": "no-entry"
+  },
+  {
+   "t": "Incomplete order",
+   "cat": "problems",
+   "aka": [
+    "Incomplete",
+    "incomplete-orders"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "An order missing data needed to move it on, such as zone or weight.",
+   "id": "incomplete-order"
+  },
+  {
+   "t": "Missing / extra parcel",
+   "cat": "problems",
+   "aka": [
+    "is_missing",
+    "is_extra",
+    "missing_consignment_count",
+    "extra_consignment_count"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "When a basket is scanned in: a parcel that should be there but isn't (missing), or one that shouldn't be (extra).",
+   "id": "missing-extra-parcel"
+  },
+  {
+   "t": "Wrong routing",
+   "cat": "problems",
+   "aka": [
+    "Sort wrong routing",
+    "Wrong routing from Previous hub",
+    "Border Area"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Reasons for a zone or hub transfer: sorted to the wrong route, sent by the previous hub to the wrong place, or the address is on a border.",
+   "id": "wrong-routing"
+  },
+  {
+   "t": "Compensation",
+   "cat": "problems",
+   "aka": [
+    "compensation_amount",
+    "Compensation Cost",
+    "compensate"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Money paid to the seller for a lost or damaged parcel. Charged to the agent, hub or Carrybee.",
+   "id": "compensation"
+  },
+  {
+   "t": "Fraud report",
+   "cat": "problems",
+   "aka": [
+    "fraud",
+    "Fraud Checker",
+    "cod_refusal",
+    "return_abuse"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "A seller reports a buyer for COD refusal (won't pay) or return abuse. Ops approve or reject it. The fraud checker shows a phone number's history.",
+   "id": "fraud-report"
+  },
+  {
+   "t": "Fake request",
+   "cat": "problems",
+   "aka": [
+    "fake-requests-by-hubs",
+    "fake-requests-by-agents"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "An urgent approval a rider raised without a real reason, tracked by hub and agent.",
+   "id": "fake-request"
+  },
+  {
+   "t": "Aging",
+   "cat": "problems",
+   "aka": [
+    "aging",
+    "Current Parcel Aging",
+    "In-Transit Aging",
+    "attemptWiseAging"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "How long parcels have been sitting at a stage. Old parcels signal a backlog.",
+   "id": "aging"
+  },
+  {
+   "t": "Price plan",
+   "cat": "pricing",
+   "aka": [
+    "price_plan_id",
+    "Delivery Plan",
+    "pricePlan"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "A merchant's rate card: delivery fee by zone and weight, COD fee, return fee and extra charges.",
+   "id": "price-plan"
+  },
+  {
+   "t": "Location slab / weight slab",
+   "cat": "pricing",
+   "aka": [
+    "location_slab",
+    "additional_price_plan_slab_id",
+    "isd_extra_amount_per_kg"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Price bands by destination (ISD, OSD, sub area) and weight. Each extra kg above the base costs more.",
+   "id": "location-slab-weight-slab"
+  },
+  {
+   "t": "Delivery fee",
+   "cat": "pricing",
+   "aka": [
+    "delivery_fee",
+    "Delivery Charge",
+    "Cost Of Delivery"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "Carrybee's charge for delivering one parcel.",
+   "id": "delivery-fee"
+  },
+  {
+   "t": "COD fee",
+   "cat": "pricing",
+   "aka": [
+    "cod_fee",
+    "cash_on_delivery_fee",
+    "isd_cod_fee",
+    "COD (1%)"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "Carrybee's charge for collecting cash, usually a percentage of the amount (1% shown in the UI). Different for ISD, OSD and sub area.",
+   "id": "cod-fee"
+  },
+  {
+   "t": "Return fee",
+   "cat": "pricing",
+   "aka": [
+    "return_fee",
+    "isd_return_fee_percentage",
+    "osd_return_fee_percentage"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "Charge for returning a failed parcel, as a percentage of the delivery fee.",
+   "id": "return-fee"
+  },
+  {
+   "t": "Additional charge",
+   "cat": "pricing",
+   "aka": [
+    "additional_charge",
+    "packaging_charge",
+    "extra_attempt_charge",
+    "reverse_pickup_charge"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Extra services on top of delivery: packaging, extra delivery attempts, reverse pickup.",
+   "id": "additional-charge"
+  },
+  {
+   "t": "Discount / discount request",
+   "cat": "pricing",
+   "aka": [
+    "discount",
+    "Discount Requests",
+    "discount_type",
+    "discount_before"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A lower price for a merchant. KAMs request it; it needs approval.",
+   "id": "discount-discount-request"
+  },
+  {
+   "t": "Total fee",
+   "cat": "pricing",
+   "aka": [
+    "total_fee",
+    "final_fee",
+    "Total Charge"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Delivery fee + COD fee + extra charges − discount for one order.",
+   "id": "total-fee"
+  },
+  {
+   "t": "Prepaid / postpaid / corporate",
+   "cat": "pricing",
+   "aka": [
+    "Prepaid",
+    "Postpaid",
+    "Corporate"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Business account types. Postpaid accounts are billed later and can owe Carrybee; prepaid pay up front.",
+   "id": "prepaid-postpaid-corporate"
+  },
+  {
+   "t": "COD enabled",
+   "cat": "pricing",
+   "aka": [
+    "is_cod_enabled"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Whether a business may send cash-on-delivery orders.",
+   "id": "cod-enabled"
+  },
+  {
+   "t": "Due threshold",
+   "cat": "pricing",
+   "aka": [
+    "due_threshold"
+   ],
+   "apps": [
+    "hive",
+    "accounts"
+   ],
+   "def": "How much a business may owe Carrybee before it must pay. The exact effect (blocking orders or not) isn't visible in the frontend.",
+   "inferred": true,
+   "id": "due-threshold"
+  },
+  {
+   "t": "COD",
+   "cat": "money",
+   "aka": [
+    "cod",
+    "cod_amount",
+    "Cash on Delivery"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "Cash on delivery: the buyer pays the rider in cash. Carrybee keeps its fees and passes the rest to the seller.",
+   "id": "cod"
+  },
+  {
+   "t": "Collected amount",
+   "cat": "money",
+   "aka": [
+    "collected_amount",
+    "Total Collected",
+    "Collected COD"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "Cash actually collected from the buyer. Can differ from the amount to collect (partial delivery, price change).",
+   "id": "collected-amount"
+  },
+  {
+   "t": "Pending COD",
+   "cat": "money",
+   "aka": [
+    "Pending COD",
+    "COD expected but not yet collected"
+   ],
+   "apps": [
+    "aladdin"
+   ],
+   "def": "Cash Carrybee expects to collect on parcels still in progress.",
+   "id": "pending-cod"
+  },
+  {
+   "t": "Paisa (in_paisha)",
+   "cat": "money",
+   "aka": [
+    "collectable_amount_in_paisha",
+    "delivery_fee_in_paisha"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Amounts also stored in paisa (1/100 of a taka) to avoid rounding errors. Spelled paisha in code.",
+   "id": "paisa-in-paisha"
+  },
+  {
+   "t": "Cash note",
+   "cat": "money",
+   "aka": [
+    "cashNote",
+    "cash note"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Count of each banknote (1000, 500, 200, 100, 50…) the agent hands in when a delivery run closes.",
+   "id": "cash-note"
+  },
+  {
+   "t": "Cash in hand",
+   "cat": "money",
+   "aka": [
+    "cash_in_hand",
+    "cashInHand",
+    "Cash In Hand"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Cash a hub keeps instead of depositing. Subtracted from the hub's deposit.",
+   "id": "cash-in-hand"
+  },
+  {
+   "t": "Carry (carry amount)",
+   "cat": "money",
+   "aka": [
+    "carryAmount",
+    "carry"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Cash carried forward from a previous period and added to what the hub must deposit.",
+   "id": "carry-carry-amount"
+  },
+  {
+   "t": "Money lost / cash lost",
+   "cat": "money",
+   "aka": [
+    "money_lost",
+    "cash_lost",
+    "Cash Lost"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Collected cash that went missing. Subtracted from the hub's deposit and tracked separately.",
+   "id": "money-lost-cash-lost"
+  },
+  {
+   "t": "Hub payment (deposit)",
+   "cat": "money",
+   "aka": [
+    "hub_payment",
+    "hubPayment",
+    "Hub payment",
+    "hub_payment_status"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A hub's deposit of collected cash. Payable = sum collected − (money lost + cash in hand + withdrawn expenses) + carry.",
+   "id": "hub-payment-deposit"
+  },
+  {
+   "t": "Hub ledger",
+   "cat": "money",
+   "aka": [
+    "hub-ledger",
+    "Ledger History"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "The cash book for each hub: cash in hand and carry over time.",
+   "id": "hub-ledger"
+  },
+  {
+   "t": "Payable consignment",
+   "cat": "money",
+   "aka": [
+    "payable",
+    "Payable",
+    "payable_amount"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "A delivered order whose COD is ready to be deposited or paid to the seller.",
+   "id": "payable-consignment"
+  },
+  {
+   "t": "Payable vs receivable",
+   "cat": "money",
+   "aka": [
+    "payable_payment_status",
+    "receivable_payment_status",
+    "payable_or_receivable_amount"
+   ],
+   "apps": [
+    "hive",
+    "aladdin",
+    "accounts"
+   ],
+   "def": "Payable: Carrybee owes the seller (COD exceeds fees). Receivable: the seller owes Carrybee (fees exceed COD).",
+   "id": "payable-vs-receivable"
+  },
+  {
+   "t": "Merchant invoice (payment invoice)",
+   "cat": "money",
+   "aka": [
+    "invoice",
+    "payment_invoice_id",
+    "Payment Invoice",
+    "Merchant Invoice"
+   ],
+   "apps": [
+    "hive",
+    "aladdin",
+    "accounts"
+   ],
+   "def": "A statement for a business: COD collected minus fees plus compensation = amount paid out. Status: unpaid → processing → paid.",
+   "id": "merchant-invoice-payment-invoice"
+  },
+  {
+   "t": "Regular vs positive invoice",
+   "cat": "money",
+   "aka": [
+    "regularInvoice",
+    "positiveInvoice",
+    "/positive/payment-invoices"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Two ways to generate payout invoices. Positive invoices cover accounts with a positive balance, where Carrybee owes the seller.",
+   "inferred": true,
+   "id": "regular-vs-positive-invoice"
+  },
+  {
+   "t": "Custom invoice",
+   "cat": "money",
+   "aka": [
+    "custom-invoice",
+    "GenerateCustomButton"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A one-off invoice outside the normal cycle.",
+   "id": "custom-invoice"
+  },
+  {
+   "t": "Processing invoice",
+   "cat": "money",
+   "aka": [
+    "Processing Invoice",
+    "bulkProcess",
+    "bankXls"
+   ],
+   "apps": [
+    "hive",
+    "accounts"
+   ],
+   "def": "An invoice being paid: exported to the bank as an Excel file and processed in bulk.",
+   "id": "processing-invoice"
+  },
+  {
+   "t": "RTGS",
+   "cat": "money",
+   "aka": [
+    "tag_rtgs",
+    "RTGS"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Real-Time Gross Settlement, Bangladesh Bank's same-day system for large transfers. Big payouts are tagged RTGS.",
+   "id": "rtgs"
+  },
+  {
+   "t": "Payment frequency",
+   "cat": "money",
+   "aka": [
+    "payment_frequency",
+    "regular",
+    "on_demand",
+    "custom"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "How often a seller is paid: regular cycle, custom schedule, or on demand.",
+   "id": "payment-frequency"
+  },
+  {
+   "t": "On-demand withdrawal",
+   "cat": "money",
+   "aka": [
+    "On Demand",
+    "onDemandWithdrawRequest",
+    "withdrawRequests",
+    "Withdraw Money"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "A seller asks to be paid now for chosen consignments instead of waiting for the cycle.",
+   "id": "on-demand-withdrawal"
+  },
+  {
+   "t": "Payout method / wallet",
+   "cat": "money",
+   "aka": [
+    "payout_method",
+    "wallet_type",
+    "wallet_provider_id",
+    "Wallet Provider"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "Where the seller is paid: a bank account (with branch) or an MFS wallet.",
+   "id": "payout-method-wallet"
+  },
+  {
+   "t": "MFS",
+   "cat": "money",
+   "aka": [
+    "mfs",
+    "MFS",
+    "digital_wallet"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Mobile Financial Service: mobile wallets like bKash and Nagad.",
+   "id": "mfs"
+  },
+  {
+   "t": "Pending payment (payout change)",
+   "cat": "money",
+   "aka": [
+    "pendingPayments",
+    "Pending Payments"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A seller's new or changed payout account, waiting for finance approval.",
+   "id": "pending-payment-payout-change"
+  },
+  {
+   "t": "Receivable invoice",
+   "cat": "money",
+   "aka": [
+    "Receivable Prepaid",
+    "Receivable Postpaid",
+    "generateMonthly"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Money a seller owes Carrybee. Postpaid accounts get a monthly invoice.",
+   "id": "receivable-invoice"
+  },
+  {
+   "t": "Pay due (merchant payment)",
+   "cat": "money",
+   "aka": [
+    "payableDue",
+    "merchantPaymentInitialize",
+    "Pay Delivery Charge"
+   ],
+   "apps": [
+    "aladdin"
+   ],
+   "def": "The seller pays what they owe through bKash, Nagad, SSLCommerz or bank transfer.",
+   "id": "pay-due-merchant-payment"
+  },
+  {
+   "t": "Revenue recognition",
+   "cat": "money",
+   "aka": [
+    "revenue_recognition"
+   ],
+   "apps": [
+    "accounts"
+   ],
+   "def": "Accounting view of invoices: when Carrybee's fee income is booked. Permission name in the accounts app.",
+   "id": "revenue-recognition"
+  },
+  {
+   "t": "Legal panel / legal order",
+   "cat": "money",
+   "aka": [
+    "legal_panel",
+    "legal-order"
+   ],
+   "apps": [
+    "accounts"
+   ],
+   "def": "Order and fee export for the legal team, filtered by parcel type.",
+   "id": "legal-panel-legal-order"
+  },
+  {
+   "t": "Petty cash",
+   "cat": "costs",
+   "aka": [
+    "petty_cash",
+    "Petty Cash",
+    "Bulk Expense Upload"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Small hub expenses. Approved through ops head → HR → audit → accounts, then withdrawn with an OTP.",
+   "id": "petty-cash"
+  },
+  {
+   "t": "Rent",
+   "cat": "costs",
+   "aka": [
+    "rent",
+    "Monthly office rent",
+    "Rent Approvals"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Monthly hub rent paid to landlords, approved like petty cash.",
+   "id": "rent"
+  },
+  {
+   "t": "Withdrawn expenses",
+   "cat": "costs",
+   "aka": [
+    "withdrawnExpenses",
+    "Withdrawn"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Expenses the hub has already taken out of collected cash. Subtracted from the hub deposit.",
+   "id": "withdrawn-expenses"
+  },
+  {
+   "t": "OTP withdrawal",
+   "cat": "costs",
+   "aka": [
+    "OTP Withdrawal",
+    "OTP Withdrawal List"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Approved petty cash or allowance is released only after the receiver confirms an OTP.",
+   "id": "otp-withdrawal"
+  },
+  {
+   "t": "Delivery allowance",
+   "cat": "costs",
+   "aka": [
+    "delivery-allowance",
+    "Agent delivery expenses"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Pay to agents based on runs and distance, released by OTP.",
+   "id": "delivery-allowance"
+  },
+  {
+   "t": "Reconciliation",
+   "cat": "costs",
+   "aka": [
+    "reconciliation",
+    "adjusted_distance",
+    "Reconciliation Entries"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Checking and approving allowance and expense claims, sometimes adjusting the distance. Chain: cluster lead → region lead → HR → audit → accounts.",
+   "id": "reconciliation"
+  },
+  {
+   "t": "Approval chain",
+   "cat": "costs",
+   "aka": [
+    "Waiting For Cluster Lead Approval",
+    "Waiting For HR Approval",
+    "Waiting For Audit Approval",
+    "Waiting For Accounts Approval"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "The ordered list of people who must approve a claim. Each 'Waiting for…' status names the next approver.",
+   "id": "approval-chain"
+  },
+  {
+   "t": "OTP",
+   "cat": "systems",
+   "aka": [
+    "otp",
+    "ops_otp",
+    "merchant_otp",
+    "Delivery OTP"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "One-time password by SMS. Used for login, signup, hub drop-off, cash withdrawals, and delivery confirmation.",
+   "id": "otp"
+  },
+  {
+   "t": "SSO",
+   "cat": "systems",
+   "aka": [
+    "sso",
+    "verifySso"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Single sign-on: hive staff log in through a central login.",
+   "id": "sso"
+  },
+  {
+   "t": "Impersonate",
+   "cat": "systems",
+   "aka": [
+    "impersonate",
+    "Impersonate User",
+    "Impersonating user"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Support staff log in as another user to see and fix their problem.",
+   "id": "impersonate"
+  },
+  {
+   "t": "G-Mode",
+   "cat": "systems",
+   "aka": [
+    "g-mode",
+    "gmode",
+    "issueTypes",
+    "Run Open",
+    "OTP Reset"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Restricted repair area: reopen runs, reset OTPs or agent throttling, change final statuses, regenerate invoices, bulk cancel.",
+   "id": "g-mode"
+  },
+  {
+   "t": "Agent throttle",
+   "cat": "systems",
+   "aka": [
+    "agent-throttle"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A block on an agent's login after too many attempts; G-Mode can reset it.",
+   "id": "agent-throttle"
+  },
+  {
+   "t": "Permission / scope",
+   "cat": "systems",
+   "aka": [
+    "permissions",
+    "scopes",
+    "PermissionGate"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "Access keys like merchant.parcel.add that decide which pages and buttons a user sees.",
+   "id": "permission-scope"
+  },
+  {
+   "t": "eKYC / NID",
+   "cat": "systems",
+   "aka": [
+    "ekyc_status",
+    "merchant_ekyc",
+    "NID"
+   ],
+   "apps": [
+    "aladdin",
+    "hive",
+    "accounts"
+   ],
+   "def": "Electronic identity check of a merchant using their national ID card (NID) or birth certificate.",
+   "id": "ekyc-nid"
+  },
+  {
+   "t": "Webhook / developer API",
+   "cat": "systems",
+   "aka": [
+    "webhook",
+    "devlopersApi",
+    "sandbox",
+    "production"
+   ],
+   "apps": [
+    "aladdin"
+   ],
+   "def": "Lets a seller's own website create orders through an API and receive status updates via webhooks.",
+   "id": "webhook-developer-api"
+  },
+  {
+   "t": "Centrifugo",
+   "cat": "systems",
+   "aka": [
+    "centrifuge",
+    "centrifugo"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Real-time messaging server used for live chat between sellers and riders.",
+   "id": "centrifugo"
+  },
+  {
+   "t": "OneSignal / push",
+   "cat": "systems",
+   "aka": [
+    "OneSignal",
+    "PUSH_NOTIFICATION_CHANNEL",
+    "dndStatus"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Push notification service. Sellers get alerts for returns, urgent approvals, invoices, with do-not-disturb.",
+   "id": "onesignal-push"
+  },
+  {
+   "t": "QR campaign",
+   "cat": "systems",
+   "aka": [
+    "qrCampaign",
+    "QR Campaign Management",
+    "visitor_count"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Referral QR codes and short links to sign up new merchants, with visit counts.",
+   "id": "qr-campaign"
+  },
+  {
+   "t": "Geonix",
+   "cat": "systems",
+   "aka": [
+    "geonix",
+    "dry_run"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Map service for zone boundaries. Dry run previews a change before saving it.",
+   "id": "geonix"
+  },
+  {
+   "t": "Delivery success rate",
+   "cat": "metrics",
+   "aka": [
+    "Delivery Success Rate",
+    "Delivery Success Ratio"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "Share of parcels delivered. Also shown per buyer phone number in the fraud checker.",
+   "id": "delivery-success-rate"
+  },
+  {
+   "t": "Return rate / hold rate",
+   "cat": "metrics",
+   "aka": [
+    "return_rate",
+    "hold_rate",
+    "Return Ratio",
+    "Hold Ratio"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Share of parcels returned or put on hold. High values point to bad buyers, addresses or riders.",
+   "id": "return-rate-hold-rate"
+  },
+  {
+   "t": "Pickup / sorting window",
+   "cat": "metrics",
+   "aka": [
+    "window",
+    "sorted_window"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "The time window a day's numbers count. The sorting window runs from 18:00 to 06:00 the next day.",
+   "id": "pickup-sorting-window"
+  },
+  {
+   "t": "Backlog / pipeline",
+   "cat": "metrics",
+   "aka": [
+    "Current parcels in pipeline",
+    "backlog"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "Parcels still in progress at a hub, broken down by attempt and age.",
+   "id": "backlog-pipeline"
+  },
+  {
+   "t": "Run completion",
+   "cat": "metrics",
+   "aka": [
+    "Run Completion",
+    "Avg Parcels / Agent"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "How many runs were closed and how many parcels each agent handled.",
+   "id": "run-completion"
+  },
+  {
+   "t": "Agent rating",
+   "cat": "metrics",
+   "aka": [
+    "average_rating",
+    "Rating Agent",
+    "total_ratings"
+   ],
+   "apps": [
+    "hive",
+    "aladdin"
+   ],
+   "def": "Average score buyers and sellers give an agent.",
+   "id": "agent-rating"
+  },
+  {
+   "t": "Churned merchant",
+   "cat": "metrics",
+   "aka": [
+    "churnMerchants"
+   ],
+   "apps": [
+    "hive"
+   ],
+   "def": "A merchant who stopped sending parcels.",
+   "id": "churned-merchant"
+  },
+  {
+   "t": "Consignment report",
+   "cat": "metrics",
+   "aka": [
+    "Consignment wise reports",
+    "csv-by-consignments"
+   ],
+   "apps": [
+    "hive",
+    "accounts"
+   ],
+   "def": "CSV export of orders with their fees, statuses and hubs.",
+   "id": "consignment-report"
+  }
+ ]
+}

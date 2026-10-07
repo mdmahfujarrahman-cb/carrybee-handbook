@@ -26,6 +26,10 @@ type Result struct {
 	Missing  []string
 	// TermLinks maps term id -> app -> linked modules, for the Sync diff.
 	TermLinks map[string]map[string][]string
+	// FromSnapshot lists the apps (config order) loaded from snapshot/scan.json because their code is missing.
+	FromSnapshot []string
+	// SnapshotBuiltAt is when that snapshot was taken; zero when no app came from it.
+	SnapshotBuiltAt time.Time
 }
 
 const (
@@ -74,13 +78,20 @@ func Build(cfg *config.Config, outDir string) (*Result, error) {
 	if err != nil {
 		return nil, err
 	}
-	scans := scan.ScanAll(cfg)
+	scans, fromSnap, snap, err := scanApps(cfg)
+	if err != nil {
+		return nil, err
+	}
 	s := &site{cfg: cfg, out: outDir, data: data, pages: pages, scans: scans,
-		res: &Result{Scans: scans}}
+		res: &Result{Scans: scans, FromSnapshot: fromSnap}}
 	s.terms = LinkTerms(data.Terms, scans, data.Pins)
+	if len(fromSnap) > 0 {
+		s.res.SnapshotBuiltAt = snap.BuiltAt
+		applySnapshotLinks(s.terms, snap, fromSnap, data.Pins)
+	}
 	s.res.TermLinks = termLinks(s.terms)
 	for _, step := range []func() error{s.copyAssets, s.writeData, s.writePages, s.writeTerms,
-		s.writeApps, s.writeGenerated} {
+		s.writeApps, s.writeGenerated, s.saveSnapshot} {
 		if err := step(); err != nil {
 			return s.res, err
 		}
@@ -171,7 +182,12 @@ func (s *site) syncData() map[string]any {
 		apps = append(apps, syncApp{a.ID, a.Label, sc.Commit, sc.ScannedAt.UTC().Format(time.RFC3339),
 			len(sc.Modules), len(sc.Routes), sc.Error})
 	}
-	return map[string]any{"builtAt": time.Now().UTC().Format(time.RFC3339), "commits": commits, "apps": apps}
+	out := map[string]any{"builtAt": time.Now().UTC().Format(time.RFC3339), "commits": commits, "apps": apps}
+	if len(s.res.FromSnapshot) > 0 {
+		out["mode"] = "snapshot"
+		out["snapshotBuiltAt"] = s.res.SnapshotBuiltAt.UTC().Format(time.RFC3339)
+	}
+	return out
 }
 
 func (s *site) writeData() error {

@@ -6,7 +6,9 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
+	"time"
 
 	"carrybee/handbook/internal/config"
 	"carrybee/handbook/internal/server"
@@ -17,11 +19,13 @@ const usage = `usage: handbook <build|serve|check> [flags]
   -config string    path to handbook.json (default "handbook.json")
   -apps-root string directory containing hive/, aladdin/, accounts/ (overrides config paths)
   -out string       output directory for build (default "dist")
-  -port int         port for serve (default 4321)`
+  -port int         port for serve (default 4321)
+  -allow-snapshot   check: accept apps loaded from snapshot/scan.json when their repo is missing`
 
 type options struct {
 	configPath, appsRoot, out string
 	port                      int
+	allowSnapshot             bool
 }
 
 func parse(args []string) (string, options, error) {
@@ -34,6 +38,7 @@ func parse(args []string) (string, options, error) {
 	fs.StringVar(&o.appsRoot, "apps-root", "", "")
 	fs.StringVar(&o.out, "out", "dist", "")
 	fs.IntVar(&o.port, "port", 4321, "")
+	fs.BoolVar(&o.allowSnapshot, "allow-snapshot", false, "")
 	if err := fs.Parse(args[1:]); err != nil {
 		return "", o, err
 	}
@@ -68,7 +73,7 @@ func run(cmd string, cfg *config.Config, o options) error {
 		printResult(res)
 		return nil
 	case "check":
-		return check(cfg)
+		return check(cfg, o.allowSnapshot)
 	case "serve":
 		abs, err := filepath.Abs(o.out)
 		if err != nil {
@@ -80,7 +85,26 @@ func run(cmd string, cfg *config.Config, o options) error {
 	}
 }
 
-func check(cfg *config.Config) error {
+// checkProblems lists what makes check fail: warnings, missing descriptions and, unless allowed,
+// apps that were loaded from the snapshot instead of being scanned live.
+func checkProblems(res *site.Result, allowSnapshot bool) []string {
+	problems := append(append([]string{}, res.Warnings...), res.Missing...)
+	if allowSnapshot {
+		return problems
+	}
+	return append(problems, snapshotProblems(res)...)
+}
+
+// snapshotProblems names each app that was loaded from the snapshot instead of scanned live.
+func snapshotProblems(res *site.Result) []string {
+	out := make([]string, 0, len(res.FromSnapshot))
+	for _, id := range res.FromSnapshot {
+		out = append(out, id+": not scanned live (loaded from "+config.SnapshotRel+"; pass -allow-snapshot to accept)")
+	}
+	return out
+}
+
+func check(cfg *config.Config, allowSnapshot bool) error {
 	tmp, err := os.MkdirTemp("", "handbook-check-")
 	if err != nil {
 		return err
@@ -91,7 +115,12 @@ func check(cfg *config.Config) error {
 		return err
 	}
 	printResult(res)
-	problems := append(append([]string{}, res.Warnings...), res.Missing...)
+	problems := checkProblems(res, allowSnapshot)
+	if !allowSnapshot {
+		for _, p := range snapshotProblems(res) {
+			fmt.Println("error:", p)
+		}
+	}
 	for _, b := range site.CheckLinks(tmp) {
 		fmt.Println("broken link:", b)
 		problems = append(problems, b)
@@ -108,6 +137,8 @@ func printResult(res *site.Result) {
 		s := res.Scans[id]
 		status := "ok"
 		switch {
+		case slices.Contains(res.FromSnapshot, id):
+			status = "from snapshot built " + res.SnapshotBuiltAt.Format(time.RFC3339)
 		case s.Error != "":
 			status = "NOT SCANNED: " + s.Error
 		case len(s.Skipped) > 0:

@@ -1,0 +1,6320 @@
+{
+ "version": 1,
+ "builtAt": "2026-10-07T10:52:43.971384Z",
+ "scans": {
+  "accounts": {
+   "app": "accounts",
+   "label": "accounts",
+   "audience": "finance",
+   "commit": "1b831f0",
+   "scannedAt": "2026-10-07T10:52:40.859672Z",
+   "modules": {
+    "authentication": {
+     "files": 8,
+     "deps": {
+      "users": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "login": 2
+     },
+     "apis": {
+      "auth": 7
+     },
+     "shared": {
+      "components/form": 1,
+      "components/theme-custom": 1,
+      "components/ui": 3,
+      "lib/api-client": 2,
+      "lib/routes": 2,
+      "lib/utils": 2,
+      "types": 3
+     }
+    },
+    "business": {
+     "files": 9,
+     "deps": {},
+     "usedByMods": {
+      "reports": 1
+     },
+     "usedByRoutes": {
+      "business": 2
+     },
+     "apis": {
+      "businesses": 2
+     },
+     "shared": {
+      "components/table": 4,
+      "components/theme-custom": 2,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 5
+     }
+    },
+    "departments": {
+     "files": 5,
+     "deps": {},
+     "usedByMods": {
+      "users": 1
+     },
+     "usedByRoutes": {},
+     "apis": {
+      "departments": 1
+     },
+     "shared": {
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "types": 4
+     }
+    },
+    "hubs": {
+     "files": 5,
+     "deps": {},
+     "usedByMods": {
+      "reports": 1
+     },
+     "usedByRoutes": {},
+     "apis": {
+      "hubs": 1
+     },
+     "shared": {
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "types": 4
+     }
+    },
+    "invoice": {
+     "files": 14,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "invoice": 3,
+      "invoices": 4
+     },
+     "apis": {
+      "invoice": 6
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/table": 4,
+      "components/theme-custom": 5,
+      "components/ui": 5,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 2
+     }
+    },
+    "legal-order": {
+     "files": 9,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "orders": 4
+     },
+     "apis": {
+      "legalOrder": 3
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/table": 4,
+      "components/theme-custom": 2,
+      "components/ui": 1,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 2
+     }
+    },
+    "merchants": {
+     "files": 8,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "merchants": 3
+     },
+     "apis": {
+      "merchants": 1
+     },
+     "shared": {
+      "components/table": 3,
+      "components/theme-custom": 1,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "reports": {
+     "files": 11,
+     "deps": {
+      "business": 1,
+      "hubs": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "consignments-report": 1,
+      "custom-report": 1,
+      "merchant-report": 1
+     },
+     "apis": {
+      "reports": 3
+     },
+     "shared": {
+      "components/form": 9,
+      "components/theme-custom": 4,
+      "contexts/QueryProvider": 3,
+      "lib/api-client": 2,
+      "lib/constant": 1,
+      "lib/routes": 1,
+      "lib/utils": 3,
+      "types": 1
+     }
+    },
+    "teams": {
+     "files": 5,
+     "deps": {},
+     "usedByMods": {
+      "users": 1
+     },
+     "usedByRoutes": {},
+     "apis": {
+      "teams": 1
+     },
+     "shared": {
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "types": 4
+     }
+    },
+    "users": {
+     "files": 8,
+     "deps": {
+      "departments": 1,
+      "teams": 1
+     },
+     "usedByMods": {
+      "authentication": 1
+     },
+     "usedByRoutes": {},
+     "apis": {
+      "users": 1
+     },
+     "shared": {
+      "components/generic-select-dropdown": 1,
+      "components/table": 6,
+      "components/theme-custom": 1,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 3
+     }
+    }
+   },
+   "routes": {
+    "business": {
+     "files": 1,
+     "mods": {
+      "business": 2
+     }
+    },
+    "consignments-report": {
+     "files": 1,
+     "mods": {
+      "reports": 1
+     }
+    },
+    "custom-report": {
+     "files": 1,
+     "mods": {
+      "reports": 1
+     }
+    },
+    "invoice": {
+     "files": 1,
+     "mods": {
+      "invoice": 3
+     }
+    },
+    "invoices": {
+     "files": 1,
+     "mods": {
+      "invoice": 4
+     }
+    },
+    "login": {
+     "files": 4,
+     "mods": {
+      "authentication": 2
+     }
+    },
+    "merchant-report": {
+     "files": 1,
+     "mods": {
+      "reports": 1
+     }
+    },
+    "merchants": {
+     "files": 1,
+     "mods": {
+      "merchants": 3
+     }
+    },
+    "orders": {
+     "files": 1,
+     "mods": {
+      "legal-order": 4
+     }
+    }
+   },
+   "apiDomains": {
+    "auth": [
+     "authentication"
+    ],
+    "businesses": [
+     "business"
+    ],
+    "departments": [
+     "departments"
+    ],
+    "hubs": [
+     "hubs"
+    ],
+    "invoice": [
+     "invoice"
+    ],
+    "legalOrder": [
+     "legal-order"
+    ],
+    "merchants": [
+     "merchants"
+    ],
+    "reports": [
+     "reports"
+    ],
+    "teams": [
+     "teams"
+    ],
+    "users": [
+     "users"
+    ]
+   },
+   "statuses": [
+    {
+     "id": 1,
+     "name": "Pending"
+    },
+    {
+     "id": 2,
+     "name": "PickupRequested"
+    },
+    {
+     "id": 3,
+     "name": "AssignedForPickup"
+    },
+    {
+     "id": 4,
+     "name": "Picked"
+    },
+    {
+     "id": 5,
+     "name": "PickupOnHold"
+    },
+    {
+     "id": 6,
+     "name": "PickupCancelled"
+    },
+    {
+     "id": 7,
+     "name": "AtTheHubReceived"
+    },
+    {
+     "id": 8,
+     "name": "OnTheWayToSortingHub"
+    },
+    {
+     "id": 9,
+     "name": "AtTheSortingHub"
+    },
+    {
+     "id": 10,
+     "name": "OnTheWayToCentralWarehouse"
+    },
+    {
+     "id": 11,
+     "name": "AtCentralWarehouse"
+    },
+    {
+     "id": 12,
+     "name": "OnTheWayToLastMileHub"
+    },
+    {
+     "id": 13,
+     "name": "ReceivedAtLastMileHub"
+    },
+    {
+     "id": 14,
+     "name": "AssignedForDelivery"
+    },
+    {
+     "id": 15,
+     "name": "Delivered"
+    },
+    {
+     "id": 16,
+     "name": "OnHold"
+    },
+    {
+     "id": 17,
+     "name": "Return"
+    },
+    {
+     "id": 18,
+     "name": "PartialDelivery"
+    },
+    {
+     "id": 19,
+     "name": "Damaged"
+    },
+    {
+     "id": 20,
+     "name": "Lost"
+    },
+    {
+     "id": 21,
+     "name": "PaidReturn"
+    },
+    {
+     "id": 22,
+     "name": "Exchange"
+    },
+    {
+     "id": 23,
+     "name": "ReturnPendingFromHub"
+    },
+    {
+     "id": 24,
+     "name": "ReturningToSortingHub"
+    },
+    {
+     "id": 25,
+     "name": "ReturnReceivedBySortingHub"
+    },
+    {
+     "id": 26,
+     "name": "ReturnAtTheSortingHub"
+    },
+    {
+     "id": 27,
+     "name": "ReturnOnTheWayToCentralWarehouse"
+    },
+    {
+     "id": 28,
+     "name": "ReturnAtCentralWarehouse"
+    },
+    {
+     "id": 29,
+     "name": "ReturnOnTheWayToFirstMileHub"
+    },
+    {
+     "id": 30,
+     "name": "ReturnAtFirstMileHub"
+    },
+    {
+     "id": 31,
+     "name": "ReturnOnTheWayToMerchant"
+    },
+    {
+     "id": 32,
+     "name": "ReturnedToMerchant"
+    },
+    {
+     "id": 33,
+     "name": "ReturnedToInventory"
+    },
+    {
+     "id": 34,
+     "name": "ReturnOnHold"
+    },
+    {
+     "id": 35,
+     "name": "InTransit"
+    },
+    {
+     "id": 36,
+     "name": "Found"
+    },
+    {
+     "id": 37,
+     "name": "Reprocess"
+    },
+    {
+     "id": 38,
+     "name": "OnTheWayToSubSort"
+    },
+    {
+     "id": 39,
+     "name": "TransferStatusAtSubSort"
+    },
+    {
+     "id": 40,
+     "name": "ReturnOnTheWayToSubSort"
+    },
+    {
+     "id": 41,
+     "name": "ReturnAtSubSort"
+    },
+    {
+     "id": 42,
+     "name": "TransferStatusReturnWaitingForPickUp"
+    },
+    {
+     "id": 43,
+     "name": "TransferStatusReturnAssignedForPickUp"
+    },
+    {
+     "id": 44,
+     "name": "TransferStatusReturnPicked"
+    },
+    {
+     "id": 45,
+     "name": "TransferStatusReturnOnHoldForPickUp"
+    }
+   ],
+   "textStatuses": [],
+   "cycles": []
+  },
+  "aladdin": {
+   "app": "aladdin",
+   "label": "aladdin",
+   "audience": "merchant",
+   "commit": "b60ed9f0",
+   "scannedAt": "2026-10-07T10:52:40.859672Z",
+   "modules": {
+    "agent-messaging": {
+     "files": 17,
+     "deps": {},
+     "usedByMods": {
+      "orders": 1
+     },
+     "usedByRoutes": {
+      "agent-messages": 1,
+      "dashboard": 1
+     },
+     "apis": {
+      "agentMessaging": 3
+     },
+     "shared": {
+      "components/notification-badge": 1,
+      "components/theme-custom": 3,
+      "components/ui": 7,
+      "hooks/api": 3,
+      "lib/api-client": 2,
+      "lib/centrifugo": 2,
+      "lib/routes": 3,
+      "lib/utils": 2,
+      "types": 5
+     }
+    },
+    "agent-rating": {
+     "files": 12,
+     "deps": {},
+     "usedByMods": {
+      "orders": 5
+     },
+     "usedByRoutes": {},
+     "apis": {
+      "agentRating": 3
+     },
+     "shared": {
+      "components/form": 9,
+      "contexts/QueryProvider": 2,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 1,
+      "types": 3
+     }
+    },
+    "analytics": {
+     "files": 27,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "analytics": 2
+     },
+     "apis": {},
+     "shared": {
+      "components/generic-date-range-picker": 1,
+      "components/table": 2,
+      "components/theme-custom": 6,
+      "components/ui": 9,
+      "hooks/useTranslation": 11
+     }
+    },
+    "authentication": {
+     "files": 25,
+     "deps": {},
+     "usedByMods": {
+      "merchant": 1
+     },
+     "usedByRoutes": {
+      "forgot-password": 1,
+      "forgot-password/verification": 1,
+      "impersonate": 2,
+      "login": 2,
+      "logout": 1,
+      "register": 3,
+      "register/verification": 2,
+      "reset-password": 1,
+      "reset-password/success": 1
+     },
+     "apis": {
+      "auth": 7,
+      "campaign": 1,
+      "registration": 3
+     },
+     "shared": {
+      "components/form": 14,
+      "components/loading-spinner": 2,
+      "components/theme-custom": 2,
+      "components/ui": 6,
+      "hooks/useBusiness": 1,
+      "hooks/useTranslation": 10,
+      "lib/api-client": 4,
+      "lib/permission": 1,
+      "lib/routes": 4,
+      "lib/utils": 4,
+      "lib/validation-error-handler": 2,
+      "types": 2,
+      "validations/password-schema": 1
+     }
+    },
+    "businesses": {
+     "files": 21,
+     "deps": {
+      "stores": 1
+     },
+     "usedByMods": {
+      "dashboard": 2,
+      "invoices": 1,
+      "payments": 1
+     },
+     "usedByRoutes": {
+      "(.)profile": 2,
+      "(.)request-pickup": 2,
+      "businesses/choose": 1,
+      "businesses/create": 1,
+      "dashboard": 2,
+      "profile": 2,
+      "request-pickup": 2
+     },
+     "apis": {
+      "business.requestPickup": 1,
+      "businesses": 6
+     },
+     "shared": {
+      "components/form": 15,
+      "components/image-upload": 1,
+      "components/loading-spinner": 1,
+      "components/theme-custom": 4,
+      "components/ui": 3,
+      "contexts/QueryProvider": 1,
+      "hooks/api": 3,
+      "hooks/use-business-selection": 2,
+      "hooks/useBusiness": 3,
+      "hooks/useTranslation": 5,
+      "lib/api-client": 5,
+      "lib/permission": 2,
+      "lib/routes": 3,
+      "lib/translation": 1,
+      "lib/utils": 5,
+      "lib/validation-error-handler": 1,
+      "services/mapper": 1,
+      "types": 6
+     }
+    },
+    "customers": {
+     "files": 20,
+     "deps": {
+      "orders": 1
+     },
+     "usedByMods": {
+      "orders": 5
+     },
+     "usedByRoutes": {
+      "customers": 4,
+      "customers/fraud-checker": 1
+     },
+     "apis": {
+      "business.customers": 3,
+      "business.fraudReports": 3
+     },
+     "shared": {
+      "components/dynamic-tooltip": 1,
+      "components/form": 7,
+      "components/table": 3,
+      "components/theme-custom": 5,
+      "components/ui": 7,
+      "hooks/api": 3,
+      "hooks/useTranslation": 4,
+      "lib/api-client": 7,
+      "lib/routes": 2,
+      "lib/utils": 1,
+      "services/mapper": 1,
+      "types": 2
+     }
+    },
+    "dashboard": {
+     "files": 28,
+     "deps": {
+      "businesses": 2,
+      "payments": 7
+     },
+     "usedByMods": {
+      "invoices": 2
+     },
+     "usedByRoutes": {
+      "dashboard": 19
+     },
+     "apis": {
+      "business.dashboard": 5
+     },
+     "shared": {
+      "components/dynamic-tooltip": 3,
+      "components/icons": 11,
+      "components/table": 2,
+      "components/theme-custom": 10,
+      "components/ui": 22,
+      "hooks/api": 1,
+      "hooks/useBusiness": 1,
+      "hooks/useLoadingOverlay": 1,
+      "hooks/useTranslation": 16,
+      "lib/api-client": 3,
+      "lib/constants": 1,
+      "lib/permission": 4,
+      "lib/routes": 2,
+      "lib/utils": 7,
+      "types": 11,
+      "types/icons": 1
+     }
+    },
+    "faq": {
+     "files": 2,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "faq": 1
+     },
+     "apis": {},
+     "shared": {
+      "components/ui": 2,
+      "hooks/useTranslation": 1,
+      "lib/utils": 1
+     }
+    },
+    "high-alert": {
+     "files": 40,
+     "deps": {
+      "orders": 8,
+      "stores": 2
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "/": 1,
+      "high-alert/last-mile-issue": 1,
+      "high-alert/no-entry": 3,
+      "high-alert/partial-delivery": 1,
+      "high-alert/return-list": 1,
+      "high-alert/urgent-approval": 6
+     },
+     "apis": {
+      "business.pendingActions": 10
+     },
+     "shared": {
+      "components/confirmation-modal": 1,
+      "components/copy-button": 1,
+      "components/dynamic-image": 1,
+      "components/form": 9,
+      "components/form-title": 1,
+      "components/not-found": 3,
+      "components/page-title": 4,
+      "components/status-tab": 1,
+      "components/table": 13,
+      "components/theme-custom": 17,
+      "components/ui": 6,
+      "contexts/QueryProvider": 3,
+      "hooks/api": 4,
+      "hooks/useBusiness": 2,
+      "hooks/useTranslation": 9,
+      "lib/api-client": 6,
+      "lib/routes": 2,
+      "lib/utils": 5,
+      "services/mapper": 1,
+      "types": 11
+     }
+    },
+    "invoices": {
+     "files": 21,
+     "deps": {
+      "businesses": 1,
+      "dashboard": 2,
+      "orders": 1,
+      "payments": 1
+     },
+     "usedByMods": {
+      "orders": 1
+     },
+     "usedByRoutes": {
+      "dashboard": 1,
+      "invoices": 7
+     },
+     "apis": {
+      "business.invoices": 8
+     },
+     "shared": {
+      "components/copy-button": 2,
+      "components/dynamic-tooltip": 1,
+      "components/icons": 4,
+      "components/table": 6,
+      "components/theme-custom": 5,
+      "components/ui": 10,
+      "hooks/useBusiness": 2,
+      "hooks/useTranslation": 9,
+      "lib/api-client": 5,
+      "lib/routes": 1,
+      "lib/utils": 7,
+      "services/mapper": 1,
+      "types": 3
+     }
+    },
+    "merchant": {
+     "files": 14,
+     "deps": {
+      "authentication": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(.)update-password": 1,
+      "profile": 4
+     },
+     "apis": {
+      "merchant": 3
+     },
+     "shared": {
+      "components/form": 8,
+      "components/theme-custom": 1,
+      "components/ui": 3,
+      "hooks/useBusiness": 2,
+      "hooks/useTranslation": 5,
+      "lib/api-client": 3,
+      "lib/permission": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "types": 1
+     }
+    },
+    "notifications": {
+     "files": 14,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "/": 1,
+      "notifications": 3,
+      "notifications/settings": 2
+     },
+     "apis": {
+      "business.notifications": 5
+     },
+     "shared": {
+      "components/confirmation-modal": 2,
+      "components/notification-badge": 1,
+      "components/table": 2,
+      "components/theme-custom": 2,
+      "components/ui": 2,
+      "contexts/QueryProvider": 3,
+      "hooks/useTranslation": 5,
+      "lib/api-client": 2,
+      "lib/constants": 2,
+      "lib/routes": 3,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 6
+     }
+    },
+    "operators": {
+     "files": 14,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "operators": 3,
+      "operators/[id]": 3,
+      "operators/create": 1
+     },
+     "apis": {
+      "business.operators": 5
+     },
+     "shared": {
+      "components/form": 4,
+      "components/loading-spinner": 1,
+      "components/table": 1,
+      "components/theme-custom": 3,
+      "components/ui": 1,
+      "hooks/useTranslation": 2,
+      "lib/api-client": 5,
+      "lib/permission": 2,
+      "lib/routes": 3,
+      "lib/utils": 2,
+      "types": 3
+     }
+    },
+    "orders": {
+     "files": 96,
+     "deps": {
+      "agent-messaging": 1,
+      "agent-rating": 5,
+      "customers": 5,
+      "invoices": 1,
+      "stores": 10
+     },
+     "usedByMods": {
+      "customers": 1,
+      "high-alert": 8,
+      "invoices": 1,
+      "stores": 1
+     },
+     "usedByRoutes": {
+      "high-alert/last-mile-issue": 3,
+      "high-alert/return-list": 3,
+      "order-track/[consignmentId]": 2,
+      "orders": 10,
+      "orders/[orderId]": 8,
+      "orders/ai-create": 1,
+      "orders/create": 2,
+      "orders/datewise": 3,
+      "orders/reverse-pickup": 2
+     },
+     "apis": {
+      "agentMessaging": 3,
+      "business.orders": 31,
+      "business.utilities": 1,
+      "issueReport": 3,
+      "trackOrder": 1
+     },
+     "shared": {
+      "components/carrybee-icon": 1,
+      "components/copy-button": 2,
+      "components/custom-prompt": 1,
+      "components/dynamic-image": 1,
+      "components/form": 67,
+      "components/form-title": 4,
+      "components/not-found": 2,
+      "components/page-title": 3,
+      "components/search-status": 2,
+      "components/simple-stat-tile": 1,
+      "components/table": 5,
+      "components/theme-custom": 34,
+      "components/ui": 57,
+      "hooks/api": 20,
+      "hooks/use-centrifugo-subscription": 1,
+      "hooks/useBarcode": 1,
+      "hooks/useBusiness": 2,
+      "hooks/useTranslation": 31,
+      "lib/api-client": 15,
+      "lib/constants": 8,
+      "lib/pdf-fonts": 1,
+      "lib/pod-settings": 1,
+      "lib/printer-utils": 3,
+      "lib/routes": 13,
+      "lib/utils": 19,
+      "services/mapper": 1,
+      "types": 10
+     }
+    },
+    "payments": {
+     "files": 27,
+     "deps": {
+      "businesses": 1
+     },
+     "usedByMods": {
+      "dashboard": 7,
+      "invoices": 1
+     },
+     "usedByRoutes": {
+      "dashboard": 1,
+      "payment": 2,
+      "payments/create": 3
+     },
+     "apis": {
+      "business.payments": 11
+     },
+     "shared": {
+      "components/form": 6,
+      "components/page-title": 1,
+      "components/table": 1,
+      "components/theme-custom": 4,
+      "components/ui": 10,
+      "hooks/api": 4,
+      "hooks/useBusiness": 1,
+      "hooks/useTranslation": 8,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 2,
+      "lib/utils": 3,
+      "services/service": 1,
+      "types": 4,
+      "types/utility-module": 3
+     }
+    },
+    "pickup-requests": {
+     "files": 5,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "pickup-requests": 2
+     },
+     "apis": {
+      "business.pickupRequest": 1
+     },
+     "shared": {
+      "components/table": 1,
+      "hooks/useTranslation": 1,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "types": 3
+     }
+    },
+    "stores": {
+     "files": 27,
+     "deps": {
+      "orders": 1
+     },
+     "usedByMods": {
+      "businesses": 1,
+      "high-alert": 2,
+      "orders": 10,
+      "webhook": 2
+     },
+     "usedByRoutes": {
+      "(.)request-pickup": 1,
+      "operators/[id]": 1,
+      "orders": 2,
+      "orders/[orderId]": 2,
+      "request-pickup": 1,
+      "stores": 2,
+      "stores/[id]": 3,
+      "stores/create": 1
+     },
+     "apis": {
+      "business.stores": 8
+     },
+     "shared": {
+      "components/dropdown-address-parser": 1,
+      "components/form": 15,
+      "components/table": 1,
+      "components/theme-custom": 8,
+      "components/ui": 7,
+      "contexts/QueryProvider": 2,
+      "hooks/api": 4,
+      "hooks/useBusiness": 1,
+      "hooks/useTranslation": 4,
+      "lib/api-client": 6,
+      "lib/permission": 2,
+      "lib/routes": 4,
+      "lib/utils": 1,
+      "types": 4
+     }
+    },
+    "webhook": {
+     "files": 101,
+     "deps": {
+      "stores": 2
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(developers-api)": 1,
+      "webhook/credentials": 1,
+      "webhook/documentation": 15,
+      "webhook/events": 1,
+      "webhook/integration": 1,
+      "webhook/quick-setup": 1,
+      "webhook/reference": 1
+     },
+     "apis": {
+      "devlopersApi": 6
+     },
+     "shared": {
+      "components/code-snippet": 2,
+      "components/confirmation-modal": 1,
+      "components/copy-button": 1,
+      "components/form": 7,
+      "components/table": 1,
+      "components/theme-custom": 24,
+      "components/ui": 37,
+      "contexts/QueryProvider": 4,
+      "hooks/useBusiness": 9,
+      "lib/api-client": 2,
+      "lib/routes": 9,
+      "lib/utils": 15,
+      "lib/validation-error-handler": 1,
+      "types": 3
+     }
+    }
+   },
+   "routes": {
+    "(.)profile": {
+     "files": 1,
+     "mods": {
+      "businesses": 2
+     }
+    },
+    "(.)request-pickup": {
+     "files": 1,
+     "mods": {
+      "businesses": 2,
+      "stores": 1
+     }
+    },
+    "(.)update-password": {
+     "files": 1,
+     "mods": {
+      "merchant": 1
+     }
+    },
+    "(developers-api)": {
+     "files": 1,
+     "mods": {
+      "webhook": 1
+     }
+    },
+    "/": {
+     "files": 6,
+     "mods": {
+      "high-alert": 1,
+      "notifications": 1
+     }
+    },
+    "agent-messages": {
+     "files": 1,
+     "mods": {
+      "agent-messaging": 1
+     }
+    },
+    "analytics": {
+     "files": 1,
+     "mods": {
+      "analytics": 2
+     }
+    },
+    "businesses/choose": {
+     "files": 1,
+     "mods": {
+      "businesses": 1
+     }
+    },
+    "businesses/create": {
+     "files": 1,
+     "mods": {
+      "businesses": 1
+     }
+    },
+    "customers": {
+     "files": 3,
+     "mods": {
+      "customers": 4
+     }
+    },
+    "customers/fraud-checker": {
+     "files": 2,
+     "mods": {
+      "customers": 1
+     }
+    },
+    "dashboard": {
+     "files": 19,
+     "mods": {
+      "agent-messaging": 1,
+      "businesses": 2,
+      "dashboard": 19,
+      "invoices": 1,
+      "payments": 1
+     }
+    },
+    "faq": {
+     "files": 2,
+     "mods": {
+      "faq": 1
+     }
+    },
+    "forgot-password": {
+     "files": 1,
+     "mods": {
+      "authentication": 1
+     }
+    },
+    "forgot-password/verification": {
+     "files": 1,
+     "mods": {
+      "authentication": 1
+     }
+    },
+    "high-alert/last-mile-issue": {
+     "files": 1,
+     "mods": {
+      "high-alert": 1,
+      "orders": 3
+     }
+    },
+    "high-alert/no-entry": {
+     "files": 1,
+     "mods": {
+      "high-alert": 3
+     }
+    },
+    "high-alert/partial-delivery": {
+     "files": 1,
+     "mods": {
+      "high-alert": 1
+     }
+    },
+    "high-alert/return-list": {
+     "files": 1,
+     "mods": {
+      "high-alert": 1,
+      "orders": 3
+     }
+    },
+    "high-alert/urgent-approval": {
+     "files": 2,
+     "mods": {
+      "high-alert": 6
+     }
+    },
+    "impersonate": {
+     "files": 2,
+     "mods": {
+      "authentication": 2
+     }
+    },
+    "invoices": {
+     "files": 3,
+     "mods": {
+      "invoices": 7
+     }
+    },
+    "login": {
+     "files": 2,
+     "mods": {
+      "authentication": 2
+     }
+    },
+    "logout": {
+     "files": 1,
+     "mods": {
+      "authentication": 1
+     }
+    },
+    "notifications": {
+     "files": 2,
+     "mods": {
+      "notifications": 3
+     }
+    },
+    "notifications/settings": {
+     "files": 2,
+     "mods": {
+      "notifications": 2
+     }
+    },
+    "operators": {
+     "files": 2,
+     "mods": {
+      "operators": 3
+     }
+    },
+    "operators/[id]": {
+     "files": 2,
+     "mods": {
+      "operators": 3,
+      "stores": 1
+     }
+    },
+    "operators/create": {
+     "files": 2,
+     "mods": {
+      "operators": 1
+     }
+    },
+    "order-track/[consignmentId]": {
+     "files": 2,
+     "mods": {
+      "orders": 2
+     }
+    },
+    "orders": {
+     "files": 6,
+     "mods": {
+      "orders": 10,
+      "stores": 2
+     }
+    },
+    "orders/[orderId]": {
+     "files": 3,
+     "mods": {
+      "orders": 8,
+      "stores": 2
+     }
+    },
+    "orders/ai-create": {
+     "files": 1,
+     "mods": {
+      "orders": 1
+     }
+    },
+    "orders/create": {
+     "files": 2,
+     "mods": {
+      "orders": 2
+     }
+    },
+    "orders/datewise": {
+     "files": 2,
+     "mods": {
+      "orders": 3
+     }
+    },
+    "orders/reverse-pickup": {
+     "files": 2,
+     "mods": {
+      "orders": 2
+     }
+    },
+    "payment": {
+     "files": 1,
+     "mods": {
+      "payments": 2
+     }
+    },
+    "payments/create": {
+     "files": 1,
+     "mods": {
+      "payments": 3
+     }
+    },
+    "pickup-requests": {
+     "files": 2,
+     "mods": {
+      "pickup-requests": 2
+     }
+    },
+    "profile": {
+     "files": 3,
+     "mods": {
+      "businesses": 2,
+      "merchant": 4
+     }
+    },
+    "register": {
+     "files": 5,
+     "mods": {
+      "authentication": 3
+     }
+    },
+    "register/verification": {
+     "files": 2,
+     "mods": {
+      "authentication": 2
+     }
+    },
+    "request-pickup": {
+     "files": 2,
+     "mods": {
+      "businesses": 2,
+      "stores": 1
+     }
+    },
+    "reset-password": {
+     "files": 1,
+     "mods": {
+      "authentication": 1
+     }
+    },
+    "reset-password/success": {
+     "files": 1,
+     "mods": {
+      "authentication": 1
+     }
+    },
+    "stores": {
+     "files": 2,
+     "mods": {
+      "stores": 2
+     }
+    },
+    "stores/[id]": {
+     "files": 2,
+     "mods": {
+      "stores": 3
+     }
+    },
+    "stores/create": {
+     "files": 2,
+     "mods": {
+      "stores": 1
+     }
+    },
+    "webhook/credentials": {
+     "files": 2,
+     "mods": {
+      "webhook": 1
+     }
+    },
+    "webhook/documentation": {
+     "files": 26,
+     "mods": {
+      "webhook": 15
+     }
+    },
+    "webhook/events": {
+     "files": 2,
+     "mods": {
+      "webhook": 1
+     }
+    },
+    "webhook/integration": {
+     "files": 2,
+     "mods": {
+      "webhook": 1
+     }
+    },
+    "webhook/quick-setup": {
+     "files": 1,
+     "mods": {
+      "webhook": 1
+     }
+    },
+    "webhook/reference": {
+     "files": 1,
+     "mods": {
+      "webhook": 1
+     }
+    }
+   },
+   "apiDomains": {
+    "agentMessaging": [
+     "agent-messaging",
+     "orders"
+    ],
+    "agentRating": [
+     "agent-rating"
+    ],
+    "auth": [
+     "authentication"
+    ],
+    "business.customers": [
+     "customers"
+    ],
+    "business.dashboard": [
+     "dashboard"
+    ],
+    "business.fraudReports": [
+     "customers"
+    ],
+    "business.invoices": [
+     "invoices"
+    ],
+    "business.notifications": [
+     "notifications"
+    ],
+    "business.operators": [
+     "operators"
+    ],
+    "business.orders": [
+     "orders"
+    ],
+    "business.payments": [
+     "payments"
+    ],
+    "business.pendingActions": [
+     "high-alert"
+    ],
+    "business.pickupRequest": [
+     "pickup-requests"
+    ],
+    "business.requestPickup": [
+     "businesses"
+    ],
+    "business.stores": [
+     "stores"
+    ],
+    "business.utilities": [
+     "orders"
+    ],
+    "businesses": [
+     "businesses"
+    ],
+    "campaign": [
+     "authentication"
+    ],
+    "devlopersApi": [
+     "webhook"
+    ],
+    "issueReport": [
+     "orders"
+    ],
+    "merchant": [
+     "merchant"
+    ],
+    "registration": [
+     "authentication"
+    ],
+    "trackOrder": [
+     "orders"
+    ]
+   },
+   "statuses": [],
+   "textStatuses": [
+    "pending",
+    "sorted",
+    "received_at_lmh",
+    "assigned_for_delivery",
+    "delivered",
+    "on_hold",
+    "return",
+    "paid_return",
+    "partial_delivery",
+    "exchange",
+    "lost",
+    "damage",
+    "in_transit",
+    "pickup_cancelled",
+    "return_on_the_way_to_sorting",
+    "return_at_sorting_hub",
+    "return_in_transit",
+    "return_at_first_mile_hub",
+    "return_on_the_way_to_merchant",
+    "return_returned_to_merchant",
+    "return_to_inventory",
+    "reverse_pickup_requested",
+    "reverse_pickup_assigned",
+    "reverse_picked",
+    "reverse_pickup_on_hold",
+    "pickup_requested",
+    "requested_for_customer_change"
+   ],
+   "cycles": [
+    [
+     "businesses",
+     "customers",
+     "dashboard",
+     "invoices",
+     "orders",
+     "payments",
+     "stores"
+    ]
+   ]
+  },
+  "hive": {
+   "app": "hive",
+   "label": "hive",
+   "audience": "ops",
+   "commit": "a1926599",
+   "scannedAt": "2026-10-07T10:52:40.859672Z",
+   "modules": {
+    "activity-log": {
+     "files": 8,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "activity-log": 4
+     },
+     "apis": {
+      "activityLog": 2
+     },
+     "shared": {
+      "components/table": 4,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "agent": {
+     "files": 5,
+     "deps": {},
+     "usedByMods": {
+      "agents": 1
+     },
+     "usedByRoutes": {
+      "(agent-management)/agents": 1,
+      "(agent-management)/agents-application": 1
+     },
+     "apis": {
+      "agent": 1
+     },
+     "shared": {
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "agents": {
+     "files": 75,
+     "deps": {
+      "agent": 1,
+      "cluster": 1,
+      "generate-invoice": 1,
+      "region": 1,
+      "users": 1,
+      "warehouses": 8
+     },
+     "usedByMods": {
+      "assign-run": 1,
+      "customer-return-run": 4,
+      "delivery-orders": 1,
+      "delivery-run": 4,
+      "pickup-order": 1,
+      "pickup-run": 3,
+      "return-run": 2,
+      "route": 1,
+      "run-not-closed": 1,
+      "transfer-run": 1,
+      "user-attendance": 4
+     },
+     "usedByRoutes": {
+      "(agent-management)/agents": 10,
+      "(agent-management)/agents-application": 5,
+      "(agent-management)/agents-attendance": 6,
+      "(agent-management)/commission-type": 3,
+      "(agent-management)/salary-type": 2,
+      "(warehouse)/warehouses": 1
+     },
+     "apis": {
+      "agent": 8,
+      "agentAttendance": 6,
+      "holiday": 5
+     },
+     "shared": {
+      "components/confirmation-modal": 1,
+      "components/form": 25,
+      "components/generic-select-dropdown": 2,
+      "components/permission": 7,
+      "components/search-field-wrapper": 4,
+      "components/table": 19,
+      "components/theme-custom": 12,
+      "components/ui": 20,
+      "contexts/QueryProvider": 4,
+      "lib/api-client": 6,
+      "lib/constants": 2,
+      "lib/permission": 7,
+      "lib/routes": 6,
+      "lib/utils": 16,
+      "services/mapper": 3,
+      "types": 31
+     }
+    },
+    "all-invoices": {
+     "files": 9,
+     "deps": {},
+     "usedByMods": {
+      "paid-invoice": 2,
+      "processing-invoice": 2,
+      "unpaid-invoice": 2
+     },
+     "usedByRoutes": {
+      "(invoices)/invoices": 4
+     },
+     "apis": {
+      "invoice": 4
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/icons": 2,
+      "components/permission": 1,
+      "components/table": 3,
+      "components/theme-custom": 2,
+      "components/ui": 5,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 3
+     }
+    },
+    "assign-run": {
+     "files": 13,
+     "deps": {
+      "agents": 1,
+      "authentication": 3,
+      "basket": 3,
+      "orders": 2,
+      "transfer-run": 1,
+      "warehouses": 4
+     },
+     "usedByMods": {
+      "central-sorting": 1,
+      "delivery-orders": 2,
+      "order-processing": 1,
+      "pickup-order": 4
+     },
+     "usedByRoutes": {},
+     "apis": {
+      "assignRun": 1
+     },
+     "shared": {
+      "components/form": 7,
+      "components/search-status": 1,
+      "components/table": 1,
+      "components/theme-custom": 1,
+      "components/ui": 1,
+      "hooks/use-current-hub": 1,
+      "lib/api-client": 2,
+      "lib/constants": 3,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "types": 2
+     }
+    },
+    "authentication": {
+     "files": 14,
+     "deps": {
+      "users": 1,
+      "warehouses": 2
+     },
+     "usedByMods": {
+      "assign-run": 3,
+      "basket": 2,
+      "central-sorting": 2,
+      "hub-pickup": 1
+     },
+     "usedByRoutes": {
+      "(global_layout)/select-hub": 1,
+      "impersonate": 2,
+      "login": 3,
+      "logout": 1
+     },
+     "apis": {
+      "auth": 5
+     },
+     "shared": {
+      "components/loading-spinner": 3,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 2,
+      "lib/utils": 1,
+      "types": 3
+     }
+    },
+    "basket": {
+     "files": 28,
+     "deps": {
+      "authentication": 2,
+      "orders": 2,
+      "transfer-run": 1,
+      "warehouses": 3
+     },
+     "usedByMods": {
+      "assign-run": 3,
+      "central-sorting": 7,
+      "delivery-orders": 6,
+      "order-processing": 1,
+      "orders": 2
+     },
+     "usedByRoutes": {
+      "(oms)/baskets": 8,
+      "(oms)/central-sorting": 3,
+      "(oms)/order-processing": 3,
+      "(oms)/return-orders": 1,
+      "(oms)/sub-sort": 2
+     },
+     "apis": {
+      "basket": 8
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 4,
+      "components/generic-select-dropdown": 1,
+      "components/page-title": 1,
+      "components/permission": 1,
+      "components/search-field-wrapper": 1,
+      "components/search-status": 1,
+      "components/table": 7,
+      "components/theme-custom": 10,
+      "components/ui": 6,
+      "hooks/use-current-hub": 2,
+      "hooks/use-pod-settings": 1,
+      "hooks/useBarcode": 1,
+      "lib/api-client": 2,
+      "lib/constants": 6,
+      "lib/font": 2,
+      "lib/permission": 1,
+      "lib/printer-utils": 1,
+      "lib/routes": 3,
+      "lib/utils": 9,
+      "services/mapper": 1,
+      "types": 11
+     }
+    },
+    "business-insights": {
+     "files": 26,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "business-insights": 1
+     },
+     "apis": {
+      "businessInsights": 10
+     },
+     "shared": {
+      "components/page-title": 1,
+      "components/ui": 1,
+      "hooks/use-centrifugo-subscription": 1,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 4,
+      "types": 3
+     }
+    },
+    "business-stores": {
+     "files": 25,
+     "deps": {
+      "route": 1,
+      "warehouses": 9
+     },
+     "usedByMods": {
+      "hub-pickup": 1,
+      "no-entry-orders": 1,
+      "orders": 4,
+      "pickup-requests": 1,
+      "store-location-verification": 3
+     },
+     "usedByRoutes": {
+      "(merchant)/businesses": 7,
+      "(merchant)/pending-stores": 3,
+      "(merchant)/store-location-verification": 1
+     },
+     "apis": {
+      "businesses": 8
+     },
+     "shared": {
+      "components/custom-prompt": 1,
+      "components/form": 14,
+      "components/permission": 1,
+      "components/table": 3,
+      "components/theme-custom": 7,
+      "components/ui": 6,
+      "contexts/QueryProvider": 5,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 2,
+      "lib/utils": 5,
+      "lib/validation-error-handler": 1,
+      "services/mapper": 1,
+      "types": 8
+     }
+    },
+    "businesses": {
+     "files": 34,
+     "deps": {
+      "generate-invoice": 1,
+      "merchants": 1,
+      "users": 1
+     },
+     "usedByMods": {
+      "hub-payments": 1,
+      "hub-pickup": 3,
+      "no-entry-orders": 2,
+      "orders": 5,
+      "payable-consignments": 2,
+      "pickup-requests": 2,
+      "reports": 1
+     },
+     "usedByRoutes": {
+      "(invoice)/consignments": 1,
+      "(merchant)/businesses": 16,
+      "(oms)/pickup-requests": 1
+     },
+     "apis": {
+      "businesses": 10,
+      "kam": 2
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/custom-prompt": 1,
+      "components/form": 17,
+      "components/not-found": 1,
+      "components/page-title": 1,
+      "components/permission": 3,
+      "components/table": 3,
+      "components/theme-custom": 9,
+      "components/ui": 7,
+      "contexts/QueryProvider": 4,
+      "lib/api-client": 2,
+      "lib/permission": 3,
+      "lib/routes": 2,
+      "lib/utils": 4,
+      "services/mapper": 1,
+      "types": 9
+     }
+    },
+    "central-pod-print": {
+     "files": 9,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/central-pod-print": 1
+     },
+     "apis": {
+      "centralPodPrint": 1
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 2,
+      "components/print-order-pod": 1,
+      "components/table": 2,
+      "components/theme-custom": 1,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 3,
+      "types": 2
+     }
+    },
+    "central-sorting": {
+     "files": 16,
+     "deps": {
+      "assign-run": 1,
+      "authentication": 2,
+      "basket": 7,
+      "orders": 3,
+      "transfer-run": 1,
+      "warehouses": 5
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/central-sorting": 5,
+      "(oms)/sub-sort": 5
+     },
+     "apis": {
+      "centralSorting": 2
+     },
+     "shared": {
+      "components/form": 6,
+      "components/page-title": 2,
+      "components/permission": 1,
+      "components/search-status": 2,
+      "components/table": 5,
+      "components/theme-custom": 6,
+      "components/ui": 3,
+      "hooks/use-current-hub": 3,
+      "lib/api-client": 2,
+      "lib/constants": 2,
+      "lib/permission": 1,
+      "lib/routes": 1,
+      "lib/utils": 5,
+      "types": 4
+     }
+    },
+    "cluster": {
+     "files": 17,
+     "deps": {
+      "users": 1,
+      "warehouses": 1
+     },
+     "usedByMods": {
+      "agents": 1,
+      "qc": 1,
+      "region": 1,
+      "reports": 1,
+      "user-attendance": 1,
+      "users": 4,
+      "warehouses": 1
+     },
+     "usedByRoutes": {
+      "(users)/users": 2,
+      "(warehouse)/cluster": 7,
+      "(warehouse)/region": 1,
+      "(warehouse)/route": 1,
+      "hub-performance": 1
+     },
+     "apis": {
+      "clusters": 5
+     },
+     "shared": {
+      "components/form": 4,
+      "components/permission": 1,
+      "components/search-field-wrapper": 1,
+      "components/table": 3,
+      "components/theme-custom": 2,
+      "contexts/QueryProvider": 2,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 2,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 7
+     }
+    },
+    "custom-invoice": {
+     "files": 9,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoices)/invoices": 6
+     },
+     "apis": {
+      "invoice": 2
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/icons": 3,
+      "components/table": 2,
+      "components/theme-custom": 3,
+      "components/ui": 5,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/server-route-action": 1,
+      "lib/utils": 2,
+      "types": 4
+     }
+    },
+    "customer-return-run": {
+     "files": 46,
+     "deps": {
+      "agents": 4,
+      "delivery-run": 2,
+      "route": 1,
+      "warehouses": 3
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/customer-return-orders": 3,
+      "(run-management)/run": 10
+     },
+     "apis": {
+      "customerReturnOrders": 3,
+      "run": 12
+     },
+     "shared": {
+      "components/copy": 2,
+      "components/dynamic-image": 1,
+      "components/form": 6,
+      "components/generic-select-dropdown": 1,
+      "components/not-found": 1,
+      "components/notification-label": 2,
+      "components/permission": 5,
+      "components/search-field-wrapper": 1,
+      "components/table": 8,
+      "components/theme-custom": 18,
+      "components/ui": 16,
+      "contexts/QueryProvider": 9,
+      "hooks/useFileUploader": 1,
+      "lib/api-client": 2,
+      "lib/constants": 1,
+      "lib/permission": 5,
+      "lib/routes": 4,
+      "lib/utils": 8,
+      "services/mapper": 1,
+      "types": 15
+     }
+    },
+    "delivery-allowance": {
+     "files": 10,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoices)/delivery-allowance-list": 2
+     },
+     "apis": {
+      "deliveryAllowance": 4
+     },
+     "shared": {
+      "components/table": 3,
+      "components/theme-custom": 2,
+      "components/ui": 1,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 1,
+      "services/mapper": 1,
+      "types": 3
+     }
+    },
+    "delivery-orders": {
+     "files": 27,
+     "deps": {
+      "agents": 1,
+      "assign-run": 2,
+      "basket": 6,
+      "orders": 10,
+      "transfer-run": 1,
+      "users": 1,
+      "warehouses": 8
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/delivery-orders": 14
+     },
+     "apis": {
+      "deliveryOrders": 6
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 5,
+      "components/permission": 1,
+      "components/print-order-pod": 2,
+      "components/search-status": 2,
+      "components/table": 5,
+      "components/theme-custom": 14,
+      "components/ui": 6,
+      "hooks/use-current-hub": 3,
+      "hooks/useBarcode": 1,
+      "lib/api-client": 2,
+      "lib/constants": 3,
+      "lib/font": 1,
+      "lib/permission": 1,
+      "lib/printer-utils": 1,
+      "lib/routes": 4,
+      "lib/utils": 6,
+      "services/mapper": 1,
+      "types": 6
+     }
+    },
+    "delivery-run": {
+     "files": 55,
+     "deps": {
+      "agents": 4,
+      "fraud-activities": 3,
+      "route": 1,
+      "warehouses": 1
+     },
+     "usedByMods": {
+      "customer-return-run": 2
+     },
+     "usedByRoutes": {
+      "(run-management)/run": 10
+     },
+     "apis": {
+      "run": 18
+     },
+     "shared": {
+      "components/confirmation-modal": 1,
+      "components/copy": 2,
+      "components/form": 24,
+      "components/generic-select-dropdown": 1,
+      "components/notification-label": 3,
+      "components/page-title": 1,
+      "components/permission": 6,
+      "components/search-field-wrapper": 1,
+      "components/status-tab": 1,
+      "components/table": 6,
+      "components/theme-custom": 21,
+      "components/ui": 14,
+      "contexts/QueryProvider": 11,
+      "lib/api-client": 2,
+      "lib/constants": 1,
+      "lib/permission": 7,
+      "lib/routes": 7,
+      "lib/utils": 10,
+      "services/mapper": 1,
+      "types": 22
+     }
+    },
+    "discount-requests": {
+     "files": 10,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(merchant)/discount-requests": 2
+     },
+     "apis": {
+      "businesses": 1
+     },
+     "shared": {
+      "components/table": 2,
+      "components/theme-custom": 2,
+      "lib/api-client": 2,
+      "lib/constants": 1,
+      "lib/routes": 2,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 3
+     }
+    },
+    "fraud-activities": {
+     "files": 15,
+     "deps": {},
+     "usedByMods": {
+      "delivery-run": 3
+     },
+     "usedByRoutes": {
+      "fraud-reports": 5
+     },
+     "apis": {
+      "fraudReport": 5
+     },
+     "shared": {
+      "components/table": 3,
+      "components/theme-custom": 6,
+      "components/ui": 2,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 7
+     }
+    },
+    "g-mode": {
+     "files": 37,
+     "deps": {
+      "warehouses": 3
+     },
+     "usedByMods": {
+      "qc": 2
+     },
+     "usedByRoutes": {
+      "(g-mode)/agent-throttle": 2,
+      "(g-mode)/basket-issue-resolution": 1,
+      "(g-mode)/generate-order-invoice": 1,
+      "(g-mode)/impersonate-user": 1,
+      "(g-mode)/issue-resolution": 2,
+      "(g-mode)/urgent-approval": 6
+     },
+     "apis": {
+      "gMode": 13
+     },
+     "shared": {
+      "components/confirmation-modal": 1,
+      "components/copy": 3,
+      "components/form": 20,
+      "components/permission": 4,
+      "components/status-tab": 1,
+      "components/table": 7,
+      "components/theme-custom": 16,
+      "components/ui": 3,
+      "contexts/QueryProvider": 10,
+      "lib/api-client": 3,
+      "lib/constants": 3,
+      "lib/permission": 5,
+      "lib/routes": 4,
+      "lib/utils": 11,
+      "services/mapper": 1,
+      "types": 8
+     }
+    },
+    "generate-invoice": {
+     "files": 15,
+     "deps": {},
+     "usedByMods": {
+      "agents": 1,
+      "businesses": 1,
+      "kam-prepaid-invoice": 1,
+      "receivable-postpaid-invoices": 1,
+      "receivable-prepaid-invoices": 1
+     },
+     "usedByRoutes": {
+      "(invoices)/generate-invoice": 10,
+      "(invoices)/invoices": 1
+     },
+     "apis": {
+      "generateInvoice": 8
+     },
+     "shared": {
+      "components/permission": 1,
+      "components/table": 2,
+      "components/theme-custom": 6,
+      "components/ui": 14,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 1,
+      "lib/utils": 4,
+      "services/mapper": 1,
+      "types": 5
+     }
+    },
+    "geonix": {
+     "files": 30,
+     "deps": {},
+     "usedByMods": {
+      "qc": 1
+     },
+     "usedByRoutes": {
+      "(warehouse)/zone-polygon": 1
+     },
+     "apis": {
+      "geonix": 8
+     },
+     "shared": {
+      "components/ui": 9,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 1,
+      "lib/utils": 13,
+      "types": 3
+     }
+    },
+    "hub-dashboard": {
+     "files": 14,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoices)/hub-dashboard": 2,
+      "(invoices)/transaction-history": 4
+     },
+     "apis": {
+      "hubDashboard": 4
+     },
+     "shared": {
+      "components/form": 7,
+      "components/permission": 1,
+      "components/table": 2,
+      "components/theme-custom": 2,
+      "components/ui": 3,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 3
+     }
+    },
+    "hub-ledger": {
+     "files": 6,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(warehouse)/hub-ledger": 3
+     },
+     "apis": {
+      "hubLedger": 1
+     },
+     "shared": {
+      "components/table": 5,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 1,
+      "types": 3
+     }
+    },
+    "hub-payment-approvals": {
+     "files": 16,
+     "deps": {
+      "hub-payments": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoice)/hub-payments": 4,
+      "(invoices)/hub-payment-approvals": 11,
+      "(invoices)/invoices": 4,
+      "(oms)/lost-order": 2
+     },
+     "apis": {
+      "hubPaymentApprovals": 7
+     },
+     "shared": {
+      "components/form": 1,
+      "components/permission": 2,
+      "components/table": 6,
+      "components/theme-custom": 7,
+      "components/ui": 5,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 2,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 7
+     }
+    },
+    "hub-payment-not-submitted": {
+     "files": 5,
+     "deps": {
+      "warehouses": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "hub-payment-not-submitted": 3
+     },
+     "apis": {
+      "hubPaymentNotSubmitted": 2
+     },
+     "shared": {
+      "components/table": 4,
+      "components/theme-custom": 1,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "types": 3
+     }
+    },
+    "hub-payments": {
+     "files": 18,
+     "deps": {
+      "businesses": 1
+     },
+     "usedByMods": {
+      "hub-payment-approvals": 1,
+      "kam-postpaid-invoice": 1,
+      "kam-prepaid-invoice": 1,
+      "receivable-postpaid-invoices": 1,
+      "receivable-prepaid-invoices": 1
+     },
+     "usedByRoutes": {
+      "(invoice)/consignments": 3,
+      "(invoice)/hub-payments": 6,
+      "(invoices)/hub-payment-approvals": 2,
+      "(invoices)/invoices": 8,
+      "(oms)/lost-order": 2
+     },
+     "apis": {
+      "hubPayment": 4
+     },
+     "shared": {
+      "components/form": 8,
+      "components/table": 2,
+      "components/theme-custom": 6,
+      "components/ui": 1,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/routes": 2,
+      "lib/server-route-action": 1,
+      "lib/utils": 2,
+      "types": 6
+     }
+    },
+    "hub-performance": {
+     "files": 36,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "hub-performance": 12
+     },
+     "apis": {
+      "hubPerformance": 17
+     },
+     "shared": {
+      "components/ui": 22,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 2
+     }
+    },
+    "hub-pickup": {
+     "files": 19,
+     "deps": {
+      "authentication": 1,
+      "business-stores": 1,
+      "businesses": 3,
+      "orders": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/hub-pickup": 3
+     },
+     "apis": {
+      "hubPickup": 4
+     },
+     "shared": {
+      "components/form": 7,
+      "components/permission": 2,
+      "components/search-status": 1,
+      "components/table": 1,
+      "components/theme-custom": 6,
+      "components/ui": 7,
+      "hooks/use-current-hub": 2,
+      "lib/api-client": 2,
+      "lib/constants": 1,
+      "lib/permission": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "types": 6
+     }
+    },
+    "incomplete-orders": {
+     "files": 16,
+     "deps": {
+      "order-processing": 1,
+      "warehouses": 4
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/incomplete-orders": 5
+     },
+     "apis": {
+      "incompleteOrders": 4
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 3,
+      "components/table": 3,
+      "components/theme-custom": 4,
+      "components/ui": 1,
+      "contexts/QueryProvider": 2,
+      "lib/api-client": 2,
+      "lib/routes": 4,
+      "lib/utils": 1,
+      "types": 7
+     }
+    },
+    "kam-postpaid-invoice": {
+     "files": 14,
+     "deps": {
+      "hub-payments": 1,
+      "receivable-prepaid-invoices": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoices)/invoices": 8
+     },
+     "apis": {
+      "invoice": 8
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 4,
+      "components/icons": 2,
+      "components/permission": 2,
+      "components/table": 3,
+      "components/theme-custom": 5,
+      "components/ui": 8,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "kam-prepaid-invoice": {
+     "files": 14,
+     "deps": {
+      "generate-invoice": 1,
+      "hub-payments": 1,
+      "receivable-prepaid-invoices": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoices)/invoices": 8
+     },
+     "apis": {
+      "invoice": 7
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 5,
+      "components/icons": 2,
+      "components/permission": 2,
+      "components/table": 4,
+      "components/theme-custom": 4,
+      "components/ui": 7,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 1,
+      "lib/server-route-action": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "landlord": {
+     "files": 9,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(landlord)/landlord": 4
+     },
+     "apis": {
+      "landlord": 1
+     },
+     "shared": {
+      "components/table": 2,
+      "components/ui": 2,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 1,
+      "services/mapper": 1,
+      "types": 3
+     }
+    },
+    "linehaul": {
+     "files": 16,
+     "deps": {
+      "warehouses": 3
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(warehouse)/linehaul": 8
+     },
+     "apis": {
+      "linehaul": 6
+     },
+     "shared": {
+      "components/form": 2,
+      "components/table": 2,
+      "components/theme-custom": 4,
+      "contexts/QueryProvider": 3,
+      "lib/api-client": 2,
+      "lib/routes": 2,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 9
+     }
+    },
+    "lost-order": {
+     "files": 12,
+     "deps": {
+      "users": 1,
+      "warehouses": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoices)/hub-payment-approvals": 1,
+      "(oms)/lost-order": 7
+     },
+     "apis": {
+      "lostOrder": 3
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 1,
+      "components/permission": 1,
+      "components/table": 2,
+      "components/theme-custom": 3,
+      "components/ui": 9,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 1,
+      "lib/utils": 4,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "merchant-profiles": {
+     "files": 15,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(merchant)/merchant-profiles": 5
+     },
+     "apis": {
+      "merchants": 4
+     },
+     "shared": {
+      "components/form": 5,
+      "components/page-title": 1,
+      "components/table": 3,
+      "components/theme-custom": 6,
+      "contexts/QueryProvider": 2,
+      "lib/api-client": 2,
+      "lib/routes": 2,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "merchants": {
+     "files": 10,
+     "deps": {},
+     "usedByMods": {
+      "businesses": 1
+     },
+     "usedByRoutes": {
+      "(merchant)/corporate-merchant": 1
+     },
+     "apis": {
+      "merchants": 1
+     },
+     "shared": {
+      "components/form": 5,
+      "components/theme-custom": 2,
+      "contexts/QueryProvider": 1,
+      "hooks/api": 2,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 1,
+      "lib/validation-error-handler": 1,
+      "types": 2
+     }
+    },
+    "missing-extra-parcels": {
+     "files": 15,
+     "deps": {
+      "orders": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/missing-extra-parcels": 2
+     },
+     "apis": {
+      "missingExtraParcels": 6
+     },
+     "shared": {
+      "components/copy": 2,
+      "components/form": 1,
+      "components/notification-label": 3,
+      "components/page-container": 1,
+      "components/page-title": 1,
+      "components/table": 2,
+      "components/theme-custom": 2,
+      "contexts/QueryProvider": 2,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 4,
+      "services/mapper": 1,
+      "types": 8
+     }
+    },
+    "no-entry-orders": {
+     "files": 25,
+     "deps": {
+      "business-stores": 1,
+      "businesses": 2,
+      "orders": 8
+     },
+     "usedByMods": {
+      "orders": 2
+     },
+     "usedByRoutes": {
+      "(oms)/no-entry-orders": 12
+     },
+     "apis": {
+      "noEntryOrders": 7
+     },
+     "shared": {
+      "components/dynamic-image": 1,
+      "components/form": 10,
+      "components/generic-select-dropdown": 1,
+      "components/page-title": 1,
+      "components/permission": 2,
+      "components/print-order-pod": 1,
+      "components/search-field-wrapper": 1,
+      "components/table": 6,
+      "components/theme-custom": 7,
+      "components/ui": 3,
+      "hooks/use-current-hub": 3,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 2,
+      "lib/utils": 4,
+      "services/mapper": 1,
+      "types": 5
+     }
+    },
+    "notifications": {
+     "files": 12,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(system-setting)/notifications": 3
+     },
+     "apis": {
+      "systemSettings": 3
+     },
+     "shared": {
+      "components/confirmation-modal": 2,
+      "components/notification-label": 1,
+      "components/table": 2,
+      "components/theme-custom": 1,
+      "components/ui": 2,
+      "contexts/QueryProvider": 2,
+      "hooks/useTranslation": 1,
+      "lib/api-client": 2,
+      "lib/constants": 1,
+      "lib/routes": 2,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 5
+     }
+    },
+    "on-demand": {
+     "files": 10,
+     "deps": {
+      "petty-cash": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoices)/invoices": 3
+     },
+     "apis": {
+      "withdrawRequests": 4
+     },
+     "shared": {
+      "components/confirmation-modal": 1,
+      "components/table": 2,
+      "components/theme-custom": 3,
+      "contexts/QueryProvider": 3,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 6
+     }
+    },
+    "order-processing": {
+     "files": 50,
+     "deps": {
+      "assign-run": 1,
+      "basket": 1,
+      "orders": 2,
+      "warehouses": 2
+     },
+     "usedByMods": {
+      "incomplete-orders": 1
+     },
+     "usedByRoutes": {
+      "(oms)/central-unsorted": 5,
+      "(oms)/order-processing": 15,
+      "(oms)/sub-sort": 10
+     },
+     "apis": {
+      "orderProcessing": 10,
+      "orders": 2
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 2,
+      "components/loading-spinner": 2,
+      "components/not-found": 1,
+      "components/page-title": 1,
+      "components/permission": 12,
+      "components/print-order-pod": 3,
+      "components/search-field-wrapper": 4,
+      "components/table": 11,
+      "components/theme-custom": 17,
+      "components/ui": 6,
+      "hooks/use-current-hub": 8,
+      "lib/api-client": 2,
+      "lib/constants": 3,
+      "lib/permission": 12,
+      "lib/routes": 4,
+      "lib/utils": 5,
+      "services/mapper": 1,
+      "types": 15
+     }
+    },
+    "order-status-change": {
+     "files": 11,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/order-status-change": 2
+     },
+     "apis": {
+      "orderStatusChange": 2
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 6,
+      "components/table": 2,
+      "components/theme-custom": 3,
+      "contexts/QueryProvider": 2,
+      "lib/api-client": 2,
+      "lib/constants": 1,
+      "lib/routes": 2,
+      "lib/utils": 4,
+      "types": 3
+     }
+    },
+    "orders": {
+     "files": 82,
+     "deps": {
+      "basket": 2,
+      "business-stores": 4,
+      "businesses": 5,
+      "no-entry-orders": 2,
+      "warehouses": 7
+     },
+     "usedByMods": {
+      "assign-run": 2,
+      "basket": 2,
+      "central-sorting": 3,
+      "delivery-orders": 10,
+      "hub-pickup": 1,
+      "missing-extra-parcels": 1,
+      "no-entry-orders": 8,
+      "order-processing": 2,
+      "return-orders": 4
+     },
+     "usedByRoutes": {
+      "(oms)/incomplete-orders": 1,
+      "(oms)/orders": 23,
+      "(rating-management)/rating-management": 1,
+      "print-pod": 3
+     },
+     "apis": {
+      "bulkOrderCsv": 4,
+      "orderProcessing": 1,
+      "orders": 16
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 21,
+      "components/page-title": 1,
+      "components/permission": 8,
+      "components/search-field-wrapper": 1,
+      "components/table": 11,
+      "components/theme-custom": 17,
+      "components/ui": 29,
+      "contexts/QueryProvider": 5,
+      "hooks/api": 2,
+      "hooks/use-pod-settings": 3,
+      "hooks/useBarcode": 2,
+      "lib/api-client": 2,
+      "lib/constants": 3,
+      "lib/font": 4,
+      "lib/permission": 8,
+      "lib/printer-utils": 2,
+      "lib/routes": 3,
+      "lib/utils": 13,
+      "services/mapper": 1,
+      "types": 11
+     }
+    },
+    "paid-invoice": {
+     "files": 13,
+     "deps": {
+      "all-invoices": 2
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoices)/invoices": 4
+     },
+     "apis": {
+      "invoice": 5
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/permission": 2,
+      "components/table": 3,
+      "components/theme-custom": 3,
+      "components/ui": 3,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 5
+     }
+    },
+    "payable-consignments": {
+     "files": 12,
+     "deps": {
+      "businesses": 2
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoice)/consignments": 4
+     },
+     "apis": {
+      "payableConsignment": 3
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/table": 1,
+      "components/theme-custom": 4,
+      "components/ui": 1,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "pending-payments": {
+     "files": 11,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(merchant)/pending-payments": 2
+     },
+     "apis": {
+      "businesses": 3
+     },
+     "shared": {
+      "components/custom-prompt": 1,
+      "components/permission": 1,
+      "components/table": 2,
+      "components/theme-custom": 2,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 3
+     }
+    },
+    "pending-stores": {
+     "files": 14,
+     "deps": {
+      "route": 1,
+      "warehouses": 2
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(merchant)/pending-stores": 2
+     },
+     "apis": {
+      "pendingStores": 4
+     },
+     "shared": {
+      "components/permission": 1,
+      "components/table": 1,
+      "components/theme-custom": 6,
+      "components/ui": 8,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 2,
+      "lib/utils": 2,
+      "types": 4
+     }
+    },
+    "petty-cash": {
+     "files": 80,
+     "deps": {
+      "reconciliation": 2,
+      "warehouses": 1
+     },
+     "usedByMods": {
+      "on-demand": 1,
+      "reconciliation": 2
+     },
+     "usedByRoutes": {
+      "(petty-cash)/petty-cash": 20
+     },
+     "apis": {
+      "landlord": 6,
+      "pettyCash": 19
+     },
+     "shared": {
+      "components/form": 14,
+      "components/full-screen-loader": 2,
+      "components/permission": 4,
+      "components/table": 15,
+      "components/theme-custom": 26,
+      "components/ui": 27,
+      "lib/api-client": 2,
+      "lib/font": 1,
+      "lib/permission": 4,
+      "lib/routes": 1,
+      "lib/utils": 7,
+      "services/mapper": 1,
+      "types": 5
+     }
+    },
+    "pickup-order": {
+     "files": 18,
+     "deps": {
+      "agents": 1,
+      "assign-run": 4,
+      "route": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/pickup-orders": 3,
+      "(petty-cash)/petty-cash": 1
+     },
+     "apis": {
+      "pickupOrder": 2
+     },
+     "shared": {
+      "components/loading-spinner": 1,
+      "components/permission": 3,
+      "components/search-status": 1,
+      "components/table": 4,
+      "components/theme-custom": 9,
+      "components/ui": 5,
+      "hooks/use-current-hub": 2,
+      "lib/api-client": 2,
+      "lib/permission": 3,
+      "lib/routes": 1,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 5
+     }
+    },
+    "pickup-requests": {
+     "files": 16,
+     "deps": {
+      "business-stores": 1,
+      "businesses": 2
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/pickup-requests": 5
+     },
+     "apis": {
+      "pickupRequest": 2
+     },
+     "shared": {
+      "components/form": 4,
+      "components/generic-select-dropdown": 1,
+      "components/loading-spinner": 1,
+      "components/permission": 1,
+      "components/search-status": 1,
+      "components/table": 2,
+      "components/theme-custom": 4,
+      "components/ui": 4,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 2,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 5
+     }
+    },
+    "pickup-run": {
+     "files": 40,
+     "deps": {
+      "agents": 3
+     },
+     "usedByMods": {
+      "qc": 1
+     },
+     "usedByRoutes": {
+      "(run-management)/run": 8
+     },
+     "apis": {
+      "run": 10
+     },
+     "shared": {
+      "components/form": 4,
+      "components/generic-select-dropdown": 1,
+      "components/page-title": 1,
+      "components/permission": 6,
+      "components/search-field-wrapper": 1,
+      "components/table": 7,
+      "components/theme-custom": 22,
+      "components/ui": 11,
+      "contexts/QueryProvider": 7,
+      "hooks/use-current-hub": 1,
+      "lib/api-client": 2,
+      "lib/permission": 6,
+      "lib/routes": 6,
+      "lib/utils": 8,
+      "services/mapper": 1,
+      "types": 14
+     }
+    },
+    "price-plans": {
+     "files": 24,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(merchant)/businesses": 26
+     },
+     "apis": {
+      "businesses": 32
+     },
+     "shared": {
+      "components/not-found": 9,
+      "components/permission": 4,
+      "components/theme-custom": 22,
+      "components/ui": 10,
+      "contexts/QueryProvider": 3,
+      "lib/api-client": 2,
+      "lib/permission": 4,
+      "lib/routes": 8,
+      "lib/utils": 2,
+      "types": 13
+     }
+    },
+    "processing-invoice": {
+     "files": 17,
+     "deps": {
+      "all-invoices": 2,
+      "unpaid-invoice": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoices)/invoices": 6
+     },
+     "apis": {
+      "invoice": 6
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/icons": 1,
+      "components/permission": 2,
+      "components/table": 3,
+      "components/theme-custom": 8,
+      "components/ui": 11,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 2,
+      "lib/server-route-action": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 6
+     }
+    },
+    "ptn": {
+     "files": 66,
+     "deps": {
+      "warehouses": 4
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(run-management)/run": 1,
+      "ptn": 23
+     },
+     "apis": {
+      "ptn": 28
+     },
+     "shared": {
+      "components/confirmation-modal": 4,
+      "components/form": 13,
+      "components/generic-select-dropdown": 1,
+      "components/page-title": 2,
+      "components/search-field-wrapper": 1,
+      "components/table": 9,
+      "components/theme-custom": 10,
+      "components/ui": 24,
+      "contexts/QueryProvider": 14,
+      "hooks/use-current-hub": 3,
+      "hooks/use-pod-settings": 4,
+      "hooks/useBarcode": 2,
+      "lib/api-client": 2,
+      "lib/constants": 2,
+      "lib/font": 6,
+      "lib/printer-utils": 3,
+      "lib/routes": 2,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 29
+     }
+    },
+    "push-notification-center": {
+     "files": 8,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(system-setting)/push-notification-center": 1
+     },
+     "apis": {
+      "systemSettings": 1
+     },
+     "shared": {
+      "components/form": 5,
+      "components/theme-custom": 1,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/constants": 1,
+      "lib/routes": 1,
+      "lib/utils": 1,
+      "types": 2
+     }
+    },
+    "qc": {
+     "files": 41,
+     "deps": {
+      "cluster": 1,
+      "g-mode": 2,
+      "geonix": 1,
+      "pickup-run": 1,
+      "region": 1,
+      "warehouses": 2
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/qc": 7
+     },
+     "apis": {
+      "presence": 2,
+      "qc": 15
+     },
+     "shared": {
+      "components/confirmation-modal": 2,
+      "components/permission": 3,
+      "components/table": 12,
+      "components/theme-custom": 9,
+      "components/ui": 19,
+      "lib/api-client": 2,
+      "lib/permission": 4,
+      "lib/routes": 1,
+      "lib/utils": 4,
+      "services/mapper": 1,
+      "types": 2
+     }
+    },
+    "qr-campaign-management": {
+     "files": 19,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(qr-campaign-management)/qr-campaign-management": 6
+     },
+     "apis": {
+      "qrCampaign": 4
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 2,
+      "components/table": 5,
+      "components/theme-custom": 11,
+      "components/ui": 9,
+      "hooks/api": 2,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 5
+     }
+    },
+    "rating-management": {
+     "files": 20,
+     "deps": {},
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(rating-management)/rating-management": 9
+     },
+     "apis": {
+      "ratingManagement": 5
+     },
+     "shared": {
+      "components/table": 8,
+      "components/theme-custom": 7,
+      "components/ui": 1,
+      "lib/api-client": 2,
+      "lib/routes": 2,
+      "lib/utils": 3,
+      "services/mapper": 1,
+      "types": 12
+     }
+    },
+    "receivable-postpaid-invoices": {
+     "files": 15,
+     "deps": {
+      "generate-invoice": 1,
+      "hub-payments": 1,
+      "receivable-prepaid-invoices": 1
+     },
+     "usedByMods": {
+      "receivable-prepaid-invoices": 1
+     },
+     "usedByRoutes": {
+      "(invoices)/invoices": 9
+     },
+     "apis": {
+      "invoice": 8
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 5,
+      "components/icons": 2,
+      "components/permission": 2,
+      "components/table": 3,
+      "components/theme-custom": 5,
+      "components/ui": 8,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "receivable-prepaid-invoices": {
+     "files": 13,
+     "deps": {
+      "generate-invoice": 1,
+      "hub-payments": 1,
+      "receivable-postpaid-invoices": 1
+     },
+     "usedByMods": {
+      "kam-postpaid-invoice": 1,
+      "kam-prepaid-invoice": 1,
+      "receivable-postpaid-invoices": 1
+     },
+     "usedByRoutes": {
+      "(invoices)/invoices": 9
+     },
+     "apis": {
+      "invoice": 7
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 5,
+      "components/icons": 2,
+      "components/permission": 2,
+      "components/table": 3,
+      "components/theme-custom": 4,
+      "components/ui": 7,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "reconciliation": {
+     "files": 18,
+     "deps": {
+      "petty-cash": 2
+     },
+     "usedByMods": {
+      "petty-cash": 2
+     },
+     "usedByRoutes": {
+      "(invoices)/reconciliation": 4
+     },
+     "apis": {
+      "reconciliation": 6
+     },
+     "shared": {
+      "components/table": 5,
+      "components/theme-custom": 5,
+      "components/ui": 3,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 3
+     }
+    },
+    "region": {
+     "files": 16,
+     "deps": {
+      "cluster": 1,
+      "users": 1
+     },
+     "usedByMods": {
+      "agents": 1,
+      "qc": 1,
+      "reports": 1,
+      "user-attendance": 1,
+      "users": 3,
+      "warehouses": 1
+     },
+     "usedByRoutes": {
+      "(users)/users": 2,
+      "(warehouse)/region": 6,
+      "hub-performance": 1
+     },
+     "apis": {
+      "regions": 5
+     },
+     "shared": {
+      "components/form": 4,
+      "components/permission": 1,
+      "components/table": 2,
+      "components/theme-custom": 2,
+      "contexts/QueryProvider": 2,
+      "lib/api-client": 2,
+      "lib/permission": 1,
+      "lib/routes": 2,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 7
+     }
+    },
+    "reports": {
+     "files": 14,
+     "deps": {
+      "businesses": 1,
+      "cluster": 1,
+      "region": 1,
+      "warehouses": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(reports)/basket-report": 1,
+      "(reports)/consignments-report": 1,
+      "(reports)/custom-report": 1,
+      "(reports)/merchant-report": 1
+     },
+     "apis": {
+      "reports": 5
+     },
+     "shared": {
+      "components/form": 11,
+      "components/theme-custom": 5,
+      "components/ui": 2,
+      "contexts/QueryProvider": 4,
+      "lib/api-client": 2,
+      "lib/constants": 1,
+      "lib/routes": 1,
+      "lib/utils": 4,
+      "types": 1
+     }
+    },
+    "return-orders": {
+     "files": 22,
+     "deps": {
+      "orders": 4,
+      "warehouses": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(oms)/return-orders": 11
+     },
+     "apis": {
+      "returnOrders": 5
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/form": 3,
+      "components/permission": 1,
+      "components/print-order-pod": 1,
+      "components/search-status": 1,
+      "components/status-tab": 1,
+      "components/table": 3,
+      "components/theme-custom": 8,
+      "components/ui": 6,
+      "contexts/QueryProvider": 2,
+      "hooks/use-current-hub": 1,
+      "lib/api-client": 2,
+      "lib/constants": 5,
+      "lib/permission": 1,
+      "lib/routes": 3,
+      "lib/utils": 8,
+      "services/mapper": 1,
+      "types": 6
+     }
+    },
+    "return-run": {
+     "files": 29,
+     "deps": {
+      "agents": 2,
+      "route": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(run-management)/run": 9
+     },
+     "apis": {
+      "run": 8
+     },
+     "shared": {
+      "components/form": 7,
+      "components/generic-select-dropdown": 1,
+      "components/notification-label": 1,
+      "components/page-title": 1,
+      "components/permission": 5,
+      "components/search-field-wrapper": 1,
+      "components/table": 5,
+      "components/theme-custom": 12,
+      "components/ui": 3,
+      "contexts/QueryProvider": 5,
+      "lib/api-client": 2,
+      "lib/constants": 1,
+      "lib/permission": 5,
+      "lib/routes": 4,
+      "lib/utils": 7,
+      "services/mapper": 1,
+      "types": 13
+     }
+    },
+    "route": {
+     "files": 24,
+     "deps": {
+      "agents": 1,
+      "warehouses": 4
+     },
+     "usedByMods": {
+      "business-stores": 1,
+      "customer-return-run": 1,
+      "delivery-run": 1,
+      "pending-stores": 1,
+      "pickup-order": 1,
+      "return-run": 1
+     },
+     "usedByRoutes": {
+      "(warehouse)/route": 8
+     },
+     "apis": {
+      "route": 9
+     },
+     "shared": {
+      "components/form": 7,
+      "components/generic-select-dropdown": 1,
+      "components/permission": 1,
+      "components/search-field-wrapper": 2,
+      "components/table": 4,
+      "components/theme-custom": 4,
+      "components/ui": 3,
+      "contexts/QueryProvider": 3,
+      "hooks/use-current-hub": 1,
+      "lib/api-client": 2,
+      "lib/constants": 1,
+      "lib/permission": 1,
+      "lib/routes": 2,
+      "lib/utils": 4,
+      "services/mapper": 1,
+      "types": 9
+     }
+    },
+    "run-not-closed": {
+     "files": 5,
+     "deps": {
+      "agents": 1,
+      "warehouses": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "run-not-closed": 3
+     },
+     "apis": {
+      "run": 2
+     },
+     "shared": {
+      "components/table": 4,
+      "components/theme-custom": 1,
+      "components/ui": 1,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 3,
+      "types": 3
+     }
+    },
+    "store-location-verification": {
+     "files": 7,
+     "deps": {
+      "business-stores": 3,
+      "warehouses": 3
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(merchant)/store-location-verification": 5
+     },
+     "apis": {
+      "storeLocationVerification": 1
+     },
+     "shared": {
+      "components/custom-prompt": 1,
+      "components/form": 2,
+      "components/table": 2,
+      "components/theme-custom": 3,
+      "components/ui": 3,
+      "lib/api-client": 2,
+      "lib/routes": 2,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 4
+     }
+    },
+    "transfer-run": {
+     "files": 34,
+     "deps": {
+      "agents": 1
+     },
+     "usedByMods": {
+      "assign-run": 1,
+      "basket": 1,
+      "central-sorting": 1,
+      "delivery-orders": 1
+     },
+     "usedByRoutes": {
+      "(run-management)/run": 6
+     },
+     "apis": {
+      "run": 13
+     },
+     "shared": {
+      "components/PageHeader": 1,
+      "components/copy": 2,
+      "components/form": 4,
+      "components/generic-select-dropdown": 1,
+      "components/notification-label": 3,
+      "components/page-title": 1,
+      "components/permission": 4,
+      "components/search-field-wrapper": 1,
+      "components/table": 6,
+      "components/theme-custom": 10,
+      "components/ui": 4,
+      "contexts/QueryProvider": 9,
+      "hooks/use-current-hub": 1,
+      "lib/api-client": 2,
+      "lib/permission": 4,
+      "lib/routes": 1,
+      "lib/utils": 10,
+      "services/mapper": 1,
+      "types": 17
+     }
+    },
+    "unpaid-invoice": {
+     "files": 17,
+     "deps": {
+      "all-invoices": 2
+     },
+     "usedByMods": {
+      "processing-invoice": 1
+     },
+     "usedByRoutes": {
+      "(invoices)/invoices": 7
+     },
+     "apis": {
+      "invoice": 7
+     },
+     "shared": {
+      "components/copy": 1,
+      "components/icons": 1,
+      "components/permission": 2,
+      "components/table": 3,
+      "components/theme-custom": 7,
+      "components/ui": 10,
+      "contexts/QueryProvider": 1,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 2,
+      "lib/server-route-action": 1,
+      "lib/utils": 2,
+      "services/mapper": 1,
+      "types": 6
+     }
+    },
+    "user-attendance": {
+     "files": 11,
+     "deps": {
+      "agents": 4,
+      "cluster": 1,
+      "region": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(warehouse)/warehouses": 3,
+      "dashboard": 1
+     },
+     "apis": {
+      "agentAttendance": 3
+     },
+     "shared": {
+      "components/confirmation-modal": 1,
+      "components/permission": 2,
+      "components/table": 4,
+      "components/theme-custom": 4,
+      "components/ui": 10,
+      "contexts/QueryProvider": 2,
+      "lib/api-client": 2,
+      "lib/permission": 2,
+      "lib/routes": 1,
+      "lib/utils": 4,
+      "types": 4
+     }
+    },
+    "users": {
+     "files": 105,
+     "deps": {
+      "cluster": 4,
+      "region": 3
+     },
+     "usedByMods": {
+      "agents": 1,
+      "authentication": 1,
+      "businesses": 1,
+      "cluster": 1,
+      "delivery-orders": 1,
+      "lost-order": 1,
+      "region": 1
+     },
+     "usedByRoutes": {
+      "(agent-management)/agents-attendance": 1,
+      "(users)/departments": 5,
+      "(users)/permissions": 1,
+      "(users)/roles": 10,
+      "(users)/teams": 5,
+      "(users)/users": 18,
+      "(warehouse)/warehouses": 1
+     },
+     "apis": {
+      "departments": 7,
+      "roles": 5,
+      "scopes": 1,
+      "teams": 7,
+      "users": 7
+     },
+     "shared": {
+      "components/form": 13,
+      "components/generic-select-dropdown": 1,
+      "components/loading-spinner": 1,
+      "components/not-found": 1,
+      "components/permission": 3,
+      "components/search-field-wrapper": 5,
+      "components/table": 16,
+      "components/theme-custom": 18,
+      "components/toggle-status-dialog": 4,
+      "components/ui": 15,
+      "contexts/QueryProvider": 8,
+      "lib/api-client": 10,
+      "lib/constants": 2,
+      "lib/permission": 5,
+      "lib/routes": 8,
+      "lib/utils": 25,
+      "lib/validation-error-handler": 1,
+      "services/mapper": 5,
+      "types": 36
+     }
+    },
+    "wallet-provider": {
+     "files": 14,
+     "deps": {
+      "warehouses": 1
+     },
+     "usedByMods": {},
+     "usedByRoutes": {
+      "(invoices)/invoices": 14
+     },
+     "apis": {
+      "walletProvider": 6
+     },
+     "shared": {
+      "components/form": 10,
+      "components/icons": 1,
+      "components/table": 3,
+      "components/ui": 6,
+      "lib/api-client": 2,
+      "lib/routes": 1,
+      "lib/utils": 1,
+      "types": 6
+     }
+    },
+    "warehouses": {
+     "files": 106,
+     "deps": {
+      "cluster": 1,
+      "region": 1
+     },
+     "usedByMods": {
+      "agents": 8,
+      "assign-run": 4,
+      "authentication": 2,
+      "basket": 3,
+      "business-stores": 9,
+      "central-sorting": 5,
+      "cluster": 1,
+      "customer-return-run": 3,
+      "delivery-orders": 8,
+      "delivery-run": 1,
+      "g-mode": 3,
+      "hub-payment-not-submitted": 1,
+      "incomplete-orders": 4,
+      "linehaul": 3,
+      "lost-order": 1,
+      "order-processing": 2,
+      "orders": 7,
+      "pending-stores": 2,
+      "petty-cash": 1,
+      "ptn": 4,
+      "qc": 2,
+      "reports": 1,
+      "return-orders": 1,
+      "route": 4,
+      "run-not-closed": 1,
+      "store-location-verification": 3,
+      "wallet-provider": 1
+     },
+     "usedByRoutes": {
+      "(agent-management)/agents": 1,
+      "(oms)/baskets": 1,
+      "(users)/users": 2,
+      "(warehouse)/route": 1,
+      "(warehouse)/warehouses": 42,
+      "(warehouse)/zone-polygon": 1,
+      "hub-payment-not-submitted": 1,
+      "hub-performance": 1,
+      "run-not-closed": 1
+     },
+     "apis": {
+      "areas": 5,
+      "hubs": 8,
+      "lineHauls": 1,
+      "location": 1,
+      "sectors": 5,
+      "zones": 7
+     },
+     "shared": {
+      "components/form": 22,
+      "components/generic-select-dropdown": 4,
+      "components/permission": 5,
+      "components/search-field-wrapper": 6,
+      "components/table": 17,
+      "components/theme-custom": 10,
+      "components/ui": 17,
+      "contexts/QueryProvider": 8,
+      "hooks/useSetHubId": 1,
+      "lib/api-client": 10,
+      "lib/constants": 3,
+      "lib/permission": 5,
+      "lib/routes": 12,
+      "lib/utils": 14,
+      "services/mapper": 5,
+      "types": 36
+     }
+    }
+   },
+   "routes": {
+    "(agent-management)/agents": {
+     "files": 5,
+     "mods": {
+      "agent": 1,
+      "agents": 10,
+      "warehouses": 1
+     }
+    },
+    "(agent-management)/agents-application": {
+     "files": 3,
+     "mods": {
+      "agent": 1,
+      "agents": 5
+     }
+    },
+    "(agent-management)/agents-attendance": {
+     "files": 6,
+     "mods": {
+      "agents": 6,
+      "users": 1
+     }
+    },
+    "(agent-management)/commission-type": {
+     "files": 2,
+     "mods": {
+      "agents": 3
+     }
+    },
+    "(agent-management)/salary-type": {
+     "files": 2,
+     "mods": {
+      "agents": 2
+     }
+    },
+    "(g-mode)/agent-throttle": {
+     "files": 2,
+     "mods": {
+      "g-mode": 2
+     }
+    },
+    "(g-mode)/basket-issue-resolution": {
+     "files": 2,
+     "mods": {
+      "g-mode": 1
+     }
+    },
+    "(g-mode)/generate-order-invoice": {
+     "files": 2,
+     "mods": {
+      "g-mode": 1
+     }
+    },
+    "(g-mode)/impersonate-user": {
+     "files": 2,
+     "mods": {
+      "g-mode": 1
+     }
+    },
+    "(g-mode)/issue-resolution": {
+     "files": 2,
+     "mods": {
+      "g-mode": 2
+     }
+    },
+    "(g-mode)/urgent-approval": {
+     "files": 2,
+     "mods": {
+      "g-mode": 6
+     }
+    },
+    "(global_layout)/select-hub": {
+     "files": 1,
+     "mods": {
+      "authentication": 1
+     }
+    },
+    "(invoice)/consignments": {
+     "files": 4,
+     "mods": {
+      "businesses": 1,
+      "hub-payments": 3,
+      "payable-consignments": 4
+     }
+    },
+    "(invoice)/hub-payments": {
+     "files": 6,
+     "mods": {
+      "hub-payment-approvals": 4,
+      "hub-payments": 6
+     }
+    },
+    "(invoices)/delivery-allowance-list": {
+     "files": 1,
+     "mods": {
+      "delivery-allowance": 2
+     }
+    },
+    "(invoices)/generate-invoice": {
+     "files": 2,
+     "mods": {
+      "generate-invoice": 10
+     }
+    },
+    "(invoices)/hub-dashboard": {
+     "files": 2,
+     "mods": {
+      "hub-dashboard": 2
+     }
+    },
+    "(invoices)/hub-payment-approvals": {
+     "files": 5,
+     "mods": {
+      "hub-payment-approvals": 11,
+      "hub-payments": 2,
+      "lost-order": 1
+     }
+    },
+    "(invoices)/invoices": {
+     "files": 42,
+     "mods": {
+      "all-invoices": 4,
+      "custom-invoice": 6,
+      "generate-invoice": 1,
+      "hub-payment-approvals": 4,
+      "hub-payments": 8,
+      "kam-postpaid-invoice": 8,
+      "kam-prepaid-invoice": 8,
+      "on-demand": 3,
+      "paid-invoice": 4,
+      "processing-invoice": 6,
+      "receivable-postpaid-invoices": 9,
+      "receivable-prepaid-invoices": 9,
+      "unpaid-invoice": 7,
+      "wallet-provider": 14
+     }
+    },
+    "(invoices)/reconciliation": {
+     "files": 2,
+     "mods": {
+      "reconciliation": 4
+     }
+    },
+    "(invoices)/transaction-history": {
+     "files": 2,
+     "mods": {
+      "hub-dashboard": 4
+     }
+    },
+    "(landlord)/landlord": {
+     "files": 2,
+     "mods": {
+      "landlord": 4
+     }
+    },
+    "(merchant)/businesses": {
+     "files": 24,
+     "mods": {
+      "business-stores": 7,
+      "businesses": 16,
+      "price-plans": 26
+     }
+    },
+    "(merchant)/corporate-merchant": {
+     "files": 1,
+     "mods": {
+      "merchants": 1
+     }
+    },
+    "(merchant)/discount-requests": {
+     "files": 2,
+     "mods": {
+      "discount-requests": 2
+     }
+    },
+    "(merchant)/merchant-profiles": {
+     "files": 4,
+     "mods": {
+      "merchant-profiles": 5
+     }
+    },
+    "(merchant)/pending-payments": {
+     "files": 2,
+     "mods": {
+      "pending-payments": 2
+     }
+    },
+    "(merchant)/pending-stores": {
+     "files": 4,
+     "mods": {
+      "business-stores": 3,
+      "pending-stores": 2
+     }
+    },
+    "(merchant)/store-location-verification": {
+     "files": 2,
+     "mods": {
+      "business-stores": 1,
+      "store-location-verification": 5
+     }
+    },
+    "(oms)/baskets": {
+     "files": 4,
+     "mods": {
+      "basket": 8,
+      "warehouses": 1
+     }
+    },
+    "(oms)/central-pod-print": {
+     "files": 2,
+     "mods": {
+      "central-pod-print": 1
+     }
+    },
+    "(oms)/central-sorting": {
+     "files": 2,
+     "mods": {
+      "basket": 3,
+      "central-sorting": 5
+     }
+    },
+    "(oms)/central-unsorted": {
+     "files": 2,
+     "mods": {
+      "order-processing": 5
+     }
+    },
+    "(oms)/customer-return-orders": {
+     "files": 2,
+     "mods": {
+      "customer-return-run": 3
+     }
+    },
+    "(oms)/delivery-orders": {
+     "files": 7,
+     "mods": {
+      "delivery-orders": 14
+     }
+    },
+    "(oms)/hub-pickup": {
+     "files": 2,
+     "mods": {
+      "hub-pickup": 3
+     }
+    },
+    "(oms)/incomplete-orders": {
+     "files": 4,
+     "mods": {
+      "incomplete-orders": 5,
+      "orders": 1
+     }
+    },
+    "(oms)/lost-order": {
+     "files": 5,
+     "mods": {
+      "hub-payment-approvals": 2,
+      "hub-payments": 2,
+      "lost-order": 7
+     }
+    },
+    "(oms)/missing-extra-parcels": {
+     "files": 2,
+     "mods": {
+      "missing-extra-parcels": 2
+     }
+    },
+    "(oms)/no-entry-orders": {
+     "files": 8,
+     "mods": {
+      "no-entry-orders": 12
+     }
+    },
+    "(oms)/order-processing": {
+     "files": 6,
+     "mods": {
+      "basket": 3,
+      "order-processing": 15
+     }
+    },
+    "(oms)/order-status-change": {
+     "files": 2,
+     "mods": {
+      "order-status-change": 2
+     }
+    },
+    "(oms)/orders": {
+     "files": 10,
+     "mods": {
+      "orders": 23
+     }
+    },
+    "(oms)/pickup-orders": {
+     "files": 2,
+     "mods": {
+      "pickup-order": 3
+     }
+    },
+    "(oms)/pickup-requests": {
+     "files": 2,
+     "mods": {
+      "businesses": 1,
+      "pickup-requests": 5
+     }
+    },
+    "(oms)/qc": {
+     "files": 6,
+     "mods": {
+      "qc": 7
+     }
+    },
+    "(oms)/return-orders": {
+     "files": 4,
+     "mods": {
+      "basket": 1,
+      "return-orders": 11
+     }
+    },
+    "(oms)/sub-sort": {
+     "files": 6,
+     "mods": {
+      "basket": 2,
+      "central-sorting": 5,
+      "order-processing": 10
+     }
+    },
+    "(petty-cash)/petty-cash": {
+     "files": 18,
+     "mods": {
+      "petty-cash": 20,
+      "pickup-order": 1
+     }
+    },
+    "(qr-campaign-management)/qr-campaign-management": {
+     "files": 3,
+     "mods": {
+      "qr-campaign-management": 6
+     }
+    },
+    "(rating-management)/rating-management": {
+     "files": 6,
+     "mods": {
+      "orders": 1,
+      "rating-management": 9
+     }
+    },
+    "(reports)/basket-report": {
+     "files": 2,
+     "mods": {
+      "reports": 1
+     }
+    },
+    "(reports)/consignments-report": {
+     "files": 2,
+     "mods": {
+      "reports": 1
+     }
+    },
+    "(reports)/custom-report": {
+     "files": 2,
+     "mods": {
+      "reports": 1
+     }
+    },
+    "(reports)/merchant-report": {
+     "files": 2,
+     "mods": {
+      "reports": 1
+     }
+    },
+    "(run-management)/run": {
+     "files": 36,
+     "mods": {
+      "customer-return-run": 10,
+      "delivery-run": 10,
+      "pickup-run": 8,
+      "ptn": 1,
+      "return-run": 9,
+      "transfer-run": 6
+     }
+    },
+    "(system-setting)/notifications": {
+     "files": 2,
+     "mods": {
+      "notifications": 3
+     }
+    },
+    "(system-setting)/push-notification-center": {
+     "files": 2,
+     "mods": {
+      "push-notification-center": 1
+     }
+    },
+    "(users)/departments": {
+     "files": 2,
+     "mods": {
+      "users": 5
+     }
+    },
+    "(users)/permissions": {
+     "files": 2,
+     "mods": {
+      "users": 1
+     }
+    },
+    "(users)/roles": {
+     "files": 6,
+     "mods": {
+      "users": 10
+     }
+    },
+    "(users)/teams": {
+     "files": 2,
+     "mods": {
+      "users": 5
+     }
+    },
+    "(users)/users": {
+     "files": 6,
+     "mods": {
+      "cluster": 2,
+      "region": 2,
+      "users": 18,
+      "warehouses": 2
+     }
+    },
+    "(warehouse)/cluster": {
+     "files": 6,
+     "mods": {
+      "cluster": 7
+     }
+    },
+    "(warehouse)/hub-ledger": {
+     "files": 2,
+     "mods": {
+      "hub-ledger": 3
+     }
+    },
+    "(warehouse)/linehaul": {
+     "files": 6,
+     "mods": {
+      "linehaul": 8
+     }
+    },
+    "(warehouse)/region": {
+     "files": 6,
+     "mods": {
+      "cluster": 1,
+      "region": 6
+     }
+    },
+    "(warehouse)/route": {
+     "files": 6,
+     "mods": {
+      "cluster": 1,
+      "route": 8,
+      "warehouses": 1
+     }
+    },
+    "(warehouse)/warehouses": {
+     "files": 27,
+     "mods": {
+      "agents": 1,
+      "user-attendance": 3,
+      "users": 1,
+      "warehouses": 42
+     }
+    },
+    "(warehouse)/zone-polygon": {
+     "files": 1,
+     "mods": {
+      "geonix": 1,
+      "warehouses": 1
+     }
+    },
+    "activity-log": {
+     "files": 2,
+     "mods": {
+      "activity-log": 4
+     }
+    },
+    "business-insights": {
+     "files": 2,
+     "mods": {
+      "business-insights": 1
+     }
+    },
+    "dashboard": {
+     "files": 2,
+     "mods": {
+      "user-attendance": 1
+     }
+    },
+    "fraud-reports": {
+     "files": 2,
+     "mods": {
+      "fraud-activities": 5
+     }
+    },
+    "hub-payment-not-submitted": {
+     "files": 2,
+     "mods": {
+      "hub-payment-not-submitted": 3,
+      "warehouses": 1
+     }
+    },
+    "hub-performance": {
+     "files": 2,
+     "mods": {
+      "cluster": 1,
+      "hub-performance": 12,
+      "region": 1,
+      "warehouses": 1
+     }
+    },
+    "impersonate": {
+     "files": 2,
+     "mods": {
+      "authentication": 2
+     }
+    },
+    "login": {
+     "files": 4,
+     "mods": {
+      "authentication": 3
+     }
+    },
+    "logout": {
+     "files": 1,
+     "mods": {
+      "authentication": 1
+     }
+    },
+    "print-pod": {
+     "files": 2,
+     "mods": {
+      "orders": 3
+     }
+    },
+    "ptn": {
+     "files": 21,
+     "mods": {
+      "ptn": 23
+     }
+    },
+    "run-not-closed": {
+     "files": 2,
+     "mods": {
+      "run-not-closed": 3,
+      "warehouses": 1
+     }
+    }
+   },
+   "apiDomains": {
+    "activityLog": [
+     "activity-log"
+    ],
+    "agent": [
+     "agent",
+     "agents"
+    ],
+    "agentAttendance": [
+     "agents",
+     "user-attendance"
+    ],
+    "areas": [
+     "warehouses"
+    ],
+    "assignRun": [
+     "assign-run"
+    ],
+    "auth": [
+     "authentication"
+    ],
+    "basket": [
+     "basket"
+    ],
+    "bulkOrderCsv": [
+     "orders"
+    ],
+    "businessInsights": [
+     "business-insights"
+    ],
+    "businesses": [
+     "business-stores",
+     "businesses",
+     "discount-requests",
+     "pending-payments",
+     "price-plans"
+    ],
+    "centralPodPrint": [
+     "central-pod-print"
+    ],
+    "centralSorting": [
+     "central-sorting"
+    ],
+    "clusters": [
+     "cluster"
+    ],
+    "customerReturnOrders": [
+     "customer-return-run"
+    ],
+    "deliveryAllowance": [
+     "delivery-allowance"
+    ],
+    "deliveryOrders": [
+     "delivery-orders"
+    ],
+    "departments": [
+     "users"
+    ],
+    "fraudReport": [
+     "fraud-activities"
+    ],
+    "gMode": [
+     "g-mode"
+    ],
+    "generateInvoice": [
+     "generate-invoice"
+    ],
+    "geonix": [
+     "geonix"
+    ],
+    "holiday": [
+     "agents"
+    ],
+    "hubDashboard": [
+     "hub-dashboard"
+    ],
+    "hubLedger": [
+     "hub-ledger"
+    ],
+    "hubPayment": [
+     "hub-payments"
+    ],
+    "hubPaymentApprovals": [
+     "hub-payment-approvals"
+    ],
+    "hubPaymentNotSubmitted": [
+     "hub-payment-not-submitted"
+    ],
+    "hubPerformance": [
+     "hub-performance"
+    ],
+    "hubPickup": [
+     "hub-pickup"
+    ],
+    "hubs": [
+     "warehouses"
+    ],
+    "incompleteOrders": [
+     "incomplete-orders"
+    ],
+    "invoice": [
+     "all-invoices",
+     "custom-invoice",
+     "kam-postpaid-invoice",
+     "kam-prepaid-invoice",
+     "paid-invoice",
+     "processing-invoice",
+     "receivable-postpaid-invoices",
+     "receivable-prepaid-invoices",
+     "unpaid-invoice"
+    ],
+    "kam": [
+     "businesses"
+    ],
+    "landlord": [
+     "landlord",
+     "petty-cash"
+    ],
+    "lineHauls": [
+     "warehouses"
+    ],
+    "linehaul": [
+     "linehaul"
+    ],
+    "location": [
+     "warehouses"
+    ],
+    "lostOrder": [
+     "lost-order"
+    ],
+    "merchants": [
+     "merchant-profiles",
+     "merchants"
+    ],
+    "missingExtraParcels": [
+     "missing-extra-parcels"
+    ],
+    "noEntryOrders": [
+     "no-entry-orders"
+    ],
+    "orderProcessing": [
+     "order-processing",
+     "orders"
+    ],
+    "orderStatusChange": [
+     "order-status-change"
+    ],
+    "orders": [
+     "order-processing",
+     "orders"
+    ],
+    "payableConsignment": [
+     "payable-consignments"
+    ],
+    "pendingStores": [
+     "pending-stores"
+    ],
+    "pettyCash": [
+     "petty-cash"
+    ],
+    "pickupOrder": [
+     "pickup-order"
+    ],
+    "pickupRequest": [
+     "pickup-requests"
+    ],
+    "presence": [
+     "qc"
+    ],
+    "ptn": [
+     "ptn"
+    ],
+    "qc": [
+     "qc"
+    ],
+    "qrCampaign": [
+     "qr-campaign-management"
+    ],
+    "ratingManagement": [
+     "rating-management"
+    ],
+    "reconciliation": [
+     "reconciliation"
+    ],
+    "regions": [
+     "region"
+    ],
+    "reports": [
+     "reports"
+    ],
+    "returnOrders": [
+     "return-orders"
+    ],
+    "roles": [
+     "users"
+    ],
+    "route": [
+     "route"
+    ],
+    "run": [
+     "customer-return-run",
+     "delivery-run",
+     "pickup-run",
+     "return-run",
+     "run-not-closed",
+     "transfer-run"
+    ],
+    "scopes": [
+     "users"
+    ],
+    "sectors": [
+     "warehouses"
+    ],
+    "storeLocationVerification": [
+     "store-location-verification"
+    ],
+    "systemSettings": [
+     "notifications",
+     "push-notification-center"
+    ],
+    "teams": [
+     "users"
+    ],
+    "users": [
+     "users"
+    ],
+    "walletProvider": [
+     "wallet-provider"
+    ],
+    "withdrawRequests": [
+     "on-demand"
+    ],
+    "zones": [
+     "warehouses"
+    ]
+   },
+   "statuses": [
+    {
+     "id": 1,
+     "name": "Pending"
+    },
+    {
+     "id": 2,
+     "name": "PickupRequested"
+    },
+    {
+     "id": 3,
+     "name": "AssignedForPickup"
+    },
+    {
+     "id": 4,
+     "name": "Picked"
+    },
+    {
+     "id": 5,
+     "name": "PickupOnHold"
+    },
+    {
+     "id": 6,
+     "name": "PickupCancelled"
+    },
+    {
+     "id": 7,
+     "name": "AtTheHubReceived"
+    },
+    {
+     "id": 8,
+     "name": "OnTheWayToSortingHub"
+    },
+    {
+     "id": 9,
+     "name": "AtTheSortingHub"
+    },
+    {
+     "id": 10,
+     "name": "OnTheWayToCentralWarehouse"
+    },
+    {
+     "id": 11,
+     "name": "AtCentralWarehouse"
+    },
+    {
+     "id": 12,
+     "name": "OnTheWayToLastMileHub"
+    },
+    {
+     "id": 13,
+     "name": "ReceivedAtLastMileHub"
+    },
+    {
+     "id": 14,
+     "name": "AssignedForDelivery"
+    },
+    {
+     "id": 15,
+     "name": "Delivered"
+    },
+    {
+     "id": 16,
+     "name": "OnHold"
+    },
+    {
+     "id": 17,
+     "name": "Return"
+    },
+    {
+     "id": 18,
+     "name": "PartialDelivery"
+    },
+    {
+     "id": 19,
+     "name": "Damaged"
+    },
+    {
+     "id": 20,
+     "name": "Lost"
+    },
+    {
+     "id": 21,
+     "name": "PaidReturn"
+    },
+    {
+     "id": 22,
+     "name": "Exchange"
+    },
+    {
+     "id": 23,
+     "name": "ReturnPendingFromHub"
+    },
+    {
+     "id": 24,
+     "name": "ReturningToSortingHub"
+    },
+    {
+     "id": 25,
+     "name": "ReturnReceivedBySortingHub"
+    },
+    {
+     "id": 26,
+     "name": "ReturnAtTheSortingHub"
+    },
+    {
+     "id": 27,
+     "name": "ReturnOnTheWayToCentralWarehouse"
+    },
+    {
+     "id": 28,
+     "name": "ReturnAtCentralWarehouse"
+    },
+    {
+     "id": 29,
+     "name": "ReturnOnTheWayToFirstMileHub"
+    },
+    {
+     "id": 30,
+     "name": "ReturnAtFirstMileHub"
+    },
+    {
+     "id": 31,
+     "name": "ReturnOnTheWayToMerchant"
+    },
+    {
+     "id": 32,
+     "name": "ReturnedToMerchant"
+    },
+    {
+     "id": 33,
+     "name": "ReturnedToInventory"
+    },
+    {
+     "id": 34,
+     "name": "ReturnOnHold"
+    },
+    {
+     "id": 35,
+     "name": "InTransit"
+    },
+    {
+     "id": 36,
+     "name": "Found"
+    },
+    {
+     "id": 37,
+     "name": "Reprocess"
+    },
+    {
+     "id": 38,
+     "name": "OnTheWayToSubSort"
+    },
+    {
+     "id": 39,
+     "name": "TransferStatusAtSubSort"
+    },
+    {
+     "id": 40,
+     "name": "ReturnOnTheWayToSubSort"
+    },
+    {
+     "id": 41,
+     "name": "ReturnAtSubSort"
+    },
+    {
+     "id": 42,
+     "name": "TransferStatusReturnWaitingForPickUp"
+    },
+    {
+     "id": 43,
+     "name": "TransferStatusReturnAssignedForPickUp"
+    },
+    {
+     "id": 44,
+     "name": "TransferStatusReturnPicked"
+    },
+    {
+     "id": 45,
+     "name": "TransferStatusReturnOnHoldForPickUp"
+    },
+    {
+     "id": 53,
+     "name": "CustomerRequestChange"
+    }
+   ],
+   "textStatuses": [
+    "pending",
+    "sorted",
+    "on_the_way_to_lmh",
+    "received_at_lmh",
+    "assigned_for_delivery",
+    "delivered",
+    "on_hold",
+    "return",
+    "paid_return",
+    "partial_delivery",
+    "exchange",
+    "lost",
+    "damage",
+    "return_sorted",
+    "return_unsorted",
+    "delivery_sorted",
+    "delivery_unsorted"
+   ],
+   "cycles": [
+    [
+     "cluster",
+     "region",
+     "users",
+     "warehouses"
+    ],
+    [
+     "basket",
+     "no-entry-orders",
+     "orders"
+    ],
+    [
+     "petty-cash",
+     "reconciliation"
+    ],
+    [
+     "receivable-postpaid-invoices",
+     "receivable-prepaid-invoices"
+    ]
+   ]
+  }
+ },
+ "termLinks": {
+  "1-pending": {
+   "aladdin": [
+    "notifications",
+    "orders",
+    "analytics"
+   ]
+  },
+  "10-11-central-warehouse": {
+   "hive": [
+    "orders",
+    "central-sorting",
+    "order-status-change"
+   ]
+  },
+  "12-13-last-mile-hub": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "delivery-orders",
+    "orders",
+    "return-orders"
+   ]
+  },
+  "14-assigned-for-delivery": {
+   "hive": [
+    "orders"
+   ]
+  },
+  "15-delivered": {
+   "aladdin": [
+    "orders",
+    "dashboard",
+    "webhook"
+   ],
+   "hive": [
+    "business-insights",
+    "hub-performance",
+    "delivery-run"
+   ]
+  },
+  "16-on-hold": {
+   "aladdin": [
+    "orders",
+    "dashboard",
+    "invoices"
+   ],
+   "hive": [
+    "delivery-orders",
+    "orders",
+    "return-orders"
+   ]
+  },
+  "17-return": {
+   "aladdin": [
+    "dashboard",
+    "high-alert",
+    "customers"
+   ]
+  },
+  "18-partial-delivery": {
+   "aladdin": [
+    "high-alert",
+    "dashboard",
+    "orders"
+   ],
+   "hive": [
+    "g-mode",
+    "delivery-orders",
+    "orders"
+   ]
+  },
+  "19-damaged": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "delivery-run",
+    "delivery-orders",
+    "orders"
+   ]
+  },
+  "2-pickup-requested": {
+   "aladdin": [
+    "orders"
+   ]
+  },
+  "20-lost": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "delivery-run",
+    "return-run",
+    "lost-order"
+   ]
+  },
+  "21-paid-return": {
+   "aladdin": [
+    "orders",
+    "dashboard",
+    "high-alert"
+   ],
+   "hive": [
+    "g-mode",
+    "delivery-orders",
+    "orders"
+   ]
+  },
+  "22-exchange": {
+   "aladdin": [
+    "orders",
+    "webhook",
+    "dashboard"
+   ],
+   "hive": [
+    "orders",
+    "delivery-orders",
+    "qc"
+   ]
+  },
+  "23-34-return-chain": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "return-orders",
+    "order-status-change"
+   ]
+  },
+  "3-assigned-for-pickup": {
+   "hive": [
+    "pickup-order",
+    "pickup-run"
+   ]
+  },
+  "32-returned-to-merchant": {
+   "aladdin": [
+    "orders"
+   ]
+  },
+  "33-returned-to-inventory": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "return-orders"
+   ]
+  },
+  "35-in-transit": {
+   "aladdin": [
+    "orders",
+    "invoices"
+   ]
+  },
+  "36-found": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "businesses",
+    "generate-invoice",
+    "orders"
+   ]
+  },
+  "37-reprocess": {
+   "hive": [
+    "return-orders",
+    "no-entry-orders",
+    "delivery-run"
+   ]
+  },
+  "38-41-sub-sort": {
+   "hive": [
+    "central-sorting",
+    "order-status-change",
+    "assign-run"
+   ]
+  },
+  "4-picked": {
+   "hive": [
+    "business-insights",
+    "pickup-run",
+    "order-processing"
+   ]
+  },
+  "42-45-reverse-pickup": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "customer-return-run"
+   ]
+  },
+  "5-6-pickup-on-hold-cancelled": {
+   "aladdin": [
+    "orders"
+   ]
+  },
+  "53-customer-request-change": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "delivery-orders"
+   ]
+  },
+  "7-at-the-hub-received": {
+   "hive": [
+    "order-processing"
+   ]
+  },
+  "8-9-sorting-hub": {
+   "hive": [
+    "assign-run",
+    "order-processing",
+    "orders"
+   ]
+  },
+  "additional-charge": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "price-plans"
+   ]
+  },
+  "agent-rating": {
+   "hive": [
+    "rating-management"
+   ]
+  },
+  "agent-rider": {
+   "aladdin": [
+    "orders",
+    "agent-messaging",
+    "notifications"
+   ],
+   "hive": [
+    "agent",
+    "delivery-orders",
+    "order-processing"
+   ]
+  },
+  "agent-salary-model": {
+   "hive": [
+    "agents",
+    "agent"
+   ]
+  },
+  "agent-throttle": {
+   "hive": [
+    "g-mode"
+   ]
+  },
+  "aging": {
+   "hive": [
+    "hub-performance"
+   ]
+  },
+  "ai-ocr-order": {
+   "aladdin": [
+    "orders"
+   ]
+  },
+  "amount-to-collect": {
+   "aladdin": [
+    "webhook",
+    "orders",
+    "high-alert"
+   ],
+   "hive": [
+    "orders",
+    "g-mode",
+    "customer-return-run"
+   ]
+  },
+  "approval-chain": {
+   "hive": [
+    "reconciliation",
+    "petty-cash"
+   ]
+  },
+  "assign-run": {
+   "hive": [
+    "assign-run",
+    "pickup-order",
+    "central-sorting"
+   ]
+  },
+  "attempt": {
+   "hive": [
+    "business-insights",
+    "hub-performance",
+    "qc"
+   ]
+  },
+  "audit-accounts": {
+   "hive": [
+    "all-invoices",
+    "generate-invoice"
+   ]
+  },
+  "backlog-pipeline": {
+   "hive": [
+    "hub-performance",
+    "business-insights"
+   ]
+  },
+  "basket": {
+   "hive": [
+    "basket",
+    "ptn",
+    "central-sorting"
+   ]
+  },
+  "bulk-order": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "orders"
+   ]
+  },
+  "business": {
+   "accounts": [
+    "business",
+    "invoice",
+    "legal-order"
+   ]
+  },
+  "carry-carry-amount": {
+   "hive": [
+    "hub-payments",
+    "hub-ledger"
+   ]
+  },
+  "cash-in-hand": {
+   "hive": [
+    "delivery-run",
+    "hub-payments",
+    "hub-ledger"
+   ]
+  },
+  "cash-note": {
+   "hive": [
+    "delivery-run"
+   ]
+  },
+  "central-sorting-unsorted": {
+   "hive": [
+    "central-sorting"
+   ]
+  },
+  "central-warehouse": {
+   "aladdin": [
+    "webhook"
+   ],
+   "hive": [
+    "assign-run",
+    "payable-consignments",
+    "ptn"
+   ]
+  },
+  "centrifugo": {
+   "aladdin": [
+    "agent-messaging",
+    "orders"
+   ],
+   "hive": [
+    "business-insights"
+   ]
+  },
+  "churned-merchant": {
+   "hive": [
+    "business-insights"
+   ]
+  },
+  "city-zone-area-sector": {
+   "aladdin": [
+    "orders",
+    "webhook",
+    "customers"
+   ],
+   "hive": [
+    "orders",
+    "warehouses",
+    "delivery-orders"
+   ]
+  },
+  "cluster-lead-region-lead": {
+   "hive": [
+    "cluster",
+    "petty-cash",
+    "region"
+   ]
+  },
+  "cod": {
+   "aladdin": [
+    "high-alert",
+    "orders"
+   ],
+   "hive": [
+    "no-entry-orders",
+    "lost-order",
+    "orders"
+   ]
+  },
+  "cod-enabled": {
+   "hive": [
+    "businesses"
+   ]
+  },
+  "cod-fee": {
+   "accounts": [
+    "reports",
+    "business",
+    "invoice"
+   ],
+   "aladdin": [
+    "webhook",
+    "invoices",
+    "orders"
+   ],
+   "hive": [
+    "custom-invoice",
+    "orders",
+    "businesses"
+   ]
+  },
+  "collected-amount": {
+   "accounts": [
+    "reports",
+    "legal-order"
+   ],
+   "aladdin": [
+    "webhook",
+    "invoices",
+    "high-alert"
+   ],
+   "hive": [
+    "delivery-run",
+    "hub-payment-not-submitted"
+   ]
+  },
+  "compensation": {
+   "aladdin": [
+    "invoices"
+   ],
+   "hive": [
+    "orders",
+    "delivery-orders",
+    "lost-order"
+   ]
+  },
+  "consignment-id-cid": {
+   "accounts": [
+    "legal-order",
+    "business",
+    "reports"
+   ],
+   "aladdin": [
+    "orders",
+    "webhook",
+    "agent-rating"
+   ]
+  },
+  "consignment-log": {
+   "hive": [
+    "basket",
+    "order-processing"
+   ]
+  },
+  "consignment-report": {
+   "accounts": [
+    "reports"
+   ],
+   "hive": [
+    "reports"
+   ]
+  },
+  "corporate-merchant": {
+   "hive": [
+    "merchants"
+   ]
+  },
+  "current-hub": {
+   "hive": [
+    "basket",
+    "order-processing",
+    "delivery-orders"
+   ]
+  },
+  "custom-invoice": {
+   "hive": [
+    "custom-invoice"
+   ]
+  },
+  "customer-recipient": {
+   "aladdin": [
+    "orders",
+    "high-alert",
+    "agent-rating"
+   ],
+   "hive": [
+    "customer-return-run",
+    "orders",
+    "delivery-orders"
+   ]
+  },
+  "customer-return-run": {
+   "hive": [
+    "customer-return-run",
+    "hub-performance"
+   ]
+  },
+  "delivery-allowance": {
+   "hive": [
+    "delivery-allowance"
+   ]
+  },
+  "delivery-fee": {
+   "accounts": [
+    "reports",
+    "invoice",
+    "legal-order"
+   ],
+   "aladdin": [
+    "webhook",
+    "invoices",
+    "orders"
+   ],
+   "hive": [
+    "custom-invoice",
+    "all-invoices",
+    "kam-postpaid-invoice"
+   ]
+  },
+  "delivery-run": {
+   "hive": [
+    "delivery-run",
+    "customer-return-run",
+    "hub-performance"
+   ]
+  },
+  "delivery-success-rate": {
+   "aladdin": [
+    "customers",
+    "analytics"
+   ],
+   "hive": [
+    "hub-performance"
+   ]
+  },
+  "delivery-type": {
+   "aladdin": [
+    "webhook",
+    "orders",
+    "dashboard"
+   ],
+   "hive": [
+    "order-processing",
+    "delivery-orders",
+    "orders"
+   ]
+  },
+  "discount-discount-request": {
+   "hive": [
+    "price-plans",
+    "discount-requests"
+   ]
+  },
+  "due-threshold": {
+   "accounts": [
+    "business"
+   ],
+   "hive": [
+    "businesses"
+   ]
+  },
+  "ekyc-nid": {
+   "accounts": [
+    "merchants"
+   ],
+   "hive": [
+    "merchant-profiles"
+   ]
+  },
+  "exchange": {
+   "aladdin": [
+    "orders",
+    "webhook",
+    "dashboard"
+   ],
+   "hive": [
+    "orders",
+    "delivery-orders",
+    "return-orders"
+   ]
+  },
+  "fake-request": {
+   "hive": [
+    "qc"
+   ]
+  },
+  "final-status": {
+   "hive": [
+    "assign-run",
+    "basket",
+    "central-sorting"
+   ]
+  },
+  "first-mile-middle-mile-last-mile": {
+   "aladdin": [
+    "high-alert",
+    "orders"
+   ],
+   "hive": [
+    "return-orders",
+    "incomplete-orders",
+    "order-status-change"
+   ]
+  },
+  "fmh-first-mile-hub": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "reports",
+    "basket",
+    "g-mode"
+   ]
+  },
+  "force-close": {
+   "hive": [
+    "delivery-run"
+   ]
+  },
+  "forward-pickup": {
+   "hive": [
+    "orders"
+   ]
+  },
+  "fraud-report": {
+   "aladdin": [
+    "customers"
+   ],
+   "hive": [
+    "fraud-activities"
+   ]
+  },
+  "g-mode": {
+   "hive": [
+    "g-mode"
+   ]
+  },
+  "gate-pass-transfer-slip": {
+   "hive": [
+    "transfer-run",
+    "assign-run",
+    "customer-return-run"
+   ]
+  },
+  "geonix": {
+   "hive": [
+    "geonix",
+    "qc"
+   ]
+  },
+  "hand-over-receive": {
+   "hive": [
+    "transfer-run"
+   ]
+  },
+  "high-alert": {
+   "aladdin": [
+    "high-alert"
+   ]
+  },
+  "hold-urgent-request": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "orders",
+    "delivery-orders",
+    "delivery-run"
+   ]
+  },
+  "hub": {
+   "aladdin": [
+    "webhook",
+    "businesses",
+    "high-alert"
+   ],
+   "hive": [
+    "warehouses",
+    "cluster",
+    "region"
+   ]
+  },
+  "hub-ledger": {
+   "hive": [
+    "hub-ledger"
+   ]
+  },
+  "hub-manager-hub-in-charge": {
+   "hive": [
+    "petty-cash",
+    "users",
+    "warehouses"
+   ]
+  },
+  "hub-payment-deposit": {
+   "hive": [
+    "hub-payments",
+    "g-mode",
+    "order-status-change"
+   ]
+  },
+  "hub-pickup-drop-off": {
+   "hive": [
+    "hub-pickup"
+   ]
+  },
+  "hub-tier": {
+   "hive": [
+    "warehouses",
+    "businesses"
+   ]
+  },
+  "impersonate": {
+   "aladdin": [
+    "authentication"
+   ],
+   "hive": [
+    "authentication",
+    "g-mode"
+   ]
+  },
+  "incomplete-order": {
+   "hive": [
+    "incomplete-orders",
+    "businesses"
+   ]
+  },
+  "isd-osd-sub-area": {
+   "hive": [
+    "price-plans",
+    "warehouses"
+   ]
+  },
+  "item-weight": {
+   "aladdin": [
+    "orders",
+    "webhook"
+   ],
+   "hive": [
+    "orders",
+    "order-processing"
+   ]
+  },
+  "kam": {
+   "accounts": [
+    "business"
+   ],
+   "hive": [
+    "businesses",
+    "pickup-requests"
+   ]
+  },
+  "labeled-unlabeled": {
+   "aladdin": [
+    "orders"
+   ]
+  },
+  "landlord": {
+   "hive": [
+    "landlord",
+    "petty-cash",
+    "warehouses"
+   ]
+  },
+  "last-mile-issue": {
+   "aladdin": [
+    "high-alert",
+    "webhook"
+   ]
+  },
+  "legal-panel-legal-order": {
+   "accounts": [
+    "legal-order"
+   ]
+  },
+  "linehaul": {
+   "hive": [
+    "linehaul",
+    "warehouses",
+    "basket"
+   ]
+  },
+  "lmh-last-mile-hub": {
+   "hive": [
+    "reports",
+    "delivery-orders",
+    "order-processing"
+   ]
+  },
+  "location-slab-weight-slab": {
+   "hive": [
+    "price-plans",
+    "businesses"
+   ]
+  },
+  "lock-code": {
+   "hive": [
+    "assign-run",
+    "customer-return-run",
+    "delivery-run"
+   ]
+  },
+  "merchant": {
+   "accounts": [
+    "merchants",
+    "reports",
+    "business"
+   ],
+   "aladdin": [
+    "merchant",
+    "orders",
+    "webhook"
+   ],
+   "hive": [
+    "businesses",
+    "merchant-profiles"
+   ]
+  },
+  "merchant-invoice-payment-invoice": {
+   "accounts": [
+    "invoice",
+    "authentication",
+    "legal-order"
+   ],
+   "aladdin": [
+    "invoices",
+    "analytics",
+    "payments"
+   ],
+   "hive": [
+    "orders",
+    "delivery-orders",
+    "return-orders"
+   ]
+  },
+  "merchant-order-id": {
+   "aladdin": [
+    "webhook",
+    "orders",
+    "high-alert"
+   ],
+   "hive": [
+    "orders",
+    "delivery-orders",
+    "order-processing"
+   ]
+  },
+  "mfs": {
+   "aladdin": [
+    "invoices"
+   ]
+  },
+  "missing-extra-parcel": {
+   "hive": [
+    "basket",
+    "pickup-run"
+   ]
+  },
+  "money-lost-cash-lost": {
+   "hive": [
+    "lost-order",
+    "assign-run",
+    "customer-return-run"
+   ]
+  },
+  "no-entry": {
+   "aladdin": [
+    "high-alert"
+   ],
+   "hive": [
+    "orders",
+    "order-processing",
+    "no-entry-orders"
+   ]
+  },
+  "on-demand-withdrawal": {
+   "aladdin": [
+    "payments",
+    "orders"
+   ],
+   "hive": [
+    "on-demand"
+   ]
+  },
+  "onesignal-push": {
+   "aladdin": [
+    "notifications"
+   ],
+   "hive": [
+    "notifications"
+   ]
+  },
+  "operator": {
+   "aladdin": [
+    "operators"
+   ]
+  },
+  "ops-head": {
+   "hive": [
+    "petty-cash"
+   ]
+  },
+  "order-consignment-parcel": {
+   "accounts": [
+    "reports",
+    "legal-order",
+    "invoice"
+   ],
+   "aladdin": [
+    "orders",
+    "webhook",
+    "high-alert"
+   ],
+   "hive": [
+    "hub-performance",
+    "delivery-run",
+    "business-insights"
+   ]
+  },
+  "order-processing": {
+   "hive": [
+    "order-processing",
+    "incomplete-orders",
+    "orders"
+   ]
+  },
+  "order-source": {
+   "aladdin": [
+    "orders",
+    "webhook"
+   ]
+  },
+  "otp": {
+   "hive": [
+    "g-mode",
+    "customer-return-run",
+    "delivery-run"
+   ]
+  },
+  "otp-withdrawal": {
+   "hive": [
+    "petty-cash"
+   ]
+  },
+  "paisa-in-paisha": {
+   "hive": [
+    "orders"
+   ]
+  },
+  "parcel-transfer-reassign": {
+   "hive": [
+    "customer-return-run",
+    "delivery-run",
+    "assign-run"
+   ]
+  },
+  "parcel-type": {
+   "accounts": [
+    "legal-order"
+   ],
+   "hive": [
+    "orders"
+   ]
+  },
+  "pay-due-merchant-payment": {
+   "aladdin": [
+    "payments"
+   ]
+  },
+  "payable-consignment": {
+   "aladdin": [
+    "invoices",
+    "payments"
+   ],
+   "hive": [
+    "payable-consignments",
+    "all-invoices",
+    "hub-payments"
+   ]
+  },
+  "payable-vs-receivable": {
+   "accounts": [
+    "invoice"
+   ],
+   "hive": [
+    "all-invoices",
+    "kam-postpaid-invoice",
+    "kam-prepaid-invoice"
+   ]
+  },
+  "payment-frequency": {
+   "accounts": [
+    "reports",
+    "invoice",
+    "business"
+   ],
+   "aladdin": [
+    "payments",
+    "businesses",
+    "invoices"
+   ],
+   "hive": [
+    "generate-invoice",
+    "businesses",
+    "customer-return-run"
+   ]
+  },
+  "payout-method-wallet": {
+   "accounts": [
+    "business"
+   ],
+   "hive": [
+    "wallet-provider",
+    "agents",
+    "businesses"
+   ]
+  },
+  "pending-cod": {
+   "aladdin": [
+    "dashboard"
+   ]
+  },
+  "pending-payment-payout-change": {
+   "hive": [
+    "pending-payments"
+   ]
+  },
+  "pending-store": {
+   "hive": [
+    "store-location-verification",
+    "business-stores"
+   ]
+  },
+  "permission-scope": {
+   "accounts": [
+    "authentication",
+    "users"
+   ],
+   "aladdin": [
+    "dashboard",
+    "businesses",
+    "operators"
+   ],
+   "hive": [
+    "users",
+    "authentication",
+    "qc"
+   ]
+  },
+  "petty-cash": {
+   "hive": [
+    "petty-cash"
+   ]
+  },
+  "pickup-request": {
+   "aladdin": [
+    "businesses"
+   ],
+   "hive": [
+    "pickup-requests"
+   ]
+  },
+  "pickup-run": {
+   "hive": [
+    "pickup-run",
+    "hub-performance",
+    "qc"
+   ]
+  },
+  "pickup-sorting-window": {
+   "hive": [
+    "business-insights"
+   ]
+  },
+  "pigeon-hole": {
+   "hive": [
+    "ptn"
+   ]
+  },
+  "pod-label": {
+   "hive": [
+    "central-pod-print"
+   ]
+  },
+  "prepaid-postpaid-corporate": {
+   "aladdin": [
+    "invoices",
+    "payments"
+   ],
+   "hive": [
+    "businesses",
+    "merchants",
+    "receivable-prepaid-invoices"
+   ]
+  },
+  "price-change": {
+   "aladdin": [
+    "high-alert"
+   ],
+   "hive": [
+    "qc",
+    "delivery-run"
+   ]
+  },
+  "price-plan": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "price-plans",
+    "delivery-orders",
+    "orders"
+   ]
+  },
+  "processing-invoice": {
+   "hive": [
+    "unpaid-invoice",
+    "paid-invoice",
+    "processing-invoice"
+   ]
+  },
+  "ptn-rack": {
+   "hive": [
+    "ptn"
+   ]
+  },
+  "qc-reviewer": {
+   "hive": [
+    "qc"
+   ]
+  },
+  "qr-campaign": {
+   "hive": [
+    "qr-campaign-management"
+   ]
+  },
+  "receivable-invoice": {
+   "hive": [
+    "kam-postpaid-invoice",
+    "receivable-postpaid-invoices"
+   ]
+  },
+  "reconciliation": {
+   "hive": [
+    "reconciliation",
+    "hub-dashboard"
+   ]
+  },
+  "region-cluster-hub": {
+   "hive": [
+    "region",
+    "cluster",
+    "warehouses"
+   ]
+  },
+  "regular-vs-positive-invoice": {
+   "hive": [
+    "generate-invoice"
+   ]
+  },
+  "rent": {
+   "hive": [
+    "petty-cash",
+    "reconciliation"
+   ]
+  },
+  "return-fee": {
+   "accounts": [
+    "business"
+   ],
+   "hive": [
+    "businesses",
+    "price-plans"
+   ]
+  },
+  "return-rate-hold-rate": {
+   "hive": [
+    "business-insights",
+    "hub-performance"
+   ]
+  },
+  "return-run-rtm": {
+   "hive": [
+    "qc",
+    "g-mode",
+    "hub-performance"
+   ]
+  },
+  "revenue-recognition": {
+   "accounts": [
+    "invoice"
+   ]
+  },
+  "reverse-pickup": {
+   "aladdin": [
+    "orders",
+    "webhook"
+   ],
+   "hive": [
+    "customer-return-run",
+    "price-plans",
+    "route"
+   ]
+  },
+  "route": {
+   "hive": [
+    "route",
+    "pickup-order",
+    "customer-return-run"
+   ]
+  },
+  "rtgs": {
+   "hive": [
+    "processing-invoice",
+    "unpaid-invoice"
+   ]
+  },
+  "run": {
+   "hive": [
+    "delivery-run",
+    "customer-return-run",
+    "return-run"
+   ]
+  },
+  "run-close": {
+   "hive": [
+    "pickup-run",
+    "delivery-run",
+    "transfer-run"
+   ]
+  },
+  "run-completion": {
+   "hive": [
+    "hub-performance"
+   ]
+  },
+  "run-not-closed": {
+   "hive": [
+    "hub-performance",
+    "run-not-closed"
+   ]
+  },
+  "same-city-outside-city-agent": {
+   "hive": [
+    "business-insights"
+   ]
+  },
+  "scan-to-add-remove": {
+   "hive": [
+    "basket",
+    "customer-return-run",
+    "delivery-orders"
+   ]
+  },
+  "self-hub": {
+   "hive": [
+    "basket",
+    "delivery-orders",
+    "central-sorting"
+   ]
+  },
+  "selling-price": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "delivery-orders",
+    "order-processing",
+    "orders"
+   ]
+  },
+  "send-to-another-customer": {
+   "aladdin": [
+    "orders"
+   ]
+  },
+  "sorted-unsorted": {
+   "aladdin": [
+    "orders",
+    "invoices"
+   ],
+   "hive": [
+    "order-processing",
+    "reports",
+    "delivery-orders"
+   ]
+  },
+  "sorting-hub": {
+   "hive": [
+    "order-processing",
+    "warehouses",
+    "delivery-orders"
+   ]
+  },
+  "special-note": {
+   "aladdin": [
+    "webhook",
+    "orders",
+    "invoices"
+   ],
+   "hive": [
+    "delivery-run",
+    "agents",
+    "orders"
+   ]
+  },
+  "sso": {
+   "hive": [
+    "authentication"
+   ]
+  },
+  "status-group-tab": {
+   "aladdin": [
+    "webhook",
+    "orders",
+    "dashboard"
+   ]
+  },
+  "store": {
+   "aladdin": [
+    "orders",
+    "webhook",
+    "stores"
+   ],
+   "hive": [
+    "orders",
+    "business-stores",
+    "pickup-run"
+   ]
+  },
+  "sub-sort": {
+   "hive": [
+    "assign-run",
+    "basket",
+    "central-sorting"
+   ]
+  },
+  "super-admin-g-mode-user": {
+   "hive": [
+    "agents",
+    "pickup-requests"
+   ]
+  },
+  "total-fee": {
+   "aladdin": [
+    "invoices",
+    "orders",
+    "payments"
+   ],
+   "hive": [
+    "custom-invoice",
+    "orders",
+    "businesses"
+   ]
+  },
+  "transfer-run": {
+   "hive": [
+    "transfer-run",
+    "customer-return-run",
+    "delivery-run"
+   ]
+  },
+  "transfer-status": {
+   "aladdin": [
+    "orders",
+    "high-alert"
+   ],
+   "hive": [
+    "return-orders",
+    "orders",
+    "delivery-orders"
+   ]
+  },
+  "urgent-approval": {
+   "aladdin": [
+    "high-alert"
+   ],
+   "hive": [
+    "qc",
+    "g-mode"
+   ]
+  },
+  "webhook-developer-api": {
+   "aladdin": [
+    "webhook",
+    "orders"
+   ]
+  },
+  "withdrawn-expenses": {
+   "hive": [
+    "hub-payments",
+    "petty-cash",
+    "hub-payment-approvals"
+   ]
+  },
+  "wrong-routing": {
+   "hive": [
+    "delivery-orders"
+   ]
+  },
+  "zone-polygon": {
+   "hive": [
+    "geonix",
+    "qc"
+   ]
+  },
+  "zone-transfer-inter-hub-transfer": {
+   "hive": [
+    "delivery-orders",
+    "hub-performance",
+    "warehouses"
+   ]
+  }
+ },
+ "fileSkipped": {
+  "accounts": [],
+  "aladdin": [],
+  "hive": []
+ }
+}

@@ -55,3 +55,14 @@ func TestLoadRejectsEmptyID(t *testing.T) {
 		t.Fatal("expected empty id error")
 	}
 }
+
+func TestLoadSetsSnapshotPathNextToConfig(t *testing.T) {
+	p := writeConfig(t, `{"apps":[{"id":"hive","path":"../hive"}]}`)
+	c, err := Load(p, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := filepath.Join(filepath.Dir(p), "snapshot", "scan.json"); c.Snapshot != want {
+		t.Fatalf("snapshot = %q, want %q", c.Snapshot, want)
+	}
+}

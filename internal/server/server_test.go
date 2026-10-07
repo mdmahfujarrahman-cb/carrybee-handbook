@@ -204,3 +204,92 @@ func TestSyncListsAreArrays(t *testing.T) {
 		}
 	}
 }
+
+// newSnapshotServer has one app whose code folder is present and two that are missing.
+func newSnapshotServer(t *testing.T) (*Server, *int) {
+	t.Helper()
+	present := t.TempDir()
+	gone := filepath.Join(t.TempDir(), "gone")
+	builds := 0
+	build := func(cfg *config.Config, out string) (*site.Result, error) {
+		builds++
+		return fakeBuild(0, false, "new")(cfg, out)
+	}
+	s, _ := newTestServer(t, build)
+	s.cfg = &config.Config{Apps: []config.App{
+		{ID: "hive", Path: present}, {ID: "aladdin", Path: gone}, {ID: "accounts", Path: gone},
+	}}
+	s.checkStale = func([]config.App, map[string]*scan.AppScan, time.Time) StaleReport {
+		t.Fatal("staleness must not be checked when the repos are missing")
+		return StaleReport{}
+	}
+	return s, &builds
+}
+
+const wantReason = "Sync needs the hive, aladdin and accounts code next to this folder. Ask the frontend team for a new copy of the handbook."
+
+func TestStatusWithoutReposCannotSync(t *testing.T) {
+	s, _ := newSnapshotServer(t)
+	rec := httptest.NewRecorder()
+	s.Handler().ServeHTTP(rec, httptest.NewRequest("GET", "/api/status", nil))
+	var body map[string]any
+	if err := json.Unmarshal(rec.Body.Bytes(), &body); err != nil {
+		t.Fatal(err)
+	}
+	if body["canSync"] != false || body["reason"] != wantReason || body["stale"] != false {
+		t.Fatalf("status = %v", body)
+	}
+}
+
+func TestSyncWithoutReposIsRefused(t *testing.T) {
+	s, builds := newSnapshotServer(t)
+	rec := httptest.NewRecorder()
+	s.Handler().ServeHTTP(rec, httptest.NewRequest("POST", "/api/sync", nil))
+	if rec.Code != http.StatusConflict {
+		t.Fatalf("code %d, want 409", rec.Code)
+	}
+	var body map[string]any
+	if err := json.Unmarshal(rec.Body.Bytes(), &body); err != nil {
+		t.Fatal(err)
+	}
+	if body["ok"] != false || body["error"] != wantReason {
+		t.Fatalf("body = %v", body)
+	}
+	if *builds != 0 {
+		t.Fatalf("refused sync still built %d time(s)", *builds)
+	}
+}
+
+func TestStatusWithReposCanSync(t *testing.T) {
+	s, _ := newTestServer(t, fakeBuild(0, false, "new"))
+	s.cfg = &config.Config{Apps: []config.App{{ID: "hive", Path: t.TempDir()}}}
+	s.checkStale = func([]config.App, map[string]*scan.AppScan, time.Time) StaleReport {
+		return StaleReport{Apps: []AppState{}}
+	}
+	rec := httptest.NewRecorder()
+	s.Handler().ServeHTTP(rec, httptest.NewRequest("GET", "/api/status", nil))
+	var body map[string]any
+	if err := json.Unmarshal(rec.Body.Bytes(), &body); err != nil {
+		t.Fatal(err)
+	}
+	if body["canSync"] != true || body["reason"] != "" {
+		t.Fatalf("status = %v", body)
+	}
+}
+
+func TestSyncReasonListsConfiguredApps(t *testing.T) {
+	cases := map[string][]string{
+		"Sync needs the hive code next to this folder.":              {"hive"},
+		"Sync needs the hive and accounts code next to this folder.": {"hive", "accounts"},
+		"Sync needs the a, b, c and d code next to this folder.":     {"a", "b", "c", "d"},
+	}
+	for want, ids := range cases {
+		apps := make([]config.App, len(ids))
+		for i, id := range ids {
+			apps[i] = config.App{ID: id}
+		}
+		if got := syncReason(apps); got != want+" "+askForCopy {
+			t.Errorf("syncReason(%v) = %q", ids, got)
+		}
+	}
+}

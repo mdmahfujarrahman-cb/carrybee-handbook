@@ -64,7 +64,11 @@ func (s *Server) Handler() http.Handler {
 }
 
 func (s *Server) status(w http.ResponseWriter, _ *http.Request) {
-	stale := s.staleness()
+	can, reason := s.canSync()
+	stale := StaleReport{Apps: []AppState{}}
+	if can {
+		stale = s.staleness()
+	}
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	commits := map[string]string{}
@@ -72,7 +76,7 @@ func (s *Server) status(w http.ResponseWriter, _ *http.Request) {
 		commits[id] = sc.Commit
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"mode": "local", "builtAt": s.builtAt, "commits": commits,
-		"syncing": s.syncing, "stale": stale.Stale, "apps": stale.Apps})
+		"syncing": s.syncing, "stale": stale.Stale, "apps": stale.Apps, "canSync": can, "reason": reason})
 }
 
 // crossOrigin reports a browser request sent from another site (Origin set and not this host).
@@ -92,6 +96,10 @@ func (s *Server) sync(w http.ResponseWriter, r *http.Request) {
 	}
 	if crossOrigin(r) {
 		writeJSON(w, http.StatusForbidden, map[string]any{keyOK: false, keyError: "sync is only allowed from this site"})
+		return
+	}
+	if can, reason := s.canSync(); !can {
+		writeJSON(w, http.StatusConflict, map[string]any{keyOK: false, keyError: reason})
 		return
 	}
 	s.mu.Lock()
@@ -171,7 +179,7 @@ func (s *Server) swap(tmp string) error {
 	return nil
 }
 
-// ListenAndServe builds once, then serves on 127.0.0.1:port.
+// ListenAndServe builds once (from the snapshot for apps whose code is missing), then serves on 127.0.0.1:port.
 func (s *Server) ListenAndServe(port int) error {
 	res, err := s.rebuild()
 	if err != nil {
@@ -179,7 +187,11 @@ func (s *Server) ListenAndServe(port int) error {
 	}
 	s.setBuilt(res)
 	addr := fmt.Sprintf("127.0.0.1:%d", port)
-	log.Printf("Carrybee Handbook on http://%s (Sync enabled)", addr)
+	if can, reason := s.canSync(); can {
+		log.Printf("Carrybee Handbook on http://%s (Sync enabled)", addr)
+	} else {
+		log.Printf("Carrybee Handbook on http://%s (Sync disabled: %s)", addr, reason)
+	}
 	return s.httpServer(addr).ListenAndServe()
 }
 

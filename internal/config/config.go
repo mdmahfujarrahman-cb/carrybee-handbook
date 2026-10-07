@@ -21,7 +21,12 @@ type Config struct {
 	SiteTitle string `json:"siteTitle"`
 	Apps      []App  `json:"apps"`
 	Dir       string `json:"-"` // directory holding handbook.json
+	// Snapshot is the scan snapshot file (snapshot/scan.json next to handbook.json); "" disables it.
+	Snapshot string `json:"-"`
 }
+
+// SnapshotRel is the scan snapshot's path relative to the config directory.
+const SnapshotRel = "snapshot/scan.json"
 
 // Load reads the config. appsRoot, when set, replaces the parent directory of every app path.
 func Load(path, appsRoot string) (*Config, error) {
@@ -38,6 +43,7 @@ func Load(path, appsRoot string) (*Config, error) {
 		return nil, err
 	}
 	c.Dir = filepath.Dir(abs)
+	c.Snapshot = filepath.Join(c.Dir, filepath.FromSlash(SnapshotRel))
 	seen := map[string]bool{}
 	for i := range c.Apps {
 		a := &c.Apps[i]

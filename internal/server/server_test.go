@@ -147,3 +147,48 @@ func TestDiffTermLinks(t *testing.T) {
 		t.Fatalf("first sync must be empty non-nil, got %#v", first)
 	}
 }
+
+func TestSyncRejectsCrossOrigin(t *testing.T) {
+	s, _ := newTestServer(t, fakeBuild(0, false, "new"))
+	req := httptest.NewRequest("POST", "http://127.0.0.1:4321/api/sync", nil)
+	req.Header.Set("Origin", "https://evil.example")
+	rec := httptest.NewRecorder()
+	s.Handler().ServeHTTP(rec, req)
+	if rec.Code != http.StatusForbidden {
+		t.Fatalf("code %d, want 403", rec.Code)
+	}
+}
+
+func TestSyncAllowsSameOrigin(t *testing.T) {
+	s, _ := newTestServer(t, fakeBuild(0, false, "new"))
+	req := httptest.NewRequest("POST", "http://127.0.0.1:4321/api/sync", nil)
+	req.Header.Set("Origin", "http://127.0.0.1:4321")
+	rec := httptest.NewRecorder()
+	s.Handler().ServeHTTP(rec, req)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("code %d: %s", rec.Code, rec.Body)
+	}
+}
+
+func TestStatusReportsStaleness(t *testing.T) {
+	s, _ := newTestServer(t, fakeBuild(0, false, "new"))
+	rec := httptest.NewRecorder()
+	s.Handler().ServeHTTP(rec, httptest.NewRequest("GET", "/api/status", nil))
+	var body map[string]any
+	if err := json.Unmarshal(rec.Body.Bytes(), &body); err != nil {
+		t.Fatal(err)
+	}
+	if body["stale"] != false {
+		t.Fatalf("stale = %v", body["stale"])
+	}
+	if apps, ok := body["apps"].([]any); !ok || apps == nil {
+		t.Fatalf("apps must be a JSON array: %v", body["apps"])
+	}
+}
+
+func TestNewHTTPServerHasHeaderTimeout(t *testing.T) {
+	s, _ := newTestServer(t, fakeBuild(0, false, "new"))
+	if hs := s.httpServer("127.0.0.1:0"); hs.ReadHeaderTimeout <= 0 {
+		t.Fatal("ReadHeaderTimeout not set")
+	}
+}

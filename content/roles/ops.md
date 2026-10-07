@@ -29,7 +29,7 @@ Most of your work happens in hive, the operations panel. You log in through Carr
 Menu names are as they appear in hive's sidebar (built in `hive/src/hooks/use-menu.ts`). The chip opens that module on the hive map, which lists its pages and URLs.
 
 | I want to… | Menu | Module |
-|---|---|---|
+| --- | --- | --- |
 | Find an order or a parcel | Orders › List | {{module "hive" "orders"}} |
 | Create an order for a seller | Orders › Create, Create Bulk Order | {{module "hive" "orders"}} |
 | See sellers' pickup requests | Orders › Pickup Requests | {{module "hive" "pickup-requests"}} |
@@ -37,7 +37,7 @@ Menu names are as they appear in hive's sidebar (built in `hive/src/hooks/use-me
 | Follow or close a pickup run | Run Management › Pickup Run | {{module "hive" "pickup-run"}} |
 | Receive parcels a seller drops at the hub | Not in the sidebar; open `/hub-pickup/create` | {{module "hive" "hub-pickup"}} |
 | Check in, weigh and sort parcels at the hub | Order Processing › List | {{module "hive" "order-processing"}} |
-| Handle a parcel with no order ({{term "no-entry"}}) | Orders › No Entry Orders | {{module "hive" "no-entry-orders"}} |
+| Handle a parcel with no order ({{term "no-entry" "no-entry"}}) | Orders › No Entry Orders | {{module "hive" "no-entry-orders"}} |
 | Fix an order missing zone or weight | Incomplete Orders › List | {{module "hive" "incomplete-orders"}} |
 | Print missing labels (POD) | Orders › Central POD Print | {{module "hive" "central-pod-print"}} |
 | Pack and track baskets | Basket › List | {{module "hive" "basket"}} |
@@ -81,7 +81,7 @@ Some of these pages are filtered by the hub you picked at login. If a list looks
 ## Statuses you will use most
 
 | Status | What to tell a seller |
-|---|---|
+| --- | --- |
 | {{status 2}} | We have the request; a rider will be assigned. |
 | {{status 7}} | The parcel is at our first hub. |
 | {{status 35}} | It is moving between hubs. |
@@ -91,4 +91,4 @@ Some of these pages are filtered by the hub you picked at login. If a list looks
 | {{status 17}} | Delivery failed; it is coming back to you. |
 | {{status 32}} | You have the parcel back. |
 
-The full list is on [Statuses](../business/statuses.html). Words you don't recognise are in [Courier terms](../terms.html), for example {{term "urgent-approval"}}, {{term "force-close"}} and {{term "cash-in-hand"}}.
+The full list is on [Statuses](../business/statuses.html). Words you don't recognise are in [Courier terms](../terms.html), for example {{term "urgent-approval" "urgent approval"}}, {{term "force-close" "force close"}} and {{term "cash-in-hand" "cash in hand"}}.

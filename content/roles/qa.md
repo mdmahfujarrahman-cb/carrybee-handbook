@@ -31,7 +31,7 @@ None of the three apps has automated tests, so manual and end-to-end testing is 
 Run this with one fresh seller account and one order, and check the status after each step.
 
 | # | Step | App and place | Check |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | Sign up with a phone number, verify OTP, create a business | aladdin register, create business | Business appears in the business chooser |
 | 2 | Add a pickup store and a payout account | aladdin stores, payments | Store waits for ops approval in hive pending stores; payout change waits in pending payments |
 | 3 | Book an order with a COD amount and print the label | aladdin orders | {{status 1}}; consignment ID shown; label prints |
@@ -48,7 +48,7 @@ Run this with one fresh seller account and one order, and check the status after
 ## Failure paths
 
 | Case | How to trigger | Expect |
-|---|---|---|
+| --- | --- | --- |
 | Return | Delivery fails, return approved | {{status 17}}, then 23 to 31 back through the network, then {{status 32}} via a return run |
 | Partial delivery | Buyer keeps part of the order | {{status 18}}; needs urgent approval; collected amount differs from amount to collect |
 | Exchange | Exchange order delivered | {{status 22}}; old item comes back |
@@ -66,16 +66,16 @@ Run this with one fresh seller account and one order, and check the status after
 ## Who to log in as
 
 | App | Role | Notes |
-|---|---|---|
+| --- | --- | --- |
 | aladdin | Business owner | Full access to their businesses |
-| aladdin | Staff with role operator, and staff with role accountant ({{term "operator"}}) | Added by the owner; check what each can see |
+| aladdin | Staff with role operator, and staff with role accountant ({{term "operator" "operator"}}) | Added by the owner; check what each can see |
 | hive | Hub manager | Scoped to one hub; picks the hub after SSO |
 | hive | KAM, QC reviewer, finance, audit | Each sees a different part of the menu |
 | hive | Super admin with {{term "g-mode"}} | Repair tools and impersonation; use sparingly in tests |
 | accounts | Revenue recognition | Key `invoice_and_billing.revenue_recognition.view`; invoices pages |
 | accounts | Legal panel | Key `invoice_and_billing.legal_panel.view`; legal order export |
 
-hive and aladdin both support {{term "impersonate"}}, which lets support staff log in as another user to reproduce a problem. For permission tests, open a page's URL directly as a user without the key: the proxy should redirect, and the menu item should not appear.
+hive and aladdin both support {{term "impersonate" "impersonate"}}, which lets support staff log in as another user to reproduce a problem. For permission tests, open a page's URL directly as a user without the key: the proxy should redirect, and the menu item should not appear.
 
 ## Bugs to keep in mind
 

@@ -31,7 +31,7 @@ summary: The house rules for the three repos, and the traps that catch new peopl
 **There are circular imports.** Some modules import each other in a loop, which makes them hard to change or move on their own. The app maps flag them:
 
 | App | Module groups that import each other in a loop |
-|---|---|
+| --- | --- |
 | hive | `cluster`, `region`, `users`, `warehouses` |
 | hive | `basket`, `no-entry-orders`, `orders` |
 | hive | `petty-cash`, `reconciliation` |

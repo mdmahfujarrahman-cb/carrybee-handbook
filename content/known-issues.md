@@ -13,7 +13,7 @@ Findings listed here are real problems in the code today. Do not copy the patter
 :::
 
 | # | Issue | Where | Kind |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | Committed auth secret | `hive/README.md:12` | Security |
 | 2 | Hard-coded access token | `hive/src/lib/constants.ts:15` | Security |
 | 3 | Reject urgent approval calls the approve URL | `aladdin/src/lib/routes/api-routes.ts:77` | Suspected bug |
@@ -60,7 +60,7 @@ Findings listed here are real problems in the code today. Do not copy the patter
 **What.** `APP_ROUTES` in `aladdin/src/lib/routes/app-routes.ts` builds URLs for pages that do not exist under `src/app`. Examples checked against the page files:
 
 | Route key | URL | Line |
-|---|---|---|
+| --- | --- | --- |
 | `public.about`, `public.contact`, `public.help`, `public.pricing` | `/about`, `/contact`, `/help`, `/pricing` | 7-12 |
 | `authentication.verifyEmail` | `/verify-email` | 22 |
 | `merchant.settings`, `merchant.account`, `merchant.billing` | `/settings`, `/account`, `/billing` | 31-34 |
@@ -80,7 +80,7 @@ Findings listed here are real problems in the code today. Do not copy the patter
 **What.** Groups of modules import each other in a loop. The scanner finds 4 groups in hive and 1 in aladdin; the app maps show them.
 
 | App | Group |
-|---|---|
+| --- | --- |
 | hive | `cluster`, `region`, `users`, `warehouses` |
 | hive | `basket`, `no-entry-orders`, `orders` |
 | hive | `petty-cash`, `reconciliation` |

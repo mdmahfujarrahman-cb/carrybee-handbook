@@ -11,7 +11,7 @@ hive, aladdin and accounts are three separate repos built the same way. Once you
 ## Stack
 
 | Layer | What is used |
-|---|---|
+| --- | --- |
 | Framework | Next.js 16 App Router with React 19.2, TypeScript in strict mode, `output: 'standalone'` |
 | Server state | TanStack Query v5, tables with TanStack Table v8 |
 | Forms | react-hook-form with Zod schemas through `@hookform/resolvers/zod` |
@@ -42,7 +42,7 @@ src/
 Folder names in brackets are route groups. They organise pages and share a layout without changing the URL.
 
 | App | Main groups |
-|---|---|
+| --- | --- |
 | hive | `(auth)` for login and logout, `(main)/(protected)/(dashboard_layout)/...` for everything behind the sidebar, with feature groups such as `(hub)` and `(merchant)` inside |
 | aladdin | `(public)`, `(protected)` (holding `(business)` and `(merchant)`), `(developers-api)` for the webhook docs |
 | accounts | `(auth)` for login, `(main)` for the panel |
@@ -54,7 +54,7 @@ aladdin uses two more App Router features. Its dashboard at `businesses/[busines
 Feature code lives in `src/modules/<feature>`. Every module on the [hive](../apps/hive.html), [aladdin](../apps/aladdin.html) and [accounts](../apps/accounts.html) maps is one of these folders.
 
 | Folder | Holds |
-|---|---|
+| --- | --- |
 | `components/` | The module's UI |
 | `hooks/` | TanStack Query hooks. hive splits them into `hooks/api/list`, `detail` and `mutation` |
 | `services/` | `api.ts` makes raw HTTP calls; `service.ts` converts snake_case to camelCase and returns a `ServiceResponse<T>`; `mapper.ts` holds larger transformations |
@@ -89,8 +89,8 @@ Forms take a Zod schema from the module's `validations/`, connect it to react-ho
 
 ## How the apps differ
 
-| | hive | aladdin | accounts |
-|---|---|---|---|
+|  | hive | aladdin | accounts |
+| --- | --- | --- | --- |
 | Users | Carrybee staff | Sellers | Finance and legal |
 | Size | 76 modules, 82 pages | 18 modules, 54 pages | 10 modules, 9 pages |
 | Login | Backend-brokered {{term "sso"}}, then a hub is selected; impersonation | Phone and password, OTP at signup; impersonation | Phone and OTP |

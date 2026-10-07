@@ -32,7 +32,7 @@ You will work in one or more of three Next.js 16 apps that share a layout and a 
 ### Commands
 
 | Command | What it does |
-|---|---|
+| --- | --- |
 | `pnpm dev` | Dev server (Turbopack) |
 | `pnpm exec tsc --noEmit` | Type check; there is no script for it |
 | `pnpm lint` | ESLint; aladdin fails on any warning |
@@ -55,7 +55,7 @@ src/modules/<feature>/
 ### Where API calls live
 
 | What | Where |
-|---|---|
+| --- | --- |
 | Endpoint paths | `src/lib/routes/api-routes.ts` (`API_ROUTES`) |
 | HTTP client | `src/lib/api-client/index.ts` (`restApiClient`) |
 | Raw calls | `src/modules/<feature>/services/api.ts` |
@@ -66,7 +66,7 @@ src/modules/<feature>/
 ### How permissions gate the UI
 
 | Layer | Where | What it does |
-|---|---|---|
+| --- | --- | --- |
 | Route | `src/proxy.ts` with `route-permissions.ts` | Redirects users who lack the path's permission |
 | Menu (hive) | `src/hooks/use-menu.ts` | Shows a menu item only if `validateRouteAccess` passes |
 | Server component | `PermissionGate` in `src/lib/permission/` | Renders children only with the given permissions |

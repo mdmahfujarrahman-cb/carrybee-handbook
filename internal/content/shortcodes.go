@@ -43,6 +43,9 @@ func expandTerm(args []string, r Resolver) string {
 	if !ok {
 		name = args[0]
 	}
+	if len(args) > 1 && args[1] != "" {
+		name = args[1]
+	}
 	return fmt.Sprintf(`<span class="term" data-term="%s">%s</span>`, html.EscapeString(args[0]), html.EscapeString(name))
 }
 

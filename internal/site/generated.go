@@ -145,14 +145,14 @@ func (s *site) statusRows(out string) string {
 	terms := statusTerms(s.terms)
 	var rows strings.Builder
 	rows.WriteString(`<h2 id="all-statuses">Every status in code</h2><p>Read from <code>enum TransferStatus</code> at build time. Each row links to its entry in the courier terms.</p>`)
-	rows.WriteString(`<div class="table-wrap"><table class="status-table"><thead><tr><th>#</th><th>Name in code</th><th>Phase</th><th>Term</th></tr></thead><tbody>`)
+	rows.WriteString(`<div class="table-wrap"><table class="status-table"><thead><tr><th>#</th><th>Status</th><th>Name in code</th><th>Phase</th><th>Term</th></tr></thead><tbody>`)
 	for _, id := range ids {
 		term := "–"
 		if t, ok := terms[id]; ok {
 			term = fmt.Sprintf(`<a href="%s">%s</a>`, template.HTMLEscapeString(Rel(out, "terms.html#t."+t.ID)), template.HTMLEscapeString(t.Name))
 		}
-		fmt.Fprintf(&rows, `<tr id="s.%d"><td class="num">%d</td><td><code>%s</code></td><td>%s</td><td>%s</td></tr>`,
-			id, id, template.HTMLEscapeString(seen[id]), statusPhase(id), term)
+		fmt.Fprintf(&rows, `<tr id="s.%d"><td class="num">%d</td><td>%s</td><td><code>%s</code></td><td>%s</td><td>%s</td></tr>`,
+			id, id, template.HTMLEscapeString(content.HumanStatus(seen[id])), template.HTMLEscapeString(seen[id]), statusPhase(id), term)
 	}
 	rows.WriteString(`</tbody></table></div>`)
 	return rows.String()

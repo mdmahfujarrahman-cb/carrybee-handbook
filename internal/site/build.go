@@ -105,7 +105,7 @@ func (s *site) resolver(from string) content.Resolver {
 	statuses := map[int]string{}
 	for _, sc := range s.scans {
 		for _, st := range sc.Statuses {
-			statuses[st.ID] = st.Name
+			statuses[st.ID] = content.HumanStatus(st.Name)
 		}
 	}
 	return content.Resolver{

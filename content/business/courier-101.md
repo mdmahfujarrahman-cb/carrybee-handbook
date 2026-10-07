@@ -10,10 +10,10 @@ A courier company moves small packages from the person who sends them to the per
 
 ## The three legs of a trip
 
-Couriers split every parcel's trip into three legs, together called the {{term "first-mile-middle-mile-last-mile"}}.
+Couriers split every parcel's trip into three legs, together called the {{term "first-mile-middle-mile-last-mile" "first mile / middle mile / last mile"}}.
 
 | Leg | From | To | What happens |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | First mile | The seller's shop or warehouse | The first hub | A rider collects the parcels, or the seller drops them off. |
 | Middle mile | One hub | Another hub | Parcels travel in bulk, often by truck, towards the buyer's area. |
 | Last mile | The hub nearest the buyer | The buyer's door | A rider delivers the parcel and, often, collects payment. |
@@ -22,7 +22,7 @@ The first and last mile are done by riders on motorbikes or bicycles, one stop a
 
 ## Hubs and sorting
 
-A {{term "hub"}} is a branch office with a sorting floor. Parcels arrive at a hub, get checked in, and are grouped by where they need to go next. That grouping is called sorting.
+A {{term "hub" "hub"}} is a branch office with a sorting floor. Parcels arrive at a hub, get checked in, and are grouped by where they need to go next. That grouping is called sorting.
 
 Sorting is the reason a courier can be cheap. Instead of driving each parcel straight to its buyer, the courier collects hundreds of parcels in one area, sorts them by destination, and sends each group together. A large network often has a central sorting centre where parcels from many hubs meet, plus smaller regional sorting centres.
 

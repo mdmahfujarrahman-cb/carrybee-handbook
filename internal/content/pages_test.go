@@ -65,3 +65,21 @@ func TestCheckUnknownReference(t *testing.T) {
 		t.Fatalf("problem must name file and reference: %q", problems[0])
 	}
 }
+
+func TestTermLabelOverride(t *testing.T) {
+	src := `Into a {{term "cash-in-hand" "cash in hand"}} and {{term "cash-in-hand"}}.`
+	html, err := Render(src, testResolver())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(html, `<span class="term" data-term="cash-in-hand">cash in hand</span>`) {
+		t.Errorf("label not applied: %s", html)
+	}
+	if !strings.Contains(html, `data-term="cash-in-hand">Cash in hand</span>`) {
+		t.Errorf("default name lost: %s", html)
+	}
+	refs := extractRefs(src)
+	if len(refs) != 2 || refs[0] != (Ref{Kind: "term", ID: "cash-in-hand"}) {
+		t.Errorf("refs = %v", refs)
+	}
+}

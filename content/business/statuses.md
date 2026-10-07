@@ -6,14 +6,14 @@ level: carrybee
 roles: backend, qa, ops
 summary: Every order status, what it means and which app moves it.
 ---
-Every parcel has a {{term "transfer-status"}}: a number that changes each time the parcel is scanned or someone acts on it. The full list, read from the code at build time, is in the table below. This section explains how to read it.
+Every parcel has a {{term "transfer-status" "transfer status"}}: a number that changes each time the parcel is scanned or someone acts on it. The full list, read from the code at build time, is in the table below. This section explains how to read it.
 
 ## Numbers and text
 
 The same status appears in two forms.
 
 | Form | Where it is defined | Who sees it |
-|---|---|---|
+| --- | --- | --- |
 | A number, 1 to 45 plus 53 | `TransferStatus` enum in `hive/src/lib/constants.ts`, and the `transferStatus` object in `aladdin/src/lib/constants.ts` | hive screens, filters and API payloads |
 | A text value such as `received_at_lmh` | `orderStatusSchema` in `src/modules/orders/types` in each app | The merchant panel and its filters |
 
@@ -29,16 +29,16 @@ Statuses 23 to 34 are the same journey in reverse for a return, ending at {{stat
 
 ## Final statuses
 
-A {{term "final-status"}} ends the parcel's journey. These include {{status 15}}, {{status 18}}, {{status 22}}, {{status 21}}, {{status 32}}, {{status 20}} and {{status 19}}. Money settles on final statuses: a seller is paid for a parcel after it is delivered, and compensation follows a lost or damaged one.
+A {{term "final-status" "final status"}} ends the parcel's journey. These include {{status 15}}, {{status 18}}, {{status 22}}, {{status 21}}, {{status 32}}, {{status 20}} and {{status 19}}. Money settles on final statuses: a seller is paid for a parcel after it is delivered, and compensation follows a lost or damaged one.
 
 Changing a final status by hand is restricted to the {{term "g-mode"}} area in hive. If a test or a support case needs to "undo" a delivered parcel, that is where it happens. A lost parcel that turns up again moves to {{status 36}}, and a parcel that needs to go back into the flow can be set to {{status 37}}.
 
 ## Groups and tabs
 
-The merchant panel does not show numbers. It groups statuses into four tabs ({{term "status-group-tab"}}), defined in `ORDER_STATUS_GROUP_MAP` in `aladdin/src/modules/orders/types/index.ts`:
+The merchant panel does not show numbers. It groups statuses into four tabs ({{term "status-group-tab" "status group"}}), defined in `ORDER_STATUS_GROUP_MAP` in `aladdin/src/modules/orders/types/index.ts`:
 
 | Tab | Text statuses in it |
-|---|---|
+| --- | --- |
 | Active | `sorted`, `received_at_lmh`, `assigned_for_delivery`, `on_hold`, `in_transit`, `pickup_requested` |
 | Delivered | `delivered`, `partial_delivery`, `exchange` |
 | Returned | `return`, `paid_return`, `requested_for_customer_change` |

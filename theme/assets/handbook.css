@@ -358,7 +358,8 @@ mark { background: var(--brand); color: var(--brand-ink); border-radius: 3px; pa
   font-size: clamp(40px, 6.4vw, 76px); font-stretch: 118%; font-weight: 900; line-height: 0.98; letter-spacing: -0.035em;
   max-width: 14ch;
 }
-.home .hero-lead { margin-top: 22px; font-size: 19.5px; line-height: 1.55; max-width: 60ch; }
+.home .hero-lead { margin-top: 22px; font-size: 19.5px; line-height: 1.55; max-width: none; }
+.home .hero-lead > p, .home .hero-lead > ul, .home .hero-lead > ol { max-width: none; }
 .hero-lead p { margin: 0; }
 .hero-lead p + p { margin-top: 0.75em; }
 .parcel-strip {
@@ -409,7 +410,7 @@ mark { background: var(--brand); color: var(--brand-ink); border-radius: 3px; pa
 .door:hover .door-a { text-decoration-color: currentColor; }
 
 .home-sec h2 { font-size: clamp(24px, 2.6vw, 30px); font-weight: 850; font-stretch: 110%; letter-spacing: -0.02em; margin: 0; line-height: 1.15; }
-.sec-lead { margin: 6px 0 18px; color: var(--muted); max-width: 64ch; }
+.sec-lead { margin: 6px 0 18px; color: var(--muted); max-width: none; }
 .roles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 12px; }
 .role-card {
   display: flex; flex-direction: column; gap: 14px; align-items: flex-start; height: 100%; padding: 18px 16px; border-radius: 14px;

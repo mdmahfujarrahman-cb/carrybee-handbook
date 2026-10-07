@@ -1,6 +1,7 @@
 package scan
 
 import (
+	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -76,57 +77,79 @@ func BuildGraph(app config.App, routeOf func(rel []string) string) (*Graph, erro
 	for m := range modules {
 		g.Modules[m] = newModule()
 	}
-	err = filepath.WalkDir(src, func(p string, d fs.DirEntry, err error) error {
-		if err != nil || d.IsDir() || !(strings.HasSuffix(p, ".ts") || strings.HasSuffix(p, ".tsx")) {
-			return err
-		}
-		relPath, _ := filepath.Rel(src, p)
-		raw, readErr := os.ReadFile(p)
-		if readErr != nil {
-			// Unreadable file: track it and skip processing
-			g.Skipped = append(g.Skipped, filepath.ToSlash(relPath))
-			return nil
-		}
-		text := StripComments(string(raw))
-		g.Files[filepath.ToSlash(relPath)] = text
-		from := owner(split(relPath), modules, routeOf)
-		if from == "" {
-			return nil
-		}
-		kind, name, _ := strings.Cut(from, ":")
-		switch kind {
-		case "mod":
-			g.Modules[name].Files++
-		case "route":
-			g.RouteFiles[name]++
-		}
-		for _, m := range importRE.FindAllStringSubmatch(text, -1) {
-			target := resolve(m[1], src, p)
-			if target == "" {
-				continue
-			}
-			to := owner(split(target), modules, routeOf)
-			if to == "" || to == from {
-				continue
-			}
-			tk, tn, _ := strings.Cut(to, ":")
-			switch {
-			case kind == "mod" && tk == "mod":
-				g.Modules[name].Deps[tn]++
-				g.Modules[tn].UsedByModules[name]++
-			case kind == "mod" && tk == "shared":
-				g.Modules[name].Shared[tn]++
-			case kind == "route" && tk == "mod":
-				if g.RouteImports[name] == nil {
-					g.RouteImports[name] = map[string]int{}
-				}
-				g.RouteImports[name][tn]++
-				g.Modules[tn].UsedByRoutes[name]++
-			}
-		}
-		return nil
-	})
+	w := &graphWalker{g: g, src: src, modules: modules, routeOf: routeOf}
+	err = filepath.WalkDir(src, w.visit)
 	return g, err
+}
+
+// graphWalker records one app's imports while walking <app>/src.
+type graphWalker struct {
+	g       *Graph
+	src     string
+	modules map[string]bool
+	routeOf func([]string) string
+}
+
+func isSource(p string) bool { return strings.HasSuffix(p, ".ts") || strings.HasSuffix(p, ".tsx") }
+
+// visit reads one source file. An unreadable file is listed in Graph.Skipped and the walk goes on.
+func (w *graphWalker) visit(p string, d fs.DirEntry, err error) error {
+	if err != nil || d.IsDir() || !isSource(p) {
+		return err
+	}
+	relPath, err := filepath.Rel(w.src, p)
+	if err != nil {
+		return fmt.Errorf("relative path of %s: %w", p, err)
+	}
+	rel := filepath.ToSlash(relPath)
+	raw, err := os.ReadFile(p)
+	if err != nil {
+		w.g.Skipped = append(w.g.Skipped, rel)
+		return nil
+	}
+	text := StripComments(string(raw))
+	w.g.Files[rel] = text
+	from := owner(split(relPath), w.modules, w.routeOf)
+	if from == "" {
+		return nil
+	}
+	kind, name, _ := strings.Cut(from, ":")
+	switch kind {
+	case "mod":
+		w.g.Modules[name].Files++
+	case "route":
+		w.g.RouteFiles[name]++
+	}
+	for _, m := range importRE.FindAllStringSubmatch(text, -1) {
+		w.addImport(kind, name, from, resolve(m[1], w.src, p))
+	}
+	return nil
+}
+
+// addImport records one import from the owner kind:name (from) to the src-relative target.
+func (w *graphWalker) addImport(kind, name, from, target string) {
+	if target == "" {
+		return
+	}
+	to := owner(split(target), w.modules, w.routeOf)
+	if to == "" || to == from {
+		return
+	}
+	tk, tn, _ := strings.Cut(to, ":")
+	g := w.g
+	switch {
+	case kind == "mod" && tk == "mod":
+		g.Modules[name].Deps[tn]++
+		g.Modules[tn].UsedByModules[name]++
+	case kind == "mod" && tk == "shared":
+		g.Modules[name].Shared[tn]++
+	case kind == "route" && tk == "mod":
+		if g.RouteImports[name] == nil {
+			g.RouteImports[name] = map[string]int{}
+		}
+		g.RouteImports[name][tn]++
+		g.Modules[tn].UsedByRoutes[name]++
+	}
 }
 
 // resolve turns an import specifier into a path relative to src, or "" for packages.

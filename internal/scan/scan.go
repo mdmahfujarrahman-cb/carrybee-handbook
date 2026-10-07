@@ -26,8 +26,12 @@ type AppScan struct {
 	Routes     map[string]*Route   `json:"routes"`
 	APIDomains map[string][]string `json:"apiDomains"`
 	Statuses   []Status            `json:"statuses"`
-	Cycles     [][]string          `json:"cycles"`
-	Files      map[string]string   `json:"-"`
+	// TextStatuses are the string order statuses (orderStatusSchema and friends), never null.
+	TextStatuses []string `json:"textStatuses"`
+	// Skipped lists src-relative files that could not be read.
+	Skipped []string          `json:"skipped,omitempty"`
+	Cycles  [][]string        `json:"cycles"`
+	Files   map[string]string `json:"-"`
 }
 
 func gitCommit(dir string) string {
@@ -42,7 +46,7 @@ func gitCommit(dir string) string {
 func ScanApp(app config.App) *AppScan {
 	s := &AppScan{App: app.ID, Label: app.Label, Audience: app.Audience, ScannedAt: time.Now().UTC(),
 		Modules: map[string]*Module{}, Routes: map[string]*Route{}, APIDomains: map[string][]string{},
-		Statuses: []Status{}, Cycles: [][]string{}}
+		Statuses: []Status{}, TextStatuses: []string{}, Cycles: [][]string{}}
 	g, err := BuildGraph(app, RouteNamer(app))
 	if err != nil {
 		s.Error = err.Error()
@@ -50,6 +54,8 @@ func ScanApp(app config.App) *AppScan {
 	}
 	s.Commit = gitCommit(app.Path)
 	s.Files = g.Files
+	s.Skipped = g.Skipped
+	s.TextStatuses = textStatuses(g.Files)
 	s.Modules = g.Modules
 	for name, files := range g.RouteFiles {
 		s.Routes[name] = &Route{Files: files, Mods: g.RouteImports[name]}

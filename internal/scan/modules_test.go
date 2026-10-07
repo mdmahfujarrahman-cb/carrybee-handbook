@@ -85,7 +85,8 @@ func TestBuildGraphModulesAndEdges(t *testing.T) {
 	if g.Modules["orders"].Shared["lib/api-client"] == 0 {
 		t.Fatalf("shared = %v", g.Modules["orders"].Shared)
 	}
-	if g.Modules["orders"].Files != 2 {
+	// list.tsx, services/api.ts and types/index.ts (the text status fixture)
+	if g.Modules["orders"].Files != 3 {
 		t.Fatalf("files = %d", g.Modules["orders"].Files)
 	}
 

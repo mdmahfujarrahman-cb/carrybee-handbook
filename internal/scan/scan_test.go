@@ -105,8 +105,9 @@ func TestScanAllMissingApp(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.Contains(string(raw), `"cycles":[]`) || !strings.Contains(string(raw), `"statuses":[]`) {
-		t.Fatalf("empty cycles/statuses must marshal as []: %s", raw)
+	if !strings.Contains(string(raw), `"cycles":[]`) || !strings.Contains(string(raw), `"statuses":[]`) ||
+		!strings.Contains(string(raw), `"textStatuses":[]`) {
+		t.Fatalf("empty cycles/statuses/textStatuses must marshal as []: %s", raw)
 	}
 }
 

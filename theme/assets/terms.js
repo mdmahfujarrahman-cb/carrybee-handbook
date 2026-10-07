@@ -24,14 +24,21 @@
   const whereOf = t => t.where || {};
   let cat = 'all';
 
-  // Highlights matches of q, but never inside the word "carrybee".
+  // Highlights matches of q, but never inside the word "carrybee". Matching runs on the raw
+  // text and each segment is escaped on its own, so a query never matches inside an entity.
   function mark(text, q) {
-    const safe = esc(text);
-    if (!q) return safe;
-    return safe.replace(new RegExp(reEsc(esc(q)), 'ig'), (m, at, all) => {
-      const word = all.slice(0, at).match(/[a-z]*$/i)[0] + m + all.slice(at + m.length).match(/^[a-z]*/i)[0];
-      return word.toLowerCase() === 'carrybee' ? m : '<mark>' + m + '</mark>';
-    });
+    const raw = String(text ?? '');
+    if (!q) return esc(raw);
+    let out = '';
+    let last = 0;
+    for (const m of raw.matchAll(new RegExp(reEsc(q), 'ig'))) {
+      const at = m.index;
+      const word = raw.slice(0, at).match(/[a-z]*$/i)[0] + m[0] + raw.slice(at + m[0].length).match(/^[a-z]*/i)[0];
+      out += esc(raw.slice(last, at));
+      out += word.toLowerCase() === 'carrybee' ? esc(m[0]) : '<mark>' + esc(m[0]) + '</mark>';
+      last = at + m[0].length;
+    }
+    return out + esc(raw.slice(last));
   }
 
   // -1 = no match, 0 = every word matches the name or a code name, 1 = matches the definition only.

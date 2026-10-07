@@ -299,7 +299,7 @@
     heads.forEach(h => io.observe(h));
   }
 
-  /* ---------- Sync pill (deployed mode; local mode is added by the Sync server task) ---------- */
+  /* ---------- Sync pill: static copy (deployed or file://) ---------- */
   function relTime(iso) {
     const secs = Math.max(0, (Date.now() - new Date(iso).getTime()) / 1000);
     if (!Number.isFinite(secs)) return 'at an unknown time';
@@ -310,6 +310,8 @@
   }
 
   const shortCommit = c => (c ? c.slice(0, 8) : 'no commit');
+  const plural = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
+  const LOCAL = 'local';
 
   function syncPanelHTML(sync) {
     const built = new Date(sync.builtAt);
@@ -322,7 +324,7 @@
       html += '<li' + (a.error ? ' class="err"' : '') + '><b>' + escapeHTML(a.label) + '</b><code>' +
         escapeHTML(shortCommit(a.commit)) + '</code><small>' + escapeHTML(detail) + '</small></li>';
     }
-    return html + '</ul><p class="foot">This site rebuilds automatically on every push.</p>';
+    return html + '</ul><p class="foot">This is a static copy. Run <code>make run</code> and click Sync to rebuild it from the current code.</p>';
   }
 
   function initSync() {
@@ -330,96 +332,164 @@
     const panel = $('#sync-panel');
     const sync = HB.sync;
     if (!pill || !panel || !sync) return;
-    const first = (sync.apps || [])[0];
     const text = $('.sync-text', pill);
-    text.innerHTML = 'Synced ' + escapeHTML(relTime(sync.builtAt)) +
-      (first ? ' · ' + escapeHTML(first.label) + ' <span class="mono">' + escapeHTML(shortCommit(first.commit)) + '</span>' : '');
+    const renderText = () => { text.textContent = 'Built ' + relTime(sync.builtAt); };
+    renderText();
+    setInterval(() => { if (pill.dataset.mode !== LOCAL) renderText(); }, 30000);
     panel.innerHTML = syncPanelHTML(sync);
     const setOpen = open => {
       panel.hidden = !open;
       pill.setAttribute('aria-expanded', String(open));
     };
     pill.addEventListener('click', () => {
-      if (pill.dataset.mode !== 'local') setOpen(panel.hidden);
+      if (pill.dataset.mode !== LOCAL) setOpen(panel.hidden);
     });
     document.addEventListener('click', e => {
-      if (!panel.hidden && !e.target.closest('.sync')) setOpen(false);
+      if (pill.dataset.mode !== LOCAL && !panel.hidden && !e.target.closest('.sync')) setOpen(false);
     });
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && !panel.hidden) { setOpen(false); pill.focus(); }
+      if (e.key === 'Escape' && !panel.hidden && pill.dataset.mode !== LOCAL) { setOpen(false); pill.focus(); }
     });
   }
 
   /* ---------- Local Sync (only when served by `handbook serve`) ---------- */
-  const plural = (n, word) => n + ' ' + word + (n === 1 ? '' : 's');
-
-  function summariseDiff(diff, missing, terms) {
-    const parts = (diff || []).map(d => {
-      const bits = [];
-      const add = (n, sign, word) => { if (n) bits.push(sign + plural(n, word)); };
-      add((d.addedModules || []).length, '+', 'module');
-      add((d.removedModules || []).length, '-', 'module');
-      add((d.addedPages || []).length, '+', 'page');
-      add((d.removedPages || []).length, '-', 'page');
-      add((d.addedApis || []).length, '+', 'API');
-      add((d.removedApis || []).length, '-', 'API');
-      return d.app + ': ' + bits.join(', ');
-    });
-    let msg = parts.length ? parts.join('; ') : 'Already up to date';
-    if ((missing || []).length) msg += ' \u00b7 ' + missing.length + ' need descriptions';
-    if ((terms || []).length) msg += ' \u00b7 ' + plural(terms.length, 'term') + ' newly linked';
-    return msg;
+  // "hive: 3 new commits · 12 files changed" or "hive: up to date".
+  function appLine(a) {
+    const bits = [];
+    if (a.newCommits) bits.push(plural(a.newCommits, 'new commit'));
+    if (a.changedFiles) bits.push(plural(a.changedFiles, 'file') + ' changed');
+    if (!bits.length && a.currentCommit !== a.builtCommit) bits.push('now at ' + shortCommit(a.currentCommit));
+    return a.id + ': ' + (bits.length ? bits.join(' · ') : 'up to date');
   }
 
-  async function runSync(pill, text) {
-    const label = text.textContent;
-    pill.disabled = true;
-    pill.dataset.state = 'busy';
-    text.textContent = 'Syncing\u2026';
-    let reload = false;
-    try {
-      const res = await fetch(root + 'api/sync', { method: 'POST' });
-      const body = await res.json().catch(() => ({}));
-      if (res.status === 409) {
-        toast('A sync is already running');
-      } else if (res.ok && body.ok) {
-        toast(summariseDiff(body.diff, body.missing, body.terms), 1500);
-        reload = true;
-        setTimeout(() => location.reload(), 1500);
-      } else {
-        pill.dataset.state = 'error';
-        toast('Sync failed: ' + (body.error || res.statusText || 'unknown error'), 8000);
-      }
-    } catch (err) {
-      pill.dataset.state = 'error';
-      toast('Sync failed: ' + err.message, 8000);
-    }
-    if (!reload) {
-      pill.disabled = false;
-      text.textContent = label;
-      if (pill.dataset.state === 'busy') delete pill.dataset.state;
-    }
+  function diffLine(d) {
+    const bits = [];
+    const add = (list, sign, word) => { if ((list || []).length) bits.push(sign + plural(list.length, word)); };
+    add(d.addedModules, '+', 'module');
+    add(d.removedModules, '−', 'module');
+    add(d.addedPages, '+', 'page');
+    add(d.removedPages, '−', 'page');
+    add(d.addedApis, '+', 'API domain');
+    add(d.removedApis, '−', 'API domain');
+    return d.app + ': ' + bits.join(', ');
   }
 
-  async function initLocalSync() {
+  const listHTML = items => '<ul>' + items.map(i => '<li>' + escapeHTML(i) + '</li>').join('') + '</ul>';
+
+  function sectionHTML(title, items, empty) {
+    const head = '<h3>' + escapeHTML(title) + (items.length ? ' <span>' + items.length + '</span>' : '') + '</h3>';
+    return head + (items.length ? listHTML(items) : '<p class="none">' + escapeHTML(empty) + '</p>');
+  }
+
+  // Groups "needs description" lines by the data file named in each line.
+  function missingHTML(missing) {
+    if (!missing.length) return '';
+    const byFile = new Map();
+    for (const m of missing) {
+      const file = (/data\/[a-z-]+\.json/.exec(m) || ['other'])[0];
+      if (!byFile.has(file)) byFile.set(file, []);
+      byFile.get(file).push(m);
+    }
+    let html = '<h3>Needs description <span>' + missing.length + '</span></h3>';
+    for (const [file, items] of byFile) html += '<p class="file">Edit <code>' + escapeHTML(file) + '</code></p>' + listHTML(items);
+    return html;
+  }
+
+  function resultHTML(body, apps) {
+    const secs = typeof body.seconds === 'number' ? ' in ' + body.seconds.toFixed(1) + ' s' : '';
+    return '<div class="sp-head"><h2 id="sync-result-title" tabindex="-1">Sync finished' + escapeHTML(secs) + '</h2>' +
+      '<button type="button" class="icon-btn sp-close" data-close-sync aria-label="Close sync results">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
+      sectionHTML('App code', apps.map(appLine), 'No apps configured.') +
+      sectionHTML('Changes found', (body.diff || []).map(diffLine), 'No modules, pages or API domains changed.') +
+      sectionHTML('Terms newly linked', body.terms || [], 'No new term links.') +
+      ((body.warnings || []).length ? sectionHTML('Warnings', body.warnings, '') : '') +
+      missingHTML(body.missing || []) +
+      '<button type="button" class="sp-reload" data-reload>Reload to see changes</button>';
+  }
+
+  function initLocalSync() {
     const pill = $('#sync-pill');
-    if (!pill || !location.protocol.startsWith('http')) return;
-    try {
-      const res = await fetch(root + 'api/status');
-      const status = res.ok ? await res.json() : null;
-      if (!status || status.mode !== 'local') return;
-    } catch (_) {
-      return; // deployed or file:// without an API: keep the read-only pill
-    }
-    const text = $('.sync-text', pill);
     const panel = $('#sync-panel');
-    if (panel) panel.hidden = true;
-    pill.dataset.mode = 'local';
-    pill.setAttribute('aria-expanded', 'false');
-    pill.removeAttribute('aria-controls');
-    pill.title = 'Rescan the code and rebuild this handbook';
-    text.textContent = 'Sync';
-    pill.addEventListener('click', () => { if (!pill.disabled) runSync(pill, text); });
+    if (!pill || !panel || !location.protocol.startsWith('http')) return;
+    const text = $('.sync-text', pill);
+    const state = { builtAt: null, stale: false, apps: [] };
+
+    const renderPill = () => {
+      if (!state.builtAt || pill.getAttribute('aria-busy') === 'true') return;
+      pill.dataset.state = state.stale ? 'stale' : 'fresh';
+      text.textContent = (state.stale ? 'Update available' : 'Up to date') + ' · synced ' + relTime(state.builtAt);
+      pill.title = 'Click to rescan the code and rebuild this handbook.\n' + state.apps.map(appLine).join('\n');
+    };
+
+    const refresh = async () => {
+      try {
+        const res = await fetch(root + 'api/status');
+        const status = res.ok ? await res.json() : null;
+        if (!status || status.mode !== LOCAL) return false;
+        Object.assign(state, { builtAt: status.builtAt, stale: !!status.stale, apps: status.apps || [] });
+        renderPill();
+        return true;
+      } catch (err) {
+        console.warn('Sync status unavailable; keeping the last known state.', err);
+        return false;
+      }
+    };
+
+    const closePanel = () => { panel.hidden = true; pill.focus(); };
+    const showResult = body => {
+      panel.setAttribute('aria-labelledby', 'sync-result-title');
+      panel.removeAttribute('aria-label');
+      panel.innerHTML = resultHTML(body, state.apps);
+      panel.hidden = false;
+      $('#sync-result-title', panel)?.focus();
+    };
+    panel.addEventListener('click', e => {
+      if (e.target.closest('[data-close-sync]')) closePanel();
+      else if (e.target.closest('[data-reload]')) location.reload();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !panel.hidden && pill.dataset.mode === LOCAL) closePanel();
+    });
+
+    const runSync = async () => {
+      pill.disabled = true;
+      pill.setAttribute('aria-busy', 'true');
+      pill.dataset.state = 'busy';
+      text.textContent = 'Syncing…';
+      try {
+        const res = await fetch(root + 'api/sync', { method: 'POST' });
+        const body = await res.json().catch(() => ({}));
+        if (res.status === 409) toast('A sync is already running');
+        else if (res.ok && body.ok) {
+          pill.removeAttribute('aria-busy');
+          await refresh();
+          showResult(body);
+        } else {
+          toast('Sync failed: ' + (body.error || res.statusText || 'unknown error'), 8000);
+          pill.dataset.state = 'error';
+        }
+      } catch (err) {
+        toast('Sync failed: ' + err.message, 8000);
+        pill.dataset.state = 'error';
+      }
+      pill.disabled = false;
+      pill.removeAttribute('aria-busy');
+      if (pill.dataset.state !== 'error') renderPill();
+    };
+
+    refresh().then(local => {
+      if (!local) return; // static copy or file://: keep the read-only pill
+      panel.hidden = true;
+      pill.dataset.mode = LOCAL;
+      pill.removeAttribute('aria-expanded');
+      pill.removeAttribute('aria-controls');
+      pill.addEventListener('click', () => { if (!pill.disabled) runSync(); });
+      setInterval(refresh, 60000);
+      setInterval(renderPill, 30000);
+      addEventListener('focus', refresh);
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') refresh(); });
+    });
   }
 
   /* ---------- Toast (used by local Sync) ---------- */
@@ -432,7 +502,6 @@
     toast.timer = setTimeout(() => { el.hidden = true; }, ms || 4000);
   }
 
-  HB.ui = { toast, relTime };
   initTheme();
   initDrawer();
   initSearch();

@@ -15,13 +15,15 @@ The same status appears in two forms.
 | Form | Where it is defined | Who sees it |
 | --- | --- | --- |
 | A number, 1 to 45 plus 53 | `TransferStatus` enum in `hive/src/lib/constants.ts`, and the `transferStatus` object in `aladdin/src/lib/constants.ts` | hive screens, filters and API payloads |
-| A text value such as `received_at_lmh` | `orderStatusSchema` in `src/modules/orders/types` in each app | The merchant panel and its filters |
+| A text value such as `received_at_lmh` | `orderStatusSchema` in `src/modules/orders/types` in hive and aladdin | The merchant panel and its filters |
 
 The text list is shorter than the number list: aladdin has no text value for each separate hop between hubs, only broader ones such as `sorted` and `in_transit`. The backend does the mapping (not confirmed in code, since the backend is not in these repos).
 
 Numbers 46 to 52 are not used. Hive's enum also has commented-out lines with an older numbering, where 36 to 45 meant different things. Ignore those comments and trust the live enum.
 
 ## The main path
+
+{{diagram "statuses"}}
 
 On a normal delivery the number goes up step by step: {{status 1}}, {{status 2}}, {{status 3}}, {{status 4}}, {{status 7}}, then through sorting ({{status 9}}, {{status 11}}, or the sub-sort pair {{status 38}} and {{status 39}}), {{status 13}}, {{status 14}} and finally {{status 15}}.
 

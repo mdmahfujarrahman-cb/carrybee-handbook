@@ -1,5 +1,4 @@
 {{define "app.html"}}{{template "head" .}}{{template "top" .}}
-<link rel="stylesheet" href="{{.Root}}assets/explorer.css">
 {{with .Extra}}
 <div class="page page-wide app-page">
   <article class="article">
@@ -80,6 +79,7 @@
             <div id="net-view" hidden>
               <h2>Module network</h2>
               <p class="hint">All <span id="n-mods"></span> modules and their imports of each other. Bigger circle means more modules depend on it. Red marks a circular import. Click a module to open its flow.</p>
+              <p class="callout warning" id="net-offline" hidden>The network view needs an internet connection (d3 from CDN). The other views work offline.</p>
               <svg id="net" role="img" aria-label="Module import network"></svg>
             </div>
           </section>

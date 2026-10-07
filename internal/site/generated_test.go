@@ -31,6 +31,11 @@ func TestGeneratedPages(t *testing.T) {
 			t.Errorf("statuses page missing text status table part %s", want)
 		}
 	}
+	for page, title := range map[string]string{statusesOut: "st-title", "business/how-carrybee-works.html": "mw-title"} {
+		if html := read(page); !strings.Contains(html, `<figure class="diagram">`) || !strings.Contains(html, `<title id="`+title+`">`) {
+			t.Errorf("%s is missing its diagram %s", page, title)
+		}
+	}
 	if terms := read("terms.html"); !strings.Contains(terms, "data/terms.js") {
 		t.Errorf("terms page must load data/terms.js")
 	}

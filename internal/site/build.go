@@ -7,6 +7,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -130,7 +131,22 @@ func (s *site) resolver(from string) content.Resolver {
 		},
 		StatusName: func(id int) (string, bool) { n, ok := statuses[id]; return n, ok },
 		ModuleHref: func(app, id string) string { return Rel(from, moduleAnchor(app, id)) },
+		Diagram:    diagram,
 	}
+}
+
+var diagramNameRE = regexp.MustCompile(`^[a-z0-9-]+$`)
+
+// diagram returns the inline SVG figure theme/diagrams/<name>.html.
+func diagram(name string) (string, bool) {
+	if !diagramNameRE.MatchString(name) {
+		return "", false
+	}
+	b, err := theme.FS.ReadFile("diagrams/" + name + ".html")
+	if err != nil {
+		return "", false
+	}
+	return string(b), true
 }
 
 type syncApp struct {

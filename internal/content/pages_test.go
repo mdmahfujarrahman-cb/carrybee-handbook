@@ -15,6 +15,9 @@ func testResolver() Resolver {
 		},
 		StatusName: func(id int) (string, bool) { return "Delivered", id == 15 },
 		ModuleHref: func(app, id string) string { return "../apps/" + app + ".html#mod." + id },
+		Diagram: func(name string) (string, bool) {
+			return "<svg viewBox=\"0 0 10 10\"><title>T</title>\n\n<rect/></svg>", name == "flow"
+		},
 	}
 }
 
@@ -90,5 +93,19 @@ func TestHeadingsGetIDs(t *testing.T) {
 	}
 	if !strings.Contains(html, `<h2 id="money-flow">Money flow</h2>`) {
 		t.Fatalf("heading has no id: %s", html)
+	}
+}
+
+func TestDiagramShortcode(t *testing.T) {
+	html, err := Render("Before.\n\n{{diagram \"flow\"}}\n\nAfter.", testResolver())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(html, `<figure class="diagram"><svg viewBox="0 0 10 10"><title>T</title>`+"\n"+`<rect/></svg></figure>`) {
+		t.Fatalf("diagram not embedded as one HTML block: %s", html)
+	}
+	problems := Check([]Page{{Path: "p", Refs: extractRefs(`{{diagram "flow"}} {{diagram "nope"}}`)}}, testResolver())
+	if len(problems) != 1 || !strings.Contains(problems[0], `unknown diagram "nope"`) {
+		t.Fatalf("problems = %v", problems)
 	}
 }

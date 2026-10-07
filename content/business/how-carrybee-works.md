@@ -93,6 +93,8 @@ The order of steps follows the `TransferStatus` numbers in `hive/src/lib/constan
 
 Cash is collected in the field and moves upward until it is split between Carrybee and the seller. Most of hive's finance modules check one link in this chain.
 
+{{diagram "money"}}
+
 | Step | What happens | Where |
 | --- | --- | --- |
 | 1. Field | The rider collects COD. It is counted note by note when the delivery run closes. | {{module "hive" "delivery-run"}} |
@@ -115,6 +117,8 @@ Money also flows the other way. Prepaid and postpaid businesses can owe Carrybee
 ## Network and geography
 
 Two trees describe the physical network. Most ops screens filter by one of their levels, and a hive user is scoped to a hub, cluster or region.
+
+{{diagram "network"}}
 
 | Organisation tree | Delivery-area tree |
 | --- | --- |

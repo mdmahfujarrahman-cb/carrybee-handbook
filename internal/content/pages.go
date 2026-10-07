@@ -12,10 +12,11 @@ import (
 )
 
 const (
-	kindTerm   = "term"
-	kindModule = "module"
-	kindStatus = "status"
-	fmFence    = "---\n"
+	kindTerm    = "term"
+	kindModule  = "module"
+	kindStatus  = "status"
+	kindDiagram = "diagram"
+	fmFence     = "---\n"
 )
 
 type Ref struct{ Kind, App, ID string }
@@ -29,7 +30,7 @@ type Page struct {
 	Refs  []Ref
 }
 
-var shortcodeRE = regexp.MustCompile(`\{\{\s*(term|module|status)\s+([^}]*)\}\}`)
+var shortcodeRE = regexp.MustCompile(`\{\{\s*(term|module|status|diagram)\s+([^}]*)\}\}`)
 var argRE = regexp.MustCompile(`"([^"]*)"|(\d+)`)
 
 func shortcodeArgs(raw string) []string {

@@ -9,7 +9,6 @@
 }
 
 /* ---------- Overview header ---------- */
-.page-wide.app-page { max-width: 1480px; }
 .app-head { margin-bottom: 22px; }
 .app-badge { background: var(--brand-soft); color: var(--ink); }
 .app-badge.app-ops { background: var(--ops-soft); color: var(--ops); }

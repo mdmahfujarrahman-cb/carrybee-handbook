@@ -355,7 +355,11 @@
 
   let netBuilt = false;
   function buildNet() {
-    if (netBuilt || typeof d3 === 'undefined') return;
+    if (netBuilt) return;
+    if (typeof d3 === 'undefined') {
+      document.getElementById('net-offline').hidden = false;
+      return;
+    }
     netBuilt = true;
     const svg = d3.select('#net');
     const { width, height } = svg.node().getBoundingClientRect();

@@ -19,6 +19,8 @@ type Resolver struct {
 	ModuleDesc func(app, id string) (Desc, bool)
 	StatusName func(id int) (string, bool)
 	ModuleHref func(app, id string) string
+	// Diagram returns the inline SVG markup of a named diagram.
+	Diagram func(name string) (string, bool)
 }
 
 // md renders GFM with raw HTML allowed and an id on every heading, so links such as
@@ -69,6 +71,21 @@ func expandStatus(args []string, r Resolver) string {
 	return fmt.Sprintf(`<span class="pill st %s">%d %s</span>`, statusClass(id), id, html.EscapeString(name))
 }
 
+// expandDiagram embeds an inline SVG as one HTML block: blank lines would end the block in Markdown.
+func expandDiagram(args []string, r Resolver) string {
+	svg, ok := r.Diagram(args[0])
+	if !ok {
+		return fmt.Sprintf(`<p class="callout warning">Missing diagram %s</p>`, html.EscapeString(args[0]))
+	}
+	var lines []string
+	for _, l := range strings.Split(strings.TrimSpace(svg), "\n") {
+		if strings.TrimSpace(l) != "" {
+			lines = append(lines, l)
+		}
+	}
+	return `<figure class="diagram">` + strings.Join(lines, "\n") + `</figure>`
+}
+
 func expandOne(m string, r Resolver) string {
 	parts := shortcodeRE.FindStringSubmatch(m)
 	args := shortcodeArgs(parts[2])
@@ -79,6 +96,8 @@ func expandOne(m string, r Resolver) string {
 		return expandModule(args, r)
 	case parts[1] == kindStatus && len(args) >= 1:
 		return expandStatus(args, r)
+	case parts[1] == kindDiagram && len(args) >= 1:
+		return expandDiagram(args, r)
 	}
 	return m
 }

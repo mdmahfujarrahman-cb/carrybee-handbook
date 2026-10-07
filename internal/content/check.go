@@ -20,6 +20,9 @@ func resolves(ref Ref, r Resolver) bool {
 		}
 		_, ok := r.StatusName(id)
 		return ok
+	case kindDiagram:
+		_, ok := r.Diagram(ref.ID)
+		return ok
 	}
 	return false
 }

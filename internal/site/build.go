@@ -321,23 +321,52 @@ func (s *site) homeExtra(cur string) map[string]any {
 		"Courier101": Rel(cur, "business/courier-101.html"), "HowCarrybee": Rel(cur, "business/how-carrybee-works.html")}
 }
 
+// topLevelGroup is the explorer's group for routes outside a (group) folder.
+const topLevelGroup = "top level"
+
+// routeGroup mirrors explorer.js routeLabel: "(oms)/orders" is in group "oms".
+func routeGroup(route string) string {
+	if strings.HasPrefix(route, "(") {
+		if end := strings.Index(route, ")"); end > 1 {
+			return route[1:end]
+		}
+	}
+	return topLevelGroup
+}
+
+func (s *site) missingGroups(id string) {
+	seen := map[string]bool{}
+	for r := range s.scans[id].Routes {
+		g := routeGroup(r)
+		if seen[g] {
+			continue
+		}
+		seen[g] = true
+		if _, ok := s.data.Groups[id][g]; !ok {
+			s.res.Missing = append(s.res.Missing, "page group "+id+"/"+g+" has no description in data/groups.json")
+		}
+	}
+}
+
 func (s *site) collectMissing() {
 	for _, id := range sortedKeys(s.scans) {
-		for m := range s.scans[id].Modules {
+		sc := s.scans[id]
+		for m := range sc.Modules {
 			if _, ok := s.data.Modules[id][m]; !ok {
 				s.res.Missing = append(s.res.Missing, "module "+id+"/"+m+" has no description in data/modules.json")
 			}
 		}
-		if s.scans[id].Error != "" {
-			s.res.Warnings = append(s.res.Warnings, id+": not scanned: "+s.scans[id].Error)
+		s.missingGroups(id)
+		if sc.Error != "" {
+			s.res.Warnings = append(s.res.Warnings, id+": not scanned: "+sc.Error)
 		}
-		for _, p := range s.scans[id].Skipped {
+		for _, p := range sc.Skipped {
 			s.res.Warnings = append(s.res.Warnings, id+": skipped unreadable "+p)
 		}
 	}
 	for _, t := range s.terms {
 		if len(t.Where) == 0 {
-			s.res.Missing = append(s.res.Missing, "term "+t.ID+" is not linked to any module (add a pin)")
+			s.res.Missing = append(s.res.Missing, "term "+t.ID+" is not linked to any module (add a pin in data/term-pins.json)")
 		}
 	}
 	sort.Strings(s.res.Missing)

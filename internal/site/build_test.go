@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"reflect"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"testing"
@@ -214,5 +215,28 @@ func TestCheckLinksSkipsTemplateExpressions(t *testing.T) {
 	got := CheckLinks(dir)
 	if len(got) != 1 || got[0] != "index.html -> gone.html" {
 		t.Fatalf("CheckLinks = %v, want only gone.html", got)
+	}
+}
+
+func TestMissingNamesTheFileToEdit(t *testing.T) {
+	s := &site{res: &Result{},
+		data: &content.Data{Modules: map[string]map[string]content.Desc{}, Groups: map[string]map[string]content.Desc{
+			"hive": {"top level": {}},
+		}},
+		scans: map[string]*scan.AppScan{"hive": {
+			Modules: map[string]*scan.Module{"orders": {}},
+			Routes:  map[string]*scan.Route{"(oms)/orders": {}, "dashboard": {}},
+		}},
+		terms: []content.Term{{ID: "cod"}},
+	}
+	s.collectMissing()
+	want := []string{
+		"page group hive/oms has no description in data/groups.json",
+		"module hive/orders has no description in data/modules.json",
+		"term cod is not linked to any module (add a pin in data/term-pins.json)",
+	}
+	sort.Strings(want)
+	if !reflect.DeepEqual(s.res.Missing, want) {
+		t.Fatalf("missing = %q, want %q", s.res.Missing, want)
 	}
 }

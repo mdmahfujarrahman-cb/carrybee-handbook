@@ -39,11 +39,12 @@ func LinkTerms(terms []content.Term, scans map[string]*scan.AppScan, pins map[st
 }
 
 // countByModule counts regexp matches per module over the app's module sources.
-func countByModule(re *regexp.Regexp, s *scan.AppScan) map[string]int {
+// literal is the alias the regexp wraps; files without it are skipped before the (slow) regexp runs.
+func countByModule(re *regexp.Regexp, literal string, s *scan.AppScan) map[string]int {
 	found := map[string]int{}
 	for rel, text := range s.Files {
 		parts := strings.SplitN(rel, "/", 3)
-		if len(parts) < 3 || parts[0] != "modules" || s.Modules[parts[1]] == nil {
+		if len(parts) < 3 || parts[0] != "modules" || s.Modules[parts[1]] == nil || !strings.Contains(text, literal) {
 			continue
 		}
 		if n := len(re.FindAllStringIndex(text, -1)); n > 0 {
@@ -60,7 +61,7 @@ func rankModules(aka []string, s *scan.AppScan) []string {
 			continue
 		}
 		re := regexp.MustCompile(`(^|[^A-Za-z0-9_])` + regexp.QuoteMeta(alias) + `($|[^A-Za-z0-9_])`)
-		found := countByModule(re, s)
+		found := countByModule(re, alias, s)
 		if len(found) == 0 || len(found) > maxSpread {
 			continue
 		}

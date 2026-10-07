@@ -10,6 +10,8 @@ import (
 	"carrybee/handbook/internal/scan"
 )
 
+const kindStatus = "status"
+
 // SearchEntry is one row of the ⌘K search index.
 type SearchEntry struct {
 	Type  string `json:"type"` // page | term | module | route | status | api
@@ -40,15 +42,15 @@ func appEntries(a string, s *scan.AppScan, data *content.Data) []SearchEntry {
 	var out []SearchEntry
 	for _, m := range sortedKeys(s.Modules) {
 		d := data.Modules[a][m]
-		out = append(out, SearchEntry{"module", m, a + " · " + d.Title, "apps/" + a + ".html#mod." + m, d.Text})
+		out = append(out, SearchEntry{"module", m, a + " · " + d.Title, moduleAnchor(a, m), d.Text})
 	}
 	for _, r := range sortedKeys(s.Routes) {
-		out = append(out, SearchEntry{"route", r, a + " page", "apps/" + a + ".html", ""})
+		out = append(out, SearchEntry{"route", r, a + " page", appOut(a), ""})
 	}
 	for _, d := range sortedKeys(s.APIDomains) {
 		mods := s.APIDomains[d]
 		out = append(out, SearchEntry{"api", d, a + " · used by " + strconv.Itoa(len(mods)) + " modules",
-			"code/api-index.html#api." + a + "." + d, strings.Join(mods, " ")})
+			apiIndexOut + "#api." + a + "." + d, strings.Join(mods, " ")})
 	}
 	return out
 }
@@ -59,7 +61,7 @@ func searchIndex(pages []content.Page, terms []content.Term, data *content.Data,
 		out = append(out, SearchEntry{"page", p.Title, p.Summary, pageOut(p), p.Section})
 	}
 	for _, t := range terms {
-		out = append(out, SearchEntry{"term", t.Name, t.Def, "terms.html#t." + t.ID, strings.Join(t.Aka, " ")})
+		out = append(out, SearchEntry{"term", t.Name, t.Def, termAnchor(t.ID), strings.Join(t.Aka, " ")})
 	}
 	seenStatus := map[int]bool{}
 	for _, a := range sortedKeys(scans) {
@@ -71,7 +73,11 @@ func searchIndex(pages []content.Page, terms []content.Term, data *content.Data,
 			}
 			seenStatus[st.ID] = true
 			id := strconv.Itoa(st.ID)
-			out = append(out, SearchEntry{"status", id + " " + st.Name, "order status", "business/statuses.html#s." + id, ""})
+			out = append(out, SearchEntry{kindStatus, id + " " + content.HumanStatus(st.Name), "order status",
+				statusesOut + "#s." + id, st.Name})
+		}
+		for _, v := range s.TextStatuses {
+			out = append(out, SearchEntry{kindStatus, content.HumanText(v), a + " text status", statusesOut + "#" + textStatusesID, v})
 		}
 	}
 	return out

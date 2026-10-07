@@ -18,3 +18,12 @@ func TestHumanStatus(t *testing.T) {
 		}
 	}
 }
+
+func TestHumanText(t *testing.T) {
+	cases := map[string]string{"on_the_way_to_lmh": "On the way to lmh", "delivered": "Delivered", "": ""}
+	for in, want := range cases {
+		if got := HumanText(in); got != want {
+			t.Errorf("HumanText(%q) = %q, want %q", in, got, want)
+		}
+	}
+}

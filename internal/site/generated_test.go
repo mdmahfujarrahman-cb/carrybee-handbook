@@ -25,6 +25,12 @@ func TestGeneratedPages(t *testing.T) {
 	if st := read("business/statuses.html"); !strings.Contains(st, `id="s.15"`) || !strings.Contains(st, "Delivered") {
 		t.Errorf("statuses table missing 15 Delivered")
 	}
+	st := read("business/statuses.html")
+	for _, want := range []string{`id="text-statuses"`, `<code>received_at_lmh</code>`, "Received at lmh"} {
+		if !strings.Contains(st, want) {
+			t.Errorf("statuses page missing text status table part %s", want)
+		}
+	}
 	if terms := read("terms.html"); !strings.Contains(terms, "data/terms.js") {
 		t.Errorf("terms page must load data/terms.js")
 	}

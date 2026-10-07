@@ -28,9 +28,17 @@ func HumanStatus(name string) string {
 		cur = append(cur, unicode.ToLower(r))
 	}
 	flush()
-	text := strings.Join(words, " ")
-	if text == "" {
-		return text
+	return capitalise(strings.Join(words, " "))
+}
+
+// HumanText turns a text status such as "on_the_way_to_lmh" into "On the way to lmh".
+func HumanText(value string) string {
+	return capitalise(strings.ReplaceAll(value, "_", " "))
+}
+
+func capitalise(s string) string {
+	if s == "" {
+		return s
 	}
-	return strings.ToUpper(text[:1]) + text[1:]
+	return strings.ToUpper(s[:1]) + s[1:]
 }

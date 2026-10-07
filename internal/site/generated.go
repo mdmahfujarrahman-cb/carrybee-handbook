@@ -11,7 +11,11 @@ import (
 	"carrybee/handbook/internal/content"
 )
 
-const statusesPath = "business/statuses"
+const (
+	statusesPath   = "business/statuses"
+	textStatusesID = "text-statuses"
+	tableClose     = `</tbody></table></div>`
+)
 
 func statusPhase(id int) string {
 	switch {
@@ -36,13 +40,13 @@ func statusPhase(id int) string {
 }
 
 func (s *site) writeTerms() error {
-	v := s.view("terms.html", "Courier terms")
+	v := s.view(termsOut, "Courier terms")
 	v.Section, v.Wide = "reference", true
 	b, err := renderTemplate("terms.html", v)
 	if err != nil {
 		return err
 	}
-	return s.write("terms.html", b)
+	return s.write(termsOut, b)
 }
 
 type apiRow struct {
@@ -86,7 +90,7 @@ func (s *site) writeGenerated() error {
 			tables = append(tables, s.apiTable(app.ID))
 		}
 	}
-	const out = "code/api-index.html"
+	const out = apiIndexOut
 	v := s.view(out, "API domain index")
 	v.Section, v.Wide = sectionCode, true
 	v.Summary = "Every backend API domain each app calls, the modules that call it and the pages that load those modules."
@@ -144,18 +148,65 @@ func (s *site) statusRows(out string) string {
 	sort.Ints(ids)
 	terms := statusTerms(s.terms)
 	var rows strings.Builder
-	rows.WriteString(`<h2 id="all-statuses">Every status in code</h2><p>Read from <code>enum TransferStatus</code> at build time. Each row links to its entry in the courier terms.</p>`)
+	rows.WriteString(`<h2 id="all-statuses">Every status number in code</h2><p>The numbers, read from <code>enum TransferStatus</code> at build time. Each row links to its entry in the courier terms. The text values are in the <a href="#text-statuses">next table</a>.</p>`)
 	rows.WriteString(`<div class="table-wrap"><table class="status-table"><thead><tr><th>#</th><th>Status</th><th>Name in code</th><th>Phase</th><th>Term</th></tr></thead><tbody>`)
 	for _, id := range ids {
 		term := "–"
 		if t, ok := terms[id]; ok {
-			term = fmt.Sprintf(`<a href="%s">%s</a>`, template.HTMLEscapeString(Rel(out, "terms.html#t."+t.ID)), template.HTMLEscapeString(t.Name))
+			term = fmt.Sprintf(`<a href="%s">%s</a>`, template.HTMLEscapeString(Rel(out, termAnchor(t.ID))), template.HTMLEscapeString(t.Name))
 		}
 		fmt.Fprintf(&rows, `<tr id="s.%d"><td class="num">%d</td><td>%s</td><td><code>%s</code></td><td>%s</td><td>%s</td></tr>`,
 			id, id, template.HTMLEscapeString(content.HumanStatus(seen[id])), template.HTMLEscapeString(seen[id]), statusPhase(id), term)
 	}
-	rows.WriteString(`</tbody></table></div>`)
+	rows.WriteString(tableClose)
 	return rows.String()
+}
+
+// textStatusRows renders the "Text statuses by app" table: every orderStatusSchema value
+// (and the other order status enums) with the apps that define it.
+func (s *site) textStatusRows() string {
+	var apps []string
+	has := map[string]map[string]bool{}
+	var values []string
+	for _, a := range s.cfg.Apps {
+		sc := s.scans[a.ID]
+		if sc == nil || len(sc.TextStatuses) == 0 {
+			continue
+		}
+		apps = append(apps, a.ID)
+		for _, v := range sc.TextStatuses {
+			if has[v] == nil {
+				has[v] = map[string]bool{}
+				values = append(values, v)
+			}
+			has[v][a.ID] = true
+		}
+	}
+	var b strings.Builder
+	fmt.Fprintf(&b, `<h2 id="%s">Text statuses by app</h2>`, textStatusesID)
+	if len(apps) == 0 {
+		b.WriteString(`<p>No app defines an <code>orderStatusSchema</code> text status list.</p>`)
+		return b.String()
+	}
+	b.WriteString(`<p>The text values, read at build time from <code>orderStatusSchema</code> and the other order status <code>z.enum</code> lists. Commented-out values are left out.</p>`)
+	b.WriteString(`<div class="table-wrap"><table class="status-table"><thead><tr><th>Text value</th><th>Reads as</th>`)
+	for _, a := range apps {
+		fmt.Fprintf(&b, `<th>%s</th>`, template.HTMLEscapeString(a))
+	}
+	b.WriteString(`</tr></thead><tbody>`)
+	for _, v := range values {
+		fmt.Fprintf(&b, `<tr><td><code>%s</code></td><td>%s</td>`, template.HTMLEscapeString(v), template.HTMLEscapeString(content.HumanText(v)))
+		for _, a := range apps {
+			mark := `<span class="none" aria-label="no">–</span>`
+			if has[v][a] {
+				mark = "yes"
+			}
+			b.WriteString("<td>" + mark + "</td>")
+		}
+		b.WriteString("</tr>")
+	}
+	b.WriteString(tableClose)
+	return b.String()
 }
 
 // appendStatusTable re-renders business/statuses.html with a generated table after the hand-written body.
@@ -175,14 +226,14 @@ func (s *site) appendStatusTable() error {
 			siblings = append(siblings, p)
 		}
 	}
-	out := statusesPath + ".html"
+	out := statusesOut
 	body, err := content.Render(page.Body, s.resolver(out))
 	if err != nil {
 		return err
 	}
 	v := s.view(out, page.Title)
 	v.Section, v.Level, v.Summary = page.Section, page.Level, page.Summary
-	v.Body = template.HTML(body + s.statusRows(out))
+	v.Body = template.HTML(body + s.statusRows(out) + s.textStatusRows())
 	prevNext(&v, *page, siblings)
 	b, err := renderTemplate("article.html", v)
 	if err != nil {

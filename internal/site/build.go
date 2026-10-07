@@ -31,7 +31,19 @@ const (
 	sectionCode  = "code"
 	sectionRoles = "roles"
 	homeOut      = "index.html"
+	termsOut     = "terms.html"
+	apiIndexOut  = "code/api-index.html"
+	statusesOut  = statusesPath + ".html"
 )
+
+// appOut is the output path of an app's map page.
+func appOut(id string) string { return "apps/" + id + ".html" }
+
+// termAnchor links to one term on the courier terms page.
+func termAnchor(id string) string { return termsOut + "#t." + id }
+
+// moduleAnchor links to one module in its app map.
+func moduleAnchor(app, id string) string { return appOut(app) + "#mod." + id }
 
 var sectionOrder = []struct{ ID, Title string }{
 	{"business", "Business"}, {sectionCode, "Code"}, {sectionRoles, "Roles"},
@@ -117,7 +129,7 @@ func (s *site) resolver(from string) content.Resolver {
 			return s.data.Modules[app][id], true
 		},
 		StatusName: func(id int) (string, bool) { n, ok := statuses[id]; return n, ok },
-		ModuleHref: func(app, id string) string { return Rel(from, "apps/"+app+".html#mod."+id) },
+		ModuleHref: func(app, id string) string { return Rel(from, moduleAnchor(app, id)) },
 	}
 }
 
@@ -176,7 +188,7 @@ func (s *site) sectionNav(cur, id, title string) NavSection {
 		}
 	}
 	if id == sectionCode {
-		sec.Items = append(sec.Items, NavItem{"API domain index", Rel(cur, "code/api-index.html"), cur == "code/api-index.html"})
+		sec.Items = append(sec.Items, NavItem{"API domain index", Rel(cur, apiIndexOut), cur == apiIndexOut})
 	}
 	return sec
 }
@@ -189,12 +201,12 @@ func (s *site) nav(cur string) []NavSection {
 	}
 	apps := NavSection{Title: "Apps"}
 	for _, a := range s.cfg.Apps {
-		out := "apps/" + a.ID + ".html"
+		out := appOut(a.ID)
 		apps.Items = append(apps.Items, NavItem{a.Label, Rel(cur, out), out == cur})
 	}
 	secs = append(secs[:2], append([]NavSection{apps}, secs[2:]...)...)
 	secs = append(secs, NavSection{Title: "Reference", Items: []NavItem{
-		{"Courier terms", Rel(cur, "terms.html"), cur == "terms.html"},
+		{"Courier terms", Rel(cur, termsOut), cur == termsOut},
 	}})
 	return secs
 }
@@ -300,12 +312,12 @@ func (s *site) homeExtra(cur string) map[string]any {
 	var apps []AppStat
 	for _, a := range s.cfg.Apps {
 		if sc := s.scans[a.ID]; sc != nil {
-			apps = append(apps, AppStat{a.ID, a.Label, a.Audience, Rel(cur, "apps/"+a.ID+".html"),
+			apps = append(apps, AppStat{a.ID, a.Label, a.Audience, Rel(cur, appOut(a.ID)),
 				len(sc.Modules), len(sc.Routes), sc.Error})
 		}
 	}
 	return map[string]any{"Roles": roles, "Apps": apps, "Terms": len(s.terms),
-		"TermsHref":  Rel(cur, "terms.html"),
+		"TermsHref":  Rel(cur, termsOut),
 		"Courier101": Rel(cur, "business/courier-101.html"), "HowCarrybee": Rel(cur, "business/how-carrybee-works.html")}
 }
 
@@ -318,6 +330,9 @@ func (s *site) collectMissing() {
 		}
 		if s.scans[id].Error != "" {
 			s.res.Warnings = append(s.res.Warnings, id+": not scanned: "+s.scans[id].Error)
+		}
+		for _, p := range s.scans[id].Skipped {
+			s.res.Warnings = append(s.res.Warnings, id+": skipped unreadable "+p)
 		}
 	}
 	for _, t := range s.terms {

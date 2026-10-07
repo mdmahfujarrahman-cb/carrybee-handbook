@@ -35,7 +35,7 @@ func (s *site) writeApps() error {
 		if err := s.write("data/"+app.ID+".js", b); err != nil {
 			return err
 		}
-		out := "apps/" + app.ID + ".html"
+		out := appOut(app.ID)
 		v := s.view(out, app.Label)
 		v.Section, v.Wide = "apps", true
 		v.Extra = map[string]any{"App": app, "Scan": sc, "Data": Rel(out, "data/"+app.ID+".js")}

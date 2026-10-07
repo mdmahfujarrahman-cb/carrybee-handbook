@@ -107,8 +107,11 @@ func printResult(res *site.Result) {
 	for _, id := range sortedIDs(res.Scans) {
 		s := res.Scans[id]
 		status := "ok"
-		if s.Error != "" {
+		switch {
+		case s.Error != "":
 			status = "NOT SCANNED: " + s.Error
+		case len(s.Skipped) > 0:
+			status = fmt.Sprintf("ok, %d unreadable file(s) skipped", len(s.Skipped))
 		}
 		fmt.Printf("%-9s %3d modules %3d pages %2d cycles  %s  %s\n", id, len(s.Modules), len(s.Routes), len(s.Cycles), s.Commit, status)
 	}

@@ -23,9 +23,10 @@ type Ref struct{ Kind, App, ID string }
 type Page struct {
 	Path, Section, Title, Level, Summary string
 	Order                                int
-	Roles                                []string
-	Body                                 string
-	Refs                                 []Ref
+	// Roles is reserved for role filtering; it is parsed from front matter but not used yet.
+	Roles []string
+	Body  string
+	Refs  []Ref
 }
 
 var shortcodeRE = regexp.MustCompile(`\{\{\s*(term|module|status)\s+([^}]*)\}\}`)

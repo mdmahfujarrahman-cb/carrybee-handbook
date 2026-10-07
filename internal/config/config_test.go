@@ -48,3 +48,10 @@ func TestLoadRejectsDuplicateIDs(t *testing.T) {
 		t.Fatal("expected duplicate id error")
 	}
 }
+
+func TestLoadRejectsEmptyID(t *testing.T) {
+	p := writeConfig(t, `{"apps":[{"id":"","path":"x"}]}`)
+	if _, err := Load(p, ""); err == nil {
+		t.Fatal("expected empty id error")
+	}
+}

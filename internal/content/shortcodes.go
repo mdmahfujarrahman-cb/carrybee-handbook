@@ -10,6 +10,7 @@ import (
 
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
+	"github.com/yuin/goldmark/parser"
 	gmhtml "github.com/yuin/goldmark/renderer/html"
 )
 
@@ -18,10 +19,13 @@ type Resolver struct {
 	ModuleDesc func(app, id string) (Desc, bool)
 	StatusName func(id int) (string, bool)
 	ModuleHref func(app, id string) string
-	TermHref   func(id string) string
 }
 
-var md = goldmark.New(goldmark.WithExtensions(extension.GFM), goldmark.WithRendererOptions(gmhtml.WithUnsafe()))
+// md renders GFM with raw HTML allowed and an id on every heading, so links such as
+// how-carrybee-works.html#money-flow resolve without JavaScript.
+var md = goldmark.New(goldmark.WithExtensions(extension.GFM),
+	goldmark.WithParserOptions(parser.WithAutoHeadingID()),
+	goldmark.WithRendererOptions(gmhtml.WithUnsafe()))
 
 var calloutRE = regexp.MustCompile(`(?ms)^:::(note|carrybee|warning)\s*\n(.*?)\n:::\s*$`)
 

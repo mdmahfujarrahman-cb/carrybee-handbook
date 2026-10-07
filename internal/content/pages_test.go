@@ -15,7 +15,6 @@ func testResolver() Resolver {
 		},
 		StatusName: func(id int) (string, bool) { return "Delivered", id == 15 },
 		ModuleHref: func(app, id string) string { return "../apps/" + app + ".html#mod." + id },
-		TermHref:   func(id string) string { return "../terms.html#t." + id },
 	}
 }
 
@@ -81,5 +80,15 @@ func TestTermLabelOverride(t *testing.T) {
 	refs := extractRefs(src)
 	if len(refs) != 2 || refs[0] != (Ref{Kind: "term", ID: "cash-in-hand"}) {
 		t.Errorf("refs = %v", refs)
+	}
+}
+
+func TestHeadingsGetIDs(t *testing.T) {
+	html, err := Render("## Money flow\n\ntext", testResolver())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(html, `<h2 id="money-flow">Money flow</h2>`) {
+		t.Fatalf("heading has no id: %s", html)
 	}
 }

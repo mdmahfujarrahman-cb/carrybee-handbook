@@ -118,7 +118,6 @@ func (s *site) resolver(from string) content.Resolver {
 		},
 		StatusName: func(id int) (string, bool) { n, ok := statuses[id]; return n, ok },
 		ModuleHref: func(app, id string) string { return Rel(from, "apps/"+app+".html#mod."+id) },
-		TermHref:   func(id string) string { return Rel(from, "terms.html#t."+id) },
 	}
 }
 

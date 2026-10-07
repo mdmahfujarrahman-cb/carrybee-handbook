@@ -1,6 +1,5 @@
 {
   "siteTitle": "Carrybee Handbook",
-  "baseURL": "/",
   "apps": [
     {"id": "hive", "path": "../hive", "label": "hive", "audience": "ops"},
     {"id": "aladdin", "path": "../aladdin", "label": "aladdin", "audience": "merchant",

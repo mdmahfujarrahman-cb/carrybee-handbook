@@ -102,10 +102,16 @@ func LoadData(dir string) (*Data, error) {
 	}
 	d.Stories, d.StorySub = stories.Apps, stories.Intro
 	d.Categories, d.Terms = terms.Categories, terms.Terms
+	seen := make(map[string]bool, len(d.Terms))
 	for i := range d.Terms {
-		if d.Terms[i].ID == "" {
-			d.Terms[i].ID = Slug(d.Terms[i].Name)
+		t := &d.Terms[i]
+		if t.ID == "" {
+			t.ID = Slug(t.Name)
 		}
+		if seen[t.ID] {
+			return nil, fmt.Errorf("terms.json: duplicate term id %q (term %q)", t.ID, t.Name)
+		}
+		seen[t.ID] = true
 	}
 	return d, nil
 }

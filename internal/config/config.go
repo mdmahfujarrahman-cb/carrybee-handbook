@@ -19,7 +19,6 @@ type App struct {
 
 type Config struct {
 	SiteTitle string `json:"siteTitle"`
-	BaseURL   string `json:"baseURL"`
 	Apps      []App  `json:"apps"`
 	Dir       string `json:"-"` // directory holding handbook.json
 }
@@ -42,6 +41,9 @@ func Load(path, appsRoot string) (*Config, error) {
 	seen := map[string]bool{}
 	for i := range c.Apps {
 		a := &c.Apps[i]
+		if a.ID == "" {
+			return nil, fmt.Errorf("app %d in %s has no id", i+1, path)
+		}
 		if seen[a.ID] {
 			return nil, fmt.Errorf("duplicate app id %q", a.ID)
 		}

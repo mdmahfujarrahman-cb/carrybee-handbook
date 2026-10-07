@@ -1,40 +1,90 @@
-<svg viewBox="0 0 640 944" role="img" aria-labelledby="st-title st-desc" class="d-statuses">
-<title id="st-title">Order status lifecycle</title>
-<desc id="st-desc">The normal path runs from Pending (1) through Pickup requested (2), Assigned for pickup (3), Picked (4), At first-mile hub (7), sorting at a sorting hub, the central warehouse or a sub-sort centre (8 to 11, 35, 38, 39), At last-mile hub (12, 13) and Assigned for delivery (14) to Delivered (15). A pickup can be put on hold or cancelled (5, 6). From Assigned for delivery a parcel can go on hold and be tried again (16), be partly delivered or exchanged (18, 22), be lost or damaged (20, 19), or be returned (17, 21); a return travels back through the hubs (23 to 31, 34, 40, 41) and ends Returned to merchant (32). Reverse pickup (42 to 45) is a separate flow; a lost parcel can be found (36) or reprocessed (37).</desc>
-<defs><marker id="st-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
-<g><rect class="d-box d-main" x="16" y="16" width="300" height="48" rx="10"/><text class="d-t" x="30" y="37">Pending</text><text class="d-n" x="30" y="55">1</text></g>
-<g><rect class="d-box d-main" x="16" y="88" width="300" height="48" rx="10"/><text class="d-t" x="30" y="109">Pickup requested</text><text class="d-n" x="30" y="127">2</text></g>
-<g><rect class="d-box d-main" x="16" y="160" width="300" height="48" rx="10"/><text class="d-t" x="30" y="181">Assigned for pickup</text><text class="d-n" x="30" y="199">3</text></g>
-<g><rect class="d-box d-main" x="16" y="232" width="300" height="48" rx="10"/><text class="d-t" x="30" y="253">Picked</text><text class="d-n" x="30" y="271">4</text></g>
-<g><rect class="d-box d-main" x="16" y="304" width="300" height="48" rx="10"/><text class="d-t" x="30" y="325">At first-mile hub</text><text class="d-n" x="30" y="343">7</text></g>
-<g><rect class="d-box d-main" x="16" y="376" width="300" height="48" rx="10"/><text class="d-t" x="30" y="397">Sorting hub, central or sub-sort</text><text class="d-n" x="30" y="415">8–11, 35, 38, 39</text></g>
-<g><rect class="d-box d-main" x="16" y="448" width="300" height="48" rx="10"/><text class="d-t" x="30" y="469">At last-mile hub</text><text class="d-n" x="30" y="487">12, 13</text></g>
-<g><rect class="d-box d-main" x="16" y="520" width="300" height="48" rx="10"/><text class="d-t" x="30" y="541">Assigned for delivery</text><text class="d-n" x="30" y="559">14</text></g>
-<g><rect class="d-box d-ok" x="16" y="592" width="300" height="48" rx="10"/><text class="d-t" x="30" y="613">Delivered</text><text class="d-n" x="30" y="631">15 · final</text></g>
-<line class="d-line" x1="166.0" y1="64" x2="166.0" y2="86" marker-end="url(#st-arrow)"/>
-<line class="d-line" x1="166.0" y1="136" x2="166.0" y2="158" marker-end="url(#st-arrow)"/>
-<line class="d-line" x1="166.0" y1="208" x2="166.0" y2="230" marker-end="url(#st-arrow)"/>
-<line class="d-line" x1="166.0" y1="280" x2="166.0" y2="302" marker-end="url(#st-arrow)"/>
-<line class="d-line" x1="166.0" y1="352" x2="166.0" y2="374" marker-end="url(#st-arrow)"/>
-<line class="d-line" x1="166.0" y1="424" x2="166.0" y2="446" marker-end="url(#st-arrow)"/>
-<line class="d-line" x1="166.0" y1="496" x2="166.0" y2="518" marker-end="url(#st-arrow)"/>
-<line class="d-line" x1="166.0" y1="568" x2="166.0" y2="590" marker-end="url(#st-arrow)"/>
-<g><rect class="d-box d-alt" x="360" y="160" width="264" height="48" rx="10"/><text class="d-t" x="374" y="181">Pickup on hold or cancelled</text><text class="d-n" x="374" y="199">5, 6</text></g>
-<line class="d-line d-dash" x1="316" y1="184" x2="358" y2="184" marker-end="url(#st-arrow)"/>
-<path class="d-line" d="M316 544 H338 V760"/>
-<g><rect class="d-box d-alt" x="360" y="520" width="264" height="48" rx="10"/><text class="d-t" x="374" y="541">On hold, tries again</text><text class="d-n" x="374" y="559">16</text></g>
-<line class="d-line" x1="338" y1="544" x2="358" y2="544" marker-end="url(#st-arrow)"/>
-<g><rect class="d-box d-ok" x="360" y="592" width="264" height="48" rx="10"/><text class="d-t" x="374" y="613">Partial delivery, exchange</text><text class="d-n" x="374" y="631">18, 22 · final</text></g>
-<line class="d-line" x1="338" y1="616" x2="358" y2="616" marker-end="url(#st-arrow)"/>
-<g><rect class="d-box d-bad" x="360" y="664" width="264" height="48" rx="10"/><text class="d-t" x="374" y="685">Lost or damaged</text><text class="d-n" x="374" y="703">20, 19 · final</text></g>
-<line class="d-line" x1="338" y1="688" x2="358" y2="688" marker-end="url(#st-arrow)"/>
-<g><rect class="d-box d-bad" x="360" y="736" width="264" height="48" rx="10"/><text class="d-t" x="374" y="757">Return or paid return</text><text class="d-n" x="374" y="775">17, 21</text></g>
-<line class="d-line" x1="338" y1="760" x2="358" y2="760" marker-end="url(#st-arrow)"/>
-<g><rect class="d-box d-bad" x="360" y="808" width="264" height="48" rx="10"/><text class="d-t" x="374" y="829">Return chain through hubs</text><text class="d-n" x="374" y="847">23–31, 34, 40, 41</text></g>
-<line class="d-line" x1="492.0" y1="784" x2="492.0" y2="806" marker-end="url(#st-arrow)"/>
-<g><rect class="d-box d-bad" x="360" y="880" width="264" height="48" rx="10"/><text class="d-t" x="374" y="901">Returned to merchant</text><text class="d-n" x="374" y="919">32 · final</text></g>
-<line class="d-line" x1="492.0" y1="856" x2="492.0" y2="878" marker-end="url(#st-arrow)"/>
-<g><rect class="d-box d-alt" x="16" y="680" width="300" height="48" rx="10"/><text class="d-t" x="30" y="701">Reverse pickup from the buyer</text><text class="d-n" x="30" y="719">42–45 · its own flow</text></g>
-<g><rect class="d-box d-alt" x="16" y="752" width="300" height="48" rx="10"/><text class="d-t" x="30" y="773">Found again or reprocessed</text><text class="d-n" x="30" y="791">36, 37 · after lost</text></g>
-</svg>
-<figcaption>The order status lifecycle. Numbers are <code>TransferStatus</code> values; green and red boxes are final or failure outcomes, dashed boxes are side paths.</figcaption>
+<div class="dg-cols" role="group" aria-labelledby="st-title"><p class="dg-title" id="st-title">Order status lifecycle</p>
+<div class="dg-col"><p class="dg-col-title">The normal path</p><svg viewBox="0 0 320 760" role="img" aria-labelledby="st-t1 st-d1">
+<title id="st-t1">The normal path</title>
+<desc id="st-d1">Pending 1, Pickup requested 2, Assigned for pickup 3, Picked 4, At first-mile hub 7, sorting 8 to 11, 35, 38, 39, At last-mile hub 12 and 13, Assigned for delivery 14, Delivered 15.</desc>
+<defs><marker id="st-a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="dg-box dg-accent" x="16" y="8" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="27.0">Pending</text>
+<text class="dg-sub" x="160.0" y="48.0">1</text>
+<line class="dg-line" x1="160.0" y1="66" x2="160.0" y2="90" marker-end="url(#st-a1)"/>
+<rect class="dg-box dg-accent" x="16" y="94" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="113.0">Pickup requested</text>
+<text class="dg-sub" x="160.0" y="134.0">2</text>
+<line class="dg-line" x1="160.0" y1="152" x2="160.0" y2="176" marker-end="url(#st-a1)"/>
+<rect class="dg-box dg-accent" x="16" y="180" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="199.0">Assigned for pickup</text>
+<text class="dg-sub" x="160.0" y="220.0">3</text>
+<line class="dg-line" x1="160.0" y1="238" x2="160.0" y2="262" marker-end="url(#st-a1)"/>
+<rect class="dg-box dg-accent" x="16" y="266" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="285.0">Picked</text>
+<text class="dg-sub" x="160.0" y="306.0">4</text>
+<line class="dg-line" x1="160.0" y1="324" x2="160.0" y2="348" marker-end="url(#st-a1)"/>
+<rect class="dg-box dg-accent" x="16" y="352" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="371.0">At first-mile hub</text>
+<text class="dg-sub" x="160.0" y="392.0">7</text>
+<line class="dg-line" x1="160.0" y1="410" x2="160.0" y2="434" marker-end="url(#st-a1)"/>
+<rect class="dg-box dg-accent" x="16" y="438" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="457.0">Sorting, central or sub-sort</text>
+<text class="dg-sub" x="160.0" y="478.0">8–11, 35, 38, 39</text>
+<line class="dg-line" x1="160.0" y1="496" x2="160.0" y2="520" marker-end="url(#st-a1)"/>
+<rect class="dg-box dg-accent" x="16" y="524" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="543.0">At last-mile hub</text>
+<text class="dg-sub" x="160.0" y="564.0">12, 13</text>
+<line class="dg-line" x1="160.0" y1="582" x2="160.0" y2="606" marker-end="url(#st-a1)"/>
+<rect class="dg-box dg-accent" x="16" y="610" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="629.0">Assigned for delivery</text>
+<text class="dg-sub" x="160.0" y="650.0">14</text>
+<line class="dg-line" x1="160.0" y1="668" x2="160.0" y2="692" marker-end="url(#st-a1)"/>
+<rect class="dg-box dg-ok" x="16" y="696" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="715.0">Delivered</text>
+<text class="dg-sub" x="160.0" y="736.0">15 · final</text>
+</svg></div>
+<div class="dg-col"><p class="dg-col-title">Other outcomes at the door (from 14)</p><svg viewBox="0 0 320 282" role="img" aria-labelledby="st-t2 st-d2">
+<title id="st-t2">Other outcomes at the door (from 14)</title>
+<desc id="st-d2">On hold and tried again 16; partial delivery or exchange 18, 22, final; lost or damaged 20, 19, final; return or paid return 17, 21, then the return chain 23 to 31, 34, 40, 41, ending Returned to merchant 32.</desc>
+<defs><marker id="st-a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="dg-box dg-alt" x="16" y="8" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="27.0">On hold, tried again</text>
+<text class="dg-sub" x="160.0" y="48.0">16</text>
+<rect class="dg-box dg-ok" x="16" y="78" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="97.0">Partial delivery or exchange</text>
+<text class="dg-sub" x="160.0" y="118.0">18, 22 · final</text>
+<rect class="dg-box dg-bad" x="16" y="148" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="167.0">Lost or damaged</text>
+<text class="dg-sub" x="160.0" y="188.0">20, 19 · final</text>
+<rect class="dg-box dg-bad" x="16" y="218" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="237.0">Return or paid return</text>
+<text class="dg-sub" x="160.0" y="258.0">17, 21</text>
+</svg></div>
+<div class="dg-col"><p class="dg-col-title">A return goes back</p><svg viewBox="0 0 320 244" role="img" aria-labelledby="st-t3 st-d3">
+<title id="st-t3">A return goes back</title>
+<desc id="st-d3">Return or paid return 17, 21, then the return chain 23 to 31, 34, 40, 41, then Returned to merchant 32.</desc>
+<defs><marker id="st-a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="dg-box dg-bad" x="16" y="8" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="27.0">Return or paid return</text>
+<text class="dg-sub" x="160.0" y="48.0">17, 21</text>
+<line class="dg-line" x1="160.0" y1="66" x2="160.0" y2="90" marker-end="url(#st-a3)"/>
+<rect class="dg-box dg-bad" x="16" y="94" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="113.0">Return chain through hubs</text>
+<text class="dg-sub" x="160.0" y="134.0">23–31, 34, 40, 41</text>
+<line class="dg-line" x1="160.0" y1="152" x2="160.0" y2="176" marker-end="url(#st-a3)"/>
+<rect class="dg-box dg-bad" x="16" y="180" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="199.0">Returned to merchant</text>
+<text class="dg-sub" x="160.0" y="220.0">32 · final</text>
+</svg></div>
+<div class="dg-col"><p class="dg-col-title">Side paths</p><svg viewBox="0 0 320 212" role="img" aria-labelledby="st-t4 st-d4">
+<title id="st-t4">Side paths</title>
+<desc id="st-d4">Pickup on hold or cancelled 5, 6; reverse pickup from the buyer 42 to 45; a lost parcel found again 36 or reprocessed 37.</desc>
+<defs><marker id="st-a4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="dg-head" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="dg-box dg-alt" x="16" y="8" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="27.0">Pickup on hold or cancelled</text>
+<text class="dg-sub" x="160.0" y="48.0">5, 6</text>
+<rect class="dg-box dg-alt" x="16" y="78" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="97.0">Reverse pickup from buyer</text>
+<text class="dg-sub" x="160.0" y="118.0">42–45</text>
+<rect class="dg-box dg-alt" x="16" y="148" width="288" height="56" rx="10"/>
+<text class="dg-label" x="160.0" y="167.0">Found again or reprocessed</text>
+<text class="dg-sub" x="160.0" y="188.0">36, 37</text>
+</svg></div>
+</div>
+<figcaption>The order status lifecycle. Numbers are <code>TransferStatus</code> values. Green boxes are good final statuses, red ones are failures and returns, dashed boxes are side paths.</figcaption>

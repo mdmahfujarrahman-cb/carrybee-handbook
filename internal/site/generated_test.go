@@ -32,7 +32,7 @@ func TestGeneratedPages(t *testing.T) {
 		}
 	}
 	for page, title := range map[string]string{statusesOut: "st-title", "business/how-carrybee-works.html": "mw-title"} {
-		if html := read(page); !strings.Contains(html, `<figure class="diagram">`) || !strings.Contains(html, `<title id="`+title+`">`) {
+		if html := read(page); !strings.Contains(html, `<figure class="diagram">`) || !strings.Contains(html, `id="`+title+`"`) {
 			t.Errorf("%s is missing its diagram %s", page, title)
 		}
 	}

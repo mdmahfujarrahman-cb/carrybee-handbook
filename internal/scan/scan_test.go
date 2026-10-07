@@ -1,9 +1,11 @@
 package scan
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"reflect"
+	"strings"
 	"testing"
 
 	"carrybee/handbook/internal/config"
@@ -98,6 +100,13 @@ func TestScanAllMissingApp(t *testing.T) {
 	}
 	if out["ghost"] == nil || out["ghost"].Error == "" {
 		t.Fatal("missing app must be returned with Error set")
+	}
+	raw, err := json.Marshal(out["ghost"])
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(raw), `"cycles":[]`) || !strings.Contains(string(raw), `"statuses":[]`) {
+		t.Fatalf("empty cycles/statuses must marshal as []: %s", raw)
 	}
 }
 

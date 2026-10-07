@@ -41,7 +41,8 @@ func gitCommit(dir string) string {
 // ScanApp scans one app. Failures are reported in AppScan.Error, never as a nil result.
 func ScanApp(app config.App) *AppScan {
 	s := &AppScan{App: app.ID, Label: app.Label, Audience: app.Audience, ScannedAt: time.Now().UTC(),
-		Modules: map[string]*Module{}, Routes: map[string]*Route{}, APIDomains: map[string][]string{}}
+		Modules: map[string]*Module{}, Routes: map[string]*Route{}, APIDomains: map[string][]string{},
+		Statuses: []Status{}, Cycles: [][]string{}}
 	g, err := BuildGraph(app, RouteNamer(app))
 	if err != nil {
 		s.Error = err.Error()

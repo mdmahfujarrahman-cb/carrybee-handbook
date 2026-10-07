@@ -7,7 +7,7 @@ func Cycles(deps map[string]map[string]int) [][]string {
 	index, low := map[string]int{}, map[string]int{}
 	onStack := map[string]bool{}
 	var stack []string
-	var out [][]string
+	out := [][]string{}
 	next := 0
 	nodes := make([]string, 0, len(deps))
 	for n := range deps {

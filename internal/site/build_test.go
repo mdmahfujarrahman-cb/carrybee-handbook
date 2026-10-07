@@ -14,7 +14,13 @@ func fixtureConfig(t *testing.T) *config.Config {
 	t.Helper()
 	app, _ := filepath.Abs("../scan/testdata/app")
 	dir, _ := filepath.Abs("../..")
-	return &config.Config{SiteTitle: "Test", Dir: dir, Apps: []config.App{{ID: "hive", Label: "hive", Path: app}}}
+	// The real content links to all three app maps, so the fixture builds all three from the same test app.
+	apps := []config.App{
+		{ID: "hive", Label: "hive", Path: app},
+		{ID: "aladdin", Label: "aladdin", Path: app},
+		{ID: "accounts", Label: "accounts", Path: app},
+	}
+	return &config.Config{SiteTitle: "Test", Dir: dir, Apps: apps}
 }
 
 func TestRel(t *testing.T) {

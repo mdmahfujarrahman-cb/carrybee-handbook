@@ -335,6 +335,7 @@ mark { background: var(--brand); color: var(--brand-ink); border-radius: 3px; pa
 }
 .home .hero-lead { margin-top: 22px; font-size: 19.5px; line-height: 1.55; max-width: 60ch; }
 .hero-lead p { margin: 0; }
+.hero-lead p + p { margin-top: 0.75em; }
 .parcel-strip {
   position: relative; margin: 40px 0 0; padding: 30px 24px 22px;
   background: var(--panel); border: 1px solid var(--line); border-radius: 18px;

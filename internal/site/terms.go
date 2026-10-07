@@ -23,10 +23,14 @@ func LinkTerms(terms []content.Term, scans map[string]*scan.AppScan, pins map[st
 		t.Where = map[string][]string{}
 		for _, app := range t.Apps {
 			s := scans[app]
-			if s == nil || s.Files == nil {
+			if s == nil {
 				continue
 			}
-			if mods := rankModules(t.Aka, s); len(mods) > 0 {
+			var found []string
+			if s.Files != nil {
+				found = rankModules(t.Aka, s)
+			}
+			if mods := withNamedModules(t.Aka, s, found); len(mods) > 0 {
 				t.Where[app] = mods
 			}
 		}
@@ -34,6 +38,28 @@ func LinkTerms(terms []content.Term, scans map[string]*scan.AppScan, pins map[st
 			t.Where[app] = mods
 		}
 		out[i] = t
+	}
+	return out
+}
+
+// withNamedModules puts modules whose directory name equals an alias first (Ruling R8),
+// then the ranked source matches, keeping at most topPerApp.
+func withNamedModules(aka []string, s *scan.AppScan, ranked []string) []string {
+	out := make([]string, 0, topPerApp)
+	seen := map[string]bool{}
+	add := func(m string) {
+		if !seen[m] && len(out) < topPerApp {
+			seen[m] = true
+			out = append(out, m)
+		}
+	}
+	for _, alias := range aka {
+		if s.Modules[alias] != nil {
+			add(alias)
+		}
+	}
+	for _, m := range ranked {
+		add(m)
 	}
 	return out
 }

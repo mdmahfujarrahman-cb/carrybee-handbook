@@ -196,7 +196,6 @@ func (s *site) nav(cur string) []NavSection {
 	secs = append(secs[:2], append([]NavSection{apps}, secs[2:]...)...)
 	secs = append(secs, NavSection{Title: "Reference", Items: []NavItem{
 		{"Courier terms", Rel(cur, "terms.html"), cur == "terms.html"},
-		{"Known issues", Rel(cur, "known-issues.html"), cur == "known-issues.html"},
 	}})
 	return secs
 }

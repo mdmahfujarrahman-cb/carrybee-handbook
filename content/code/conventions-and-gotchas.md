@@ -51,4 +51,4 @@ Don't add to a loop. If your change needs something from a module in one of thes
 
 **aladdin's intercepted modals need real pages.** Every `@modal/(.)x` route needs a matching `[businessId]/x/page.tsx`, or a hard refresh on that URL fails. `update-password` has only the modal today.
 
-**Known bugs are documented.** Before you copy a pattern from the code, check [Known issues](../known-issues.html). Some patterns there, such as a hard-coded token, must not spread.
+**Not every pattern in the code is a good one.** Before you copy a pattern, ask a reviewer whether it is still the way to do it. Some, such as a hard-coded token, must not spread.

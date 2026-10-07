@@ -24,7 +24,6 @@ Carrybee has three very different user groups: sellers running a shop, staff run
 5. The accounts map, A-to-Z view: [accounts](../apps/accounts.html), finance and legal in 5 stories.
 6. [Statuses](../business/statuses.html): what sellers see versus what staff see.
 7. [Courier terms](../terms.html): the vocabulary used on screen.
-8. [Known issues](../known-issues.html): bugs that affect users today.
 
 ## Users and their jobs
 

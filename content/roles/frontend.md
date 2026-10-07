@@ -25,7 +25,6 @@ You will work in one or more of three Next.js 16 apps that share a layout and a 
 5. The map of the app you will work on: [aladdin](../apps/aladdin.html), [hive](../apps/hive.html) or [accounts](../apps/accounts.html). Start with `orders` in aladdin and `delivery-run` in hive.
 6. [Statuses](../business/statuses.html): numbers, text values and the merchant tabs.
 7. [API domain index](../code/api-index.html): which module calls which backend domain.
-8. [Known issues](../known-issues.html): bugs you should not copy.
 
 ## Cheat sheet
 

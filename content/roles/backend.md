@@ -23,7 +23,6 @@ The backend is not in these repos, but the three frontends are its only web clie
 3. [Statuses](../business/statuses.html): every status number and the merchant tabs.
 4. [Architecture](../code/architecture.html): how the frontends call the API and check permissions.
 5. [Courier terms](../terms.html): the field names behind each term (for example `collectable_amount`, `cod_fee`).
-6. [Known issues](../known-issues.html): two of them are endpoint mix-ups you can confirm or fix from your side.
 
 ## Cheat sheet
 

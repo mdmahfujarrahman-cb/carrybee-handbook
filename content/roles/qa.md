@@ -22,9 +22,8 @@ None of the three apps has automated tests, so manual and end-to-end testing is 
 2. [How Carrybee works](../business/how-carrybee-works.html): the 13-step journey you will test.
 3. [Statuses](../business/statuses.html): numbers, final statuses and merchant tabs.
 4. The app maps, A-to-Z view: [aladdin](../apps/aladdin.html), [hive](../apps/hive.html), [accounts](../apps/accounts.html).
-5. [Known issues](../known-issues.html): bugs already found, with file and line.
-6. [Ops and support](ops.html): where each job is done in hive.
-7. [Courier terms](../terms.html) whenever a word on screen is unclear.
+5. [Ops and support](ops.html): where each job is done in hive.
+6. [Courier terms](../terms.html) whenever a word on screen is unclear.
 
 ## Happy path
 
@@ -83,5 +82,3 @@ hive and aladdin both support {{term "impersonate" "impersonate"}}, which lets s
 - In accounts, the consignment report and the merchant report call the same endpoint. Compare the two exports.
 - Some aladdin `APP_ROUTES` have no page, and `update-password` 404s on a hard refresh.
 - In the aladdin order tabs, a parcel returned to the seller sits under **Returning**, not **Returned** (see [Statuses](../business/statuses.html)). Confirm with product whether that is intended.
-
-Details, file and line for each are on [Known issues](../known-issues.html).

@@ -29,6 +29,7 @@ type Graph struct {
 	RouteImports map[string]map[string]int // route -> module -> count
 	RouteFiles   map[string]int
 	Files        map[string]string // rel path under src -> comment-stripped source
+	Skipped      []string          // src-relative paths of unreadable files
 }
 
 var importRE = regexp.MustCompile(`(?:from|import)\s*\(?\s*['"]([^'"]+)['"]`)
@@ -71,7 +72,7 @@ func BuildGraph(app config.App, routeOf func(rel []string) string) (*Graph, erro
 		}
 	}
 	g := &Graph{Modules: map[string]*Module{}, RouteImports: map[string]map[string]int{},
-		RouteFiles: map[string]int{}, Files: map[string]string{}}
+		RouteFiles: map[string]int{}, Files: map[string]string{}, Skipped: []string{}}
 	for m := range modules {
 		g.Modules[m] = newModule()
 	}
@@ -82,7 +83,9 @@ func BuildGraph(app config.App, routeOf func(rel []string) string) (*Graph, erro
 		relPath, _ := filepath.Rel(src, p)
 		raw, readErr := os.ReadFile(p)
 		if readErr != nil {
-			return nil // unreadable file: skip, counted by caller via Files
+			// Unreadable file: track it and skip processing
+			g.Skipped = append(g.Skipped, filepath.ToSlash(relPath))
+			return nil
 		}
 		text := StripComments(string(raw))
 		g.Files[filepath.ToSlash(relPath)] = text

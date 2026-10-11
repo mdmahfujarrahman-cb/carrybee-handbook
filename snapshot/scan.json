@@ -1,13 +1,13 @@
 {
  "version": 1,
- "builtAt": "2026-10-07T10:58:29.063852Z",
+ "builtAt": "2026-10-11T09:44:56.886251Z",
  "scans": {
   "accounts": {
    "app": "accounts",
    "label": "accounts",
    "audience": "finance",
    "commit": "1b831f0",
-   "scannedAt": "2026-10-07T10:58:26.184081Z",
+   "scannedAt": "2026-10-11T09:44:54.059692Z",
    "modules": {
     "authentication": {
      "files": 8,
@@ -497,8 +497,8 @@
    "app": "aladdin",
    "label": "aladdin",
    "audience": "merchant",
-   "commit": "b60ed9f0",
-   "scannedAt": "2026-10-07T10:58:26.184098Z",
+   "commit": "6eaddc33",
+   "scannedAt": "2026-10-11T09:44:54.059708Z",
    "modules": {
     "agent-messaging": {
      "files": 17,
@@ -1527,8 +1527,8 @@
    "app": "hive",
    "label": "hive",
    "audience": "ops",
-   "commit": "a1926599",
-   "scannedAt": "2026-10-07T10:58:26.184086Z",
+   "commit": "9ae4d9fe",
+   "scannedAt": "2026-10-11T09:44:54.059697Z",
    "modules": {
     "activity-log": {
      "files": 8,
@@ -2068,7 +2068,7 @@
       "(oms)/delivery-orders": 14
      },
      "apis": {
-      "deliveryOrders": 6
+      "deliveryOrders": 8
      },
      "shared": {
       "components/copy": 1,
@@ -2082,7 +2082,7 @@
       "hooks/use-current-hub": 3,
       "hooks/useBarcode": 1,
       "lib/api-client": 2,
-      "lib/constants": 3,
+      "lib/constants": 4,
       "lib/font": 1,
       "lib/permission": 1,
       "lib/printer-utils": 1,
@@ -2093,10 +2093,11 @@
      }
     },
     "delivery-run": {
-     "files": 55,
+     "files": 56,
      "deps": {
       "agents": 4,
       "fraud-activities": 3,
+      "geonix": 1,
       "route": 1,
       "warehouses": 1
      },
@@ -2248,6 +2249,7 @@
      "files": 30,
      "deps": {},
      "usedByMods": {
+      "delivery-run": 1,
       "qc": 1
      },
      "usedByRoutes": {
@@ -2811,9 +2813,7 @@
      "files": 11,
      "deps": {},
      "usedByMods": {},
-     "usedByRoutes": {
-      "(oms)/order-status-change": 2
-     },
+     "usedByRoutes": {},
      "apis": {
       "orderStatusChange": 2
      },
@@ -4141,12 +4141,6 @@
       "order-processing": 15
      }
     },
-    "(oms)/order-status-change": {
-     "files": 2,
-     "mods": {
-      "order-status-change": 2
-     }
-    },
     "(oms)/orders": {
      "files": 10,
      "mods": {
@@ -5269,6 +5263,16 @@
     "delivery-orders"
    ]
   },
+  "close-box": {
+   "aladdin": [
+    "orders"
+   ],
+   "hive": [
+    "orders",
+    "delivery-orders",
+    "order-processing"
+   ]
+  },
   "cluster-lead-region-lead": {
    "hive": [
     "cluster",
@@ -5545,6 +5549,7 @@
   "geonix": {
    "hive": [
     "geonix",
+    "delivery-run",
     "qc"
    ]
   },
@@ -6301,6 +6306,7 @@
   "zone-polygon": {
    "hive": [
     "geonix",
+    "delivery-run",
     "qc"
    ]
   },

@@ -12,7 +12,7 @@ func TestLoadDataFromRepo(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(d.Terms) != 185 || len(d.Categories) != 12 {
+	if len(d.Terms) != 186|| len(d.Categories) != 12 {
 		t.Fatalf("terms=%d cats=%d", len(d.Terms), len(d.Categories))
 	}
 	if d.Modules["hive"]["delivery-run"].Title != "Delivery run" {

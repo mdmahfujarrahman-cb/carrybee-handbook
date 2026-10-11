@@ -115,7 +115,7 @@ func TestScanAllMissingApp(t *testing.T) {
 func TestParityWithPrototype(t *testing.T) {
 	// accounts pages are 9, not the prototype's 10: the prototype counted a "/" page that existed
 	// only through commented-out imports in src/app/(main)/layout.tsx (lines 25-29).
-	want := map[string][3]int{"hive": {76, 82, 4}, "aladdin": {18, 54, 1}, "accounts": {10, 9, 0}}
+	want := map[string][3]int{"hive": {76, 81, 4}, "aladdin": {18, 54, 1}, "accounts": {10, 9, 0}}
 	cfg, err := config.Load("../../handbook.json", "")
 	if err != nil {
 		t.Skip("no handbook.json")

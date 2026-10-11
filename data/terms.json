@@ -806,6 +806,24 @@
    "id": "special-note"
   },
   {
+   "t": "Close box",
+   "cat": "parcel",
+   "aka": [
+    "isCloseBox",
+    "is_close_box",
+    "close_box",
+    "isClosed",
+    "is_closed",
+    "CLOSEBOX"
+   ],
+   "apps": [
+    "aladdin",
+    "hive"
+   ],
+   "def": "A flag the seller ticks when creating an order: the parcel must stay sealed and the buyer may not open it to check the item before paying. Shown as a box icon in the order list and printed as CLOSE BOX on the label. Off by default; in a bulk sheet the column is 1 or 0.",
+   "id": "close-box"
+  },
+  {
    "t": "Hold / urgent request",
    "cat": "parcel",
    "aka": [
